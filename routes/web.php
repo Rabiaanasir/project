@@ -19,6 +19,7 @@ use App\Http\Controllers\packagesController;
 use App\Http\Controllers\emiController;
 use App\Http\Controllers\investController;
 use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\regController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,3 +54,4 @@ Route::get('/net-metering', [nmController::class, 'index'])->name('net-metering'
 Route::get('/emi', [emiController::class, 'index'])->name('emi');
 Route::get('/invest', [investController::class, 'index'])->name('invest');
 Route::get('/dashboard', [dashboardController::class, 'index'])->name('dashboard');
+Route::get('/register', [regController::class, 'index'])->name('registeration');
