@@ -19,10 +19,10 @@ a{
 
 nav img{
     height: 11vh;
-    width: 260px;
+    width: 220px;
   }
   .navbar{
-    padding: 1rem;
+    padding: 0.3rem;
     background-color: #141a46;
     font-family: none;
   }
@@ -76,10 +76,14 @@ nav img{
     color:#f4f4f4;
   }
   .install{
-    text-decoration: none;
-    font-size: 14px;
-    color: #554cd1;
-    font-weight: 600;
+    background: #d7fada;
+    padding: 2px 10px;
+    display: inline-block;
+    border-radius: 40px;
+    color: #000;
+  }
+  .nav-item.install a{
+    color: #000;
   }
   /* Footer Styles */
 

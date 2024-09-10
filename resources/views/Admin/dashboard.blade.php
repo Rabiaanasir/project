@@ -1,3 +1,4 @@
+@extends('Admin.dashboard_css')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@
 <body>
 <section id="menu">
     <div class="logo">
-        <img src="./solar img/WhatsApp Image 2024-06-09 at 2.46.26 AM.jpeg" alt="">
+        <img src="{{ asset('images/logo.jpeg') }}" alt="">
         <h2>Sun Source Solutions</h2>
     </div>
 
@@ -40,7 +41,7 @@
         </div>
         <div class="profile">
             <i  class="far fa-bell"></i>
-            <img src="./solar img/client.png" alt="">
+            <img src="{{ asset('images/client.png') }}" alt="">
         </div>
     </div>
 
@@ -90,7 +91,7 @@
             <tbody>
                 <tr>
                     <td class="people">
-                        <img src="./solar img/client2.jpg" alt="">
+                        <img src="{{ asset('images/client2.jpg') }}" alt="">
                         <div class="people-de">
                             <h5>John Doe</h5>
                             <p>john@example.com</p>
@@ -110,7 +111,7 @@
                 </tr>
                 <tr>
                     <td class="people">
-                        <img src="./solar img/client2.jpg" alt="">
+                        <img src="{{ asset('images/client2.jpg') }}" alt="">
                         <div class="people-de">
                             <h5>Oscar Rhys</h5>
                             <p>john@example.com</p>
@@ -130,7 +131,7 @@
                 </tr>
                 <tr>
                     <td class="people">
-                        <img src="./solar img/client2.jpg" alt="">
+                        <img src="{{ asset('images/client2.jpg') }}" alt="">
                         <div class="people-de">
                             <h5>George Reece</h5>
                             <p>john@example.com</p>
@@ -150,7 +151,7 @@
                 </tr>
                 <tr>
                     <td class="people">
-                        <img src="./solar img/client2.jpg" alt="">
+                        <img src="{{ asset('images/client2.jpg') }}" alt="">
                         <div class="people-de">
                             <h5>Thomas Joe</h5>
                             <p>john@example.com</p>
@@ -170,7 +171,7 @@
                 </tr>
                 <tr>
                     <td class="people">
-                        <img src="./solar img/client2.jpg" alt="">
+                        <img src="{{ asset('images/client2.jpg') }}" alt="">
                         <div class="people-de">
                             <h5>Charlie Kylie</h5>
                             <p>john@example.com</p>
@@ -190,7 +191,7 @@
                 </tr>
                 <tr>
                     <td class="people">
-                        <img src="./solar img/client2.jpg" alt="">
+                        <img src="{{ asset('images/client2.jpg') }}" alt="">
                         <div class="people-de">
                             <h5>John Doe</h5>
                             <p>john@example.com</p>
