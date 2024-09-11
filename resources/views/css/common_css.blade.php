@@ -75,16 +75,43 @@ nav img{
   .text-light{
     color:#f4f4f4;
   }
-  .install{
-    background: #d7fada;
-    padding: 2px 10px;
-    display: inline-block;
-    border-radius: 40px;
-    color: #000;
-  }
-  .nav-item.install a{
-    color: #000;
-  }
+  .install {
+    background: #d7fada;        /* Light green background */
+    padding: 2px 10px;          /* Retain original padding */
+    display: inline-block;      /* Button-like appearance */
+    border-radius: 40px;        /* Smooth, round corners */
+    color: #000;                /* Black text */
+    font-weight: bold;          /* Make the text bold */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: all 0.3s ease;  /* Smooth transition for hover effects */
+}
+
+/* Specific styles for the link inside the .install class */
+.nav-item.install a {
+    color: #000;                /* Ensure black text color */
+    text-decoration: none;      /* Remove underline */
+    font-size: 16px;            /* Make the text a bit larger */
+    transition: color 0.3s ease; /* Smooth text color transition */
+}
+
+/* Hover effect for the button */
+.install:hover {
+    background: #c4f1c6;        /* Slightly darker green on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+    transform: scale(1.05);     /* Slightly enlarge the button */
+}
+
+/* Hover effect for the text color inside the link */
+.nav-item.install a:hover {
+    color: #004d00;             /* Darker green text color on hover */
+}
+
+/* Focus state for accessibility */
+.nav-item.install a:focus {
+    outline: none;              /* Remove default outline */
+    box-shadow: 0 0 0 3px rgba(0, 77, 0, 0.5); /* Focus ring for accessibility */
+}
+  
   /* Footer Styles */
 
 footer {

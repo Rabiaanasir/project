@@ -31,9 +31,8 @@
                     <li class="nav-item"><a href="{{ route('projects') }}">Projects</a></li>
                     <li class="nav-item"><a href="{{ route('net-metering') }}">Net Metering</a></li>
                     {{-- <li class="nav-item"><a href="{{ route('financing') }}">Financing</a></li> --}}
-                    <li class="nav-item install"><a href="{{ route('financing') }}">Install A System</a></li>
+                    <li class="nav-item install"><a href="{{ route('registeration') }}">Install A System</a></li>
                     
-                                
                 </ul>
             </div>
         </nav>
