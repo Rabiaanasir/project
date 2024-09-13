@@ -76,7 +76,7 @@ nav img{
     color:#f4f4f4;
   }
   .install {
-    background: #d7fada;        /* Light green background */
+    background: rgb(233, 199, 6);         /* Light green background */
     padding: 2px 10px;          /* Retain original padding */
     display: inline-block;      /* Button-like appearance */
     border-radius: 40px;        /* Smooth, round corners */
@@ -96,7 +96,7 @@ nav img{
 
 /* Hover effect for the button */
 .install:hover {
-    background: #c4f1c6;        /* Slightly darker green on hover */
+  background: rgb(233, 199, 6);           /* Slightly darker green on hover */
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
     transform: scale(1.05);     /* Slightly enlarge the button */
 }
@@ -106,12 +106,6 @@ nav img{
     color: #004d00;             /* Darker green text color on hover */
 }
 
-/* Focus state for accessibility */
-.nav-item.install a:focus {
-    outline: none;              /* Remove default outline */
-    box-shadow: 0 0 0 3px rgba(0, 77, 0, 0.5); /* Focus ring for accessibility */
-}
-  
   /* Footer Styles */
 
 footer {
