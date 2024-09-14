@@ -21,39 +21,6 @@ header{
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.search-box{
-    position: absolute;
-    top: 67%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: transparent;
-    height: 35px;
-    width: 240px;
-    border: 2px solid orangered;
-    border-radius: 50px;
-    padding: 5px;
-
-}
-.search-btn{
-    float: right;
-    width: 10px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.search-txt{
-    border: none;
-    background: none;
-    outline: none;
-    float: left;
-    padding: 0;
-    font-size: 16px;
-    color: black;
-     
-}
 /**blog**/
 .blog-heading{
     margin-left: 620px;
@@ -171,5 +138,13 @@ h3{
     padding: 0px;
     font-size: 18px;
     line-height: 25px;
+}
+.videos h1{
+    font-size: 30px;
+   margin-left: 50px;
+   color: rgb(4, 4, 149);
+}
+.videos{
+   margin-left: 230px;
 }
 </style>

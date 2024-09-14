@@ -10,11 +10,6 @@
         <h2>Get Sun Source Solutions & never lose power day and night</h2>
        </div>
    
-<div class="search-box">
- <input class="search-txt" type="text" name="" placeholder="Type to search">
- <a class="search-btn" href="#"></a>
- <i class="fa-solid fa-magnifying-glass"></i>
-</div>
 
 </header> 
 <br>
@@ -50,6 +45,7 @@
         <div class="imgwrapper">
     <img class="img2" src="{{ asset('images/blog5.webp') }}">
    <div class="text2">
+    <h1> Why Solar Energy is Most Preferred</h1>
     <h1> Why Solar Energy is Most Preferred</h1>
     Here are some key points:
     <h2>Sustainability:</h2>
@@ -97,6 +93,26 @@ Solar power is a clean and sustainable energy source since it doesn’t harm eco
 
  </div>
 </div>
-
 </section>
+
+<section class="videos">
+    <h1>5KW Solar system complete installation guide</h1>
+    <video width="900px" controls
+    poster="{{ asset('images/blog5.webp') }}" class="video-player">
+        <source src="{{ asset('videos/5KW Solar system complete installation guide.mp4') }}" type="video/mp4">
+    </video>
+    <h1>7 Basic rules and principles before solar system installation</h1>
+    <video width="900px" controls
+    poster="{{ asset('images/7 steps.webp') }}" class="video-player">
+        <source src="{{ asset('videos/7 Basic rules and principles before solar system installation.mp4') }}" type="video/mp4">
+    </video>
+    <h1>Solar panel system components explain</h1>
+    <video width="900px" controls
+    poster="{{ asset('images/sys.png') }}" class="video-player">
+        <source src="{{ asset('videos/Solar panel system components explain.mp4') }}" type="video/mp4">
+    </video> 
+  </section>
+@endsection
+@section('js')
+@include('js.blog_js')
 @endsection
