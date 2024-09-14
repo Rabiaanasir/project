@@ -46,6 +46,7 @@
     <img class="img2" src="{{ asset('images/blog5.webp') }}">
    <div class="text2">
     <h1> Why Solar Energy is Most Preferred</h1>
+    <h1> Why Solar Energy is Most Preferred</h1>
     Here are some key points:
     <h2>Sustainability:</h2>
     One of the primary reasons why solar energy is preferred is its ‘sustainability’. Unlike fossil energies, which are finite and contribute to dangerous greenhouse gas emissions, solar power is an infinite resource that leaves no carbon footprint. By harnessing the sun’s energy, we not only reduce our dependence on non-renewable resources but also contribute to the fight against climate change.
