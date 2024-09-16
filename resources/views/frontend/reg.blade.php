@@ -1,12 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Registeration</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Poppins:ital,wght@0,200;1,300&display=swap');
+         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Poppins:ital,wght@0,200;1,300&display=swap');
         *{
             margin: 0;
             padding: 0;
@@ -89,18 +90,18 @@
             transition: .5s;
             padding: 50px;
         }
-        .form-box .signinform{
+        .form-box .loginform{
             transition-delay: .25s;
         }
-        .form-box.active .signinform{
+        .form-box.active .loginform{
             left: -100%;
             transition-delay: 0;
         }
-        .form-box .signupform{
+        .form-box .registerform{
             left: 100%;
             transition-delay: 0;
         }
-        .form-box.active .signupform{
+        .form-box.active .registerform{
             left: 0%;
             transition-delay: .25s;
         }
@@ -114,6 +115,7 @@
             padding: 10px;
             outline: none;
             border: 1px solid #333;
+           
         }
         .form form h3{
             text-align: center;
@@ -128,7 +130,7 @@
             color: #fff;
             cursor: pointer;
         }
-        .form form input[value="Sign Up"]{
+        .form form input[value="Register"]{
             background: #141a46;
             border: none;
             max-width: 100px;
@@ -140,101 +142,98 @@
             font-size: 14px;
         }
         .error-message {
-            color: red;
+            color: rgb(255, 41, 41);
             font-size: 14px;
-            font-weight: 300;
+            font-weight: 800;
             margin-top: 10px;
             display: block;
             text-align: center;
         }
-        </style>
+        
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="orange">
-            <div class="box signin">
+            <div class="box login">
                 <h2>Already Have An Account?</h2>
-                <button class="signinbtn">Sign In</button>
-            </div> 
-            <div class="box signup">
+                <button class="loginbtn">Log In</button>
+            </div>
+            <div class="box register">
                 <h2>Create An Account?</h2>
-                <button class="signupbtn">Register</button>
-            </div> 
+                <button class="registerbtn">Register</button>
+            </div>
         </div>
         <div class="form-box">
-            <div class="form signinform">
-                <form>
-                    <h3>Sign In</h3>
+            <!-- Login Form -->
+            <div class="form loginform">
+                <form action="{{ route('login') }}" method="POST">
+                    @csrf
+                    <h3>Log In</h3>
                     <input type="text" placeholder="Username" name="username">
                     <input type="password" placeholder="Password" name="password">
-                    <input type="submit" value="Sign In">
+                    <input type="submit" value="Log In">
                     <a href="#">Forgot Password?</a>
                 </form>
             </div>
-            <div class="form signupform">
-                <form name="myForm" onsubmit="return validate();" method="post">
-                    <h3>Sign Up</h3>
-                    <input type="text" placeholder="Username" name="username">
-                    <input type="email" placeholder="Email Address" name="email">
-                    <input type="password" placeholder="Password" name="password">
-                    <input type="password" placeholder="Confirm Password" name="confirmPassword">
-                    <span id="formError" class="error-message"></span>
-                    <input type="submit" value="Sign Up">
+
+            <!-- Registration Form -->
+            <div class="form registerform">
+                <form id="registerForm" action="{{ route('registeration') }}" method="POST" onsubmit="return validateRegisterForm()">
+                    @csrf
+                    <h3>Register</h3>
+                    <input type="text" placeholder="Username" id="username" name="username">
+                    <input type="email" placeholder="Email Address" id="email" name="email">
+                    <input type="password" placeholder="Password" id="password" name="password">
+                    <input type="password" placeholder="Confirm Password" id="password_confirmation" name="password_confirmation">
+                    <input type="submit" value="Register">
                 </form>
+                <!-- Error Message (general, displayed at the end) -->
+                <div class="error-message" id="generalError"></div>
             </div>
         </div>
     </div>
+
     <script>
-const signinbtn = document.querySelector('.signinbtn');
-const signupbtn = document.querySelector('.signupbtn');
-const formbox = document.querySelector('.form-box');
-const body = document.querySelector('body');
+        const loginbtn = document.querySelector('.loginbtn');
+        const registerbtn = document.querySelector('.registerbtn');
+        const formbox = document.querySelector('.form-box');
+        const body = document.querySelector('body');
 
-signupbtn.onclick = function() {
-    formbox.classList.add('active');
-    body.classList.add('active');
-};
+        registerbtn.onclick = function() {
+            formbox.classList.add('active');
+            body.classList.add('active');
+        };
 
-signinbtn.onclick = function() {
-    formbox.classList.remove('active');
-    body.classList.remove('active');
-};
+        loginbtn.onclick = function() {
+            formbox.classList.remove('active');
+            body.classList.remove('active');
+        };
 
-// Form validation for sign-up
-function validate() {
-    let isValid = true;
-    let errorMessage = "";
+        // Validation function for registration form
+        function validateRegisterForm() {
+            // Clear any previous error messages
+            document.getElementById('generalError').textContent = '';
 
-    const username = document.forms["myForm"]["username"].value;
-    const email = document.forms["myForm"]["email"].value;
-    const password = document.forms["myForm"]["password"].value;
-    const confirmPassword = document.forms["myForm"]["confirmPassword"].value;
+            // Get form field values
+            const username = document.getElementById('username').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const confirmPassword = document.getElementById('password_confirmation').value.trim();
 
-    // Clear previous error message
-    document.getElementById("formError").innerText = "";
+            // Validate all fields are filled
+            if (!username || !email || !password || !confirmPassword) {
+                document.getElementById('generalError').textContent = 'All fields must be filled out.';
+                return false; // Prevent form submission
+            }
 
-    // Validate fields
-    if (username === "" || email === "" || password === "" || confirmPassword === "") {
-        errorMessage = "*All fields must be filled out.";
-        isValid = false;
-    }
+            // Validate password match
+            if (password !== confirmPassword) {
+                document.getElementById('generalError').textContent = 'Passwords do not match.';
+                return false; // Prevent form submission
+            }
 
-    if (password !== confirmPassword) {
-        if (errorMessage !== "") {
-            errorMessage += " ";
+            return true; // Allow form submission if all checks pass
         }
-        errorMessage += "Passwords must match.";
-        isValid = false;
-    }
-
-    if (!isValid) {
-        document.getElementById("formError").innerText = errorMessage;
-    }
-
-    return isValid;
-}
-
-</script>
-
+    </script>
 </body>
-</html>
