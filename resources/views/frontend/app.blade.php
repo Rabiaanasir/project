@@ -30,9 +30,8 @@
                     <li class="nav-item"><a href="{{ route('blog') }}">Blog</a></li>
                     {{-- <li class="nav-item"><a href="{{ route('projects') }}">Projects</a></li> --}}
                     {{-- <li class="nav-item"><a href="{{ route('netmetering') }}">Net Metering</a></li> --}}
-                    <li class="nav-item"><a href="{{ route('install-a-system') }}">Install a system</a></li>
                     {{-- <li class="nav-item"><a href="{{ route('financing') }}">Financing</a></li> --}}
-                   <li class="nav-item login"><a href="{{ route('registeration') }}">Login</a></li>
+                   <!--<li class="nav-item login"><a href="{{ route('registeration') }}">Login</a></li> -->
                     
                 </ul>
             </div>
