@@ -28,6 +28,31 @@
                         </ul>
                        </li>
                     <li class="nav-item"><a href="{{ route('blog') }}">Blog</a></li>
+                    
+        {{-- @if(Auth::check()) --}}
+        <li class="nav-item">
+            <!-- If logged in, go directly to install system -->
+            <a href="{{ route('installSystem') }}">Install a System</a>
+        </li>
+    {{-- @else
+        <li class="nav-item">
+            <!-- If not logged in, go to registration -->
+            <a href="{{ route('registeration') }}">Install a System</a>
+        </li>
+    @endif --}}
+    @if (Auth::check())
+    <li class="nav-item">
+        <a href="#">{{ Auth::user()->username }}</a>
+        <ul class="dropdown">
+            <li><a href="{{ route('commercial') }}">Profile</a></li>
+            <li><a href="{{ route('logout') }}">Logout</a></li>
+        </ul>
+    </li>
+@else
+    <li class="nav-item install">
+        <a href="{{ route('registeration') }}">LOG IN</a>
+    </li>
+@endif
 
                     
                 </ul>
