@@ -22,17 +22,19 @@ nav img{
     width: 220px;
   }
   .navbar{
+    padding: 1rem
     padding: 0.3rem;
     background-color: #141a46;
     font-family: none;
   }
   .navbar .nav-items{
       float: right;
-      margin-top:1.5rem;
+      margin-top: 1.5rem;
+      margin-right: 100px 
   }
   .navbar .nav-item{
       display: inline-block;
-      padding:1rem;
+      padding: 1rem;
       text-transform: uppercase;
       font-size: 1.1rem;
   }
@@ -75,19 +77,20 @@ nav img{
   .text-light{
     color:#f4f4f4;
   }
-  .install {
+  .login {
     background: rgb(233, 199, 6);         /* Light green background */
     padding: 2px 10px;          /* Retain original padding */
     display: inline-block;      /* Button-like appearance */
-    border-radius: 40px;        /* Smooth, round corners */
+    border-radius: 50px;        /* Smooth, round corners */
     color: #000;                /* Black text */
     font-weight: bold;          /* Make the text bold */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     transition: all 0.3s ease;  /* Smooth transition for hover effects */
+    margin-left: 40px;
 }
 
-/* Specific styles for the link inside the .install class */
-.nav-item.install a {
+/* Specific styles for the link inside the .login class */
+.nav-item.login a {
     color: #000;                /* Ensure black text color */
     text-decoration: none;      /* Remove underline */
     font-size: 16px;            /* Make the text a bit larger */
@@ -95,14 +98,14 @@ nav img{
 }
 
 /* Hover effect for the button */
-.install:hover {
-  background: rgb(233, 199, 6);           /* Slightly darker green on hover */
+.login:hover {
+    background: rgb(233, 199, 6);           /* Slightly darker green on hover */
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
     transform: scale(1.05);     /* Slightly enlarge the button */
 }
 
 /* Hover effect for the text color inside the link */
-.nav-item.install a:hover {
+.nav-item.login a:login {
     color: #004d00;             /* Darker green text color on hover */
 }
 
