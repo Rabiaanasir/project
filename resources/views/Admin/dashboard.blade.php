@@ -1,11 +1,12 @@
 @extends('Admin.dashboard_css')
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="{{ asset('css.dashboard_css') }}">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ asset('css/admin-panel.css') }}">
     <script src="https://kit.fontawesome.com/c9e3d92c29.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
@@ -24,7 +25,6 @@
         <li><i class="fab fa-cc-visa"></i><a href="#">Cards</a></li>
         <li><i class="fas fa-hamburger"></i><a href="#">Model</a></li>
         <li><i class="fas fa-chart-line"></i><a href="#">Blank</a></li>
-            
     </div>
 </section>
     
@@ -40,9 +40,19 @@
             </div>
         </div>
         <div class="profile">
-            <i  class="far fa-bell"></i>
-            <img src="{{ asset('images/client.png') }}" alt="">
-        </div>
+    <i class="far fa-bell"></i>
+    <img src="{{ asset('images/client.png') }}" alt="">
+
+    <!-- Logout Button -->
+    <form method="POST" action="{{ route('logout') }}" style="display:inline;">
+        @csrf
+        <button type="submit" class="logout-button" style="background: #d7fada; border-radius:40px; color:#000; font-size:16px; cursor:pointer; padding:10px;margin:0px 10px 0px 10px;border:none;">
+            <!-- <i class="fas fa-sign-out-alt"></i>  -->
+            Logout
+        </button>
+    </form>
+</div>
+
     </div>
 
     <h3 class="i-name">Dashboard</h3>
@@ -109,26 +119,7 @@
                     </td>
                     <td class="edit"><a href="#">Edit</a></td>
                 </tr>
-                <tr>
-                    <td class="people">
-                        <img src="{{ asset('images/client2.jpg') }}" alt="">
-                        <div class="people-de">
-                            <h5>Oscar Rhys</h5>
-                            <p>john@example.com</p>
-                        </div>
-                    </td>
-                    <td class="people-des">
-                        <h5>Software Engineer</h5>
-                        <p>Web dev</p>
-                    </td>
-                    <td class="active">
-                        <p>Active</p>
-                    </td>
-                    <td class="role">
-                        <p>Owner</p>
-                    </td>
-                    <td class="edit"><a href="#">Edit</a></td>
-                </tr>
+                <!-- Add more rows as needed -->
                 <tr>
                     <td class="people">
                         <img src="{{ asset('images/client2.jpg') }}" alt="">
@@ -213,13 +204,11 @@
         </table>
     </div>
 </section>
+
 <script>
-    // $('#menu-btn').click(function(){
-    //     $('#menu').toggleClass("active");
-    // })
     document.getElementById('menu-btn').addEventListener('click', function() {
-    document.getElementById('menu').classList.toggle('active');
-});
+        document.getElementById('menu').classList.toggle('active');
+    });
 </script>
 </body>
 </html>
