@@ -11,7 +11,7 @@ class emiController extends Controller
      */
     public function index()
     {
-        //
+        return view('frontend.emi');
     }
 
     /**

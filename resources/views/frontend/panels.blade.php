@@ -43,5 +43,49 @@
         </div>
     </div>
 </section>
+<section class="row">
+  <h2 style="margin-bottom: 60px;">Sun Source Solutions’s Top Brands: Trusted by Millions</h2>
+    <div class="imgwrapper">
+        <img class="img" src="{{ asset('images/canadian_solar_panel_review.jpg') }}">
+        <div class="text">
+            <h2>CANADIAN SOLAR PANELS</h2>
+            <p>The company has revolutionized the panels industry with the introduction of their bifacial solar panels, highly efficient and capable of generating more electricity by producing power from both ends. Sun Source Solutions always prioritizes the latest and advanced PV modules in its installations, with Canadian solar panels being our top choice. Even their monocrystalline panels are very efficient and have a solid track record for durability.</p>
+        </div>
+    </div>
+    
+    <div class="imgwrapper">
+        <img class="img2" src="{{ asset('images/longi.png') }}">
+        <div class="text2">
+            <h2>LONGI SOLAR PANELS</h2>
+            <p>Longi solar panels are widely recognized as among the best in Pakistan for their remarkable quality and ability to withstand the country’s diverse weather conditions. Popular not only in Pakistan but also globally, Longi is the preferred choice of Sun Source Solutions due to their long lifespan and warranty. Longi panels degrade slowly and are available in a variety of wattages, allowing you to select the ideal one for your unique demands and preferences..</p>
+        </div>
+    </div>
+
+    <div class="imgwrapper">
+        <img class="img" src="{{ asset('images/jinko.webp') }}">
+        <div class="text">
+            <h2>JINKO SOLAR PANELS</h2>
+            <p>Jinko Solar panels stand out as leaders in manufacturing top-quality photovoltaic solar panels worldwide. Their success in the renewable sector is driven by excellent customer service and reliable modules with a high efficiency rate. Notably, Jinko panels perform exceptionally well even in cold weather conditions. Similar to Canadian solar panels, Jinko also manufactures bifacial panels and mono-crystalline cells, showcasing their commitment to incorporating the latest technology while maintaining competitive market prices. This is why Jinko Solar has secured a spot on Sun Source Solutions list for both domestic and commercial solar system installations.</p>
+        </div>
+    </div>
+    
+    <div class="imgwrapper">
+        <img class="img2" src="{{ asset('images/JA.png') }}">
+        <div class="text2">
+            <h2>JA SOLAR PANELS</h2>
+            <p>The company was founded in 2005, and in just a few years, it gained prominence for manufacturing high-quality panels that meet international standards, along with providing excellent services to its customers. JA Solar panels are widely used in Pakistan across various installations, including residential, commercial, agriculture, industries and farms. The JA Solar panel price in Pakistan is relatively low compared to other top-tier 1 brands in the country, yet they never compromise on the quality of their products.</p>
+        </div>
+    </div>
+
+    <div class="imgwrapper">
+        <img class="img" src="{{ asset('images/SunPower-solar-panels.jpg') }}">
+        <div class="text">
+            <h2>SUNPOWER SOLAR PANELS</h2>
+            <p>SunPower made it's name for offering the highest efficiency  solar panels, better performance and top quality installations. It all translates to better solar panels, more savings, and happier customers. Designed to work with SunPower Equinox home energy system, SunPower’s high-quality standards ensure that the solar cell technology makes more energy from every drop of sunshine. Factor in the elegant styling and durability, it’s no wonder our company has been leading the industry the longest.</p>
+        </div>
+    </div>
+</section>
+
+
 
 @endsection

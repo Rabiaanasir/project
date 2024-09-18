@@ -398,6 +398,10 @@
     gap: 25px;
     margin-top: 100px;
 }
+.card-container a:hover{
+    background: #141a46;
+    color: #fff;
+}
 .card{
     width: 450px;
     background-color: #f4f4f4;
@@ -428,7 +432,7 @@
 }
 .card-button{
     display: inline-block;
-    background-color: #3498db;
+    background-color: goldenrod;
     color: #fff;
     text-decoration: none;
     border-radius: 4px;
@@ -474,7 +478,7 @@
 
 .cards-button{
     display: inline-block;
-    background-color: #3498db;
+    background-color: goldenrod;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
