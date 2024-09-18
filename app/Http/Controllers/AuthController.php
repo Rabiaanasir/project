@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
@@ -64,4 +65,39 @@ class AuthController extends Controller
         Auth::logout();
         return redirect('/');
     }
+
+
+    // Show the user profile page
+    public function showProfile()
+    {
+        $user = Auth::user();  // Get the authenticated user
+        return view('frontend.userProfile', compact('user'));
+    }
+
+    // Update the user profile
+    public function updateProfile(Request $request)
+    {
+        $request->validate([
+            'username' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . Auth::id(),
+        ]);
+
+        $user = Auth::user();
+        $user->username = $request->input('username');
+        $user->email = $request->input('email');
+
+        // Only update password if it's provided
+        if ($request->input('password')) {
+            $request->validate([
+                'password' => 'required|string|min:8|confirmed',
+            ]);
+            $user->password = bcrypt($request->input('password'));
+        }
+
+        $user->save();
+
+        // Redirect to the named home page route
+return redirect()->route('home')->with('success', 'Profile updated successfully!');
+
+}
 }
