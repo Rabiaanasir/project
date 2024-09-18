@@ -21,12 +21,13 @@
                             <li><a href="{{ route('heaters') }}">Solar Water Heaters</a></li>
                         </ul>
                        </li>
-                    <li class="nav-item"><a href="">Solutions
+                   <!--<li class="nav-item"><a href="">Solutions
                         <ul class="dropdown">
                             <li><a href="{{ route('commercial') }}">Commercial</a></li>
                             <li><a href="{{ route('agriculture') }}">Agriculture</a></li>
                         </ul>
-                       </li>
+                       </li> -->
+                       <li class="nav-item"><a href="{{ route('projects') }}">Projects</a></li>
                     <li class="nav-item"><a href="{{ route('blog') }}">Blog</a></li>
                     
         {{-- @if(Auth::check()) --}}
@@ -40,11 +41,12 @@
             <a href="{{ route('registeration') }}">Install a System</a>
         </li>
     @endif --}}
+
     @if (Auth::check())
     <li class="nav-item">
         <a href="#">{{ Auth::user()->username }}</a>
         <ul class="dropdown">
-            <li><a href="{{ route('commercial') }}">Profile</a></li>
+            <li><a href="{{ route('user.profile') }}">Profile</a></li>
             <li><a href="{{ route('logout') }}">Logout</a></li>
         </ul>
     </li>
@@ -53,8 +55,7 @@
         <a href="{{ route('registeration') }}">LOG IN</a>
     </li>
 @endif
-
-                    
+                
                 </ul>
             </div>
         </nav>
