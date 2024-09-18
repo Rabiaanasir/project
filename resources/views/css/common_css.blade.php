@@ -22,8 +22,7 @@ nav img{
     width: 220px;
   }
   .navbar{
-    padding: 1rem
-    padding: 0.3rem;
+    padding: 0.1rem;
     background-color: #141a46;
     font-family: none;
   }
@@ -78,15 +77,16 @@ nav img{
     color:#f4f4f4;
   }
   .login {
-    background: rgb(233, 199, 6);         /* Light green background */
-    padding: 2px 10px;          /* Retain original padding */
+    background: rgb(233, 199, 6);         
+    /* padding: 1px 20px;          Retain original padding */
     display: inline-block;      /* Button-like appearance */
-    border-radius: 50px;        /* Smooth, round corners */
+    border-radius: 30px;        /* Smooth, round corners */
     color: #000;                /* Black text */
     font-weight: bold;          /* Make the text bold */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     transition: all 0.3s ease;  /* Smooth transition for hover effects */
     margin-left: 40px;
+    margin-bottom: 5px;
 }
 
 /* Specific styles for the link inside the .login class */

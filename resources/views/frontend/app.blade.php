@@ -51,11 +51,10 @@
         </ul>
     </li>
 @else
-    <li class="nav-item install">
+    <li class="nav-item login">
         <a href="{{ route('registeration') }}">LOG IN</a>
     </li>
 @endif
-                
                 </ul>
             </div>
         </nav>

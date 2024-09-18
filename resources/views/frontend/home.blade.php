@@ -149,7 +149,7 @@
       <div class="card-content">
           <h1>Bank Financing</h1>
           <p> This means that regardless of your bank affiliation for solar financing, Sun Source Solution will be at your doorstep for solar panel installation. We install solar panel systems in accordance with the policies and financing schemes of your chosen bank. The system could be installed from 5 KW for homes to 100 KW for businesses. The panels we use for installation under the Allied Bank financing scheme are durable and highly efficient and can last for more than 25 years.</p>
-       <a href="{{ route('financing') }}" class="card-button">Read More</a>
+       <a href="{{ route('financing') }}" class="card-button">More Details</a>
       </div>
   </div>
 <div class="card">
@@ -159,7 +159,7 @@
           <p>
               We firmly believe that green energy is the future and we are committed to helping you make the switch with confidence Our installment program is designed to provide you with personalized, accessible, and cost-effective options to invest in green energy and reduce your electricity bills. We also offer net metering, which will further decrease your electricity bills. Furthermore, our plan is entirely self-financed, which means you do not need to partner with a bank.
           </p>
-          <a href="{{ route('emi') }}" class="card-button">Read More</a>
+          <a href="{{ route('emi') }}" class="card-button">Apply Here</a>
       </div>
 </div> 
 <!-- Net Metering -->
