@@ -21,6 +21,7 @@ use App\Http\Controllers\investController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\InstallController;
+use App\Http\Controllers\profileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +55,8 @@ Route::get('/packages', [packagesController::class, 'index'])->name('packages');
 Route::get('/net-metering', [nmController::class, 'index'])->name('net-metering');
 Route::get('/emi', [emiController::class, 'index'])->name('emi');
 Route::get('/invest', [investController::class, 'index'])->name('invest');
+
+
 // Route::get('/dashboard', [dashboardController::class, 'index'])->name('dashboard');
 
 
@@ -138,3 +141,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
         return view('Admin.dashboard');
     })->name('Admin.dashboard');
 });
+
+Route::middleware('auth')->group(function () {
+    Route::get('/user/profile', [AuthController::class, 'showProfile'])->name('user.profile');
+    Route::post('/user/profile', [AuthController::class, 'updateProfile'])->name('user.profile.update');
+});
+
+
+
