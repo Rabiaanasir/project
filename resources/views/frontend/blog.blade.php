@@ -2,7 +2,7 @@
 @section('css')
 @include('css.common_css')
   @include('css.blog_css')
-@endsection
+@endsection 
 @section('content')
 <header>
     <div class="header-content">

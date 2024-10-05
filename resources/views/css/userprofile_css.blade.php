@@ -4,6 +4,40 @@
             background: #141a46;
             padding: 50px;
         }
+        /*.edit-icon {
+        cursor: pointer;
+        color: #ffa500;
+        margin-left: 10px;
+    }
+
+    .edit-icon:hover {
+        color: #e69500;
+    }*/
+
+        /* Profile buttons */
+        .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #ffa500;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 16px;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .btn-primary:hover {
+        background-color: #e69500;
+    }
+
+    .btn-secondary {
+        background-color: #999;
+    }
+
+    .btn-secondary:hover {
+        background-color: #777;
+    }
         .profile-container {
             background: white;
             padding: 30px;
@@ -61,4 +95,5 @@
             height: 150px;
             object-fit: cover;
         }
+        
     </style>

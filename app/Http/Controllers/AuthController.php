@@ -10,34 +10,35 @@ use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
-    // Show the login form
-    public function showRegForm()
-    {
-        // $showLogin = $request->route()->getName() === 'login';
-        // return view('frontend.reg', ['showLogin' => $showLogin]);
-        return view('frontend.reg');  
-    }
+   // Show the login form
+public function showRegForm()
+{
+    // $showLogin = $request->route()->getName() === 'login';
+    // return view('frontend.reg', ['showLogin' => $showLogin]);
+    return view('frontend.reg');  
+}
 
-    // Handle login
-    public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'username' => 'required',
-            'password' => 'required',
-        ]);
+// Handle login
+public function login(Request $request)
+{
+    $credentials = $request->validate([
+        'username' => 'required',
+        'password' => 'required',
+    ]);
 
-        if (Auth::attempt($credentials)) {
-            if (Auth::user()->isAdmin()) {
-                return redirect()->route('Admin.dashboard');
-            } else {
-                return redirect()->intended('/');
-            }
+    if (Auth::attempt($credentials)) {
+        if (Auth::user()->isAdmin()) {
+            return redirect()->route('Admin.dashboard');
+        } else {
+            return redirect()->intended('/');
         }
-
-        return back()->withErrors([
-            'username' => 'The provided credentials do not match our records.',
-        ]);
     }
+
+    return back()->withErrors([
+        'username' => 'The provided credentials do not match our records.',
+    ]);
+}  
+    
 
     // Handle registration
     public function register(Request $request)

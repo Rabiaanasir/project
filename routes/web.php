@@ -119,6 +119,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/login', [AuthController::class, 'showRegForm'])->name('login');
 Route::get('/register', [AuthController::class, 'showRegForm'])->name('registeration');
 
+
 // Handle login submission
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 
@@ -146,6 +147,3 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/profile', [AuthController::class, 'showProfile'])->name('user.profile');
     Route::post('/user/profile', [AuthController::class, 'updateProfile'])->name('user.profile.update');
 });
-
-
-

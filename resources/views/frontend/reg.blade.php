@@ -164,8 +164,12 @@
                 <button class="registerbtn">Register</button>
             </div>
         </div>
+  
+
+
+
         <div class="form-box">
-            <!-- Login Form -->
+            <!--Login Form -->
             <div class="form loginform">
                 <form action="{{ route('login') }}" method="POST">
                     @csrf
