@@ -1,59 +1,9 @@
-@extends('Admin.dashboard_css')
+@extends('Admin.master')
+@section('css')
+@endsection
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="{{ asset('css/admin-panel.css') }}">
-    <script src="https://kit.fontawesome.com/c9e3d92c29.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-</head>
-<body>
-<section id="menu">
-    <div class="logo">
-        <img src="{{ asset('images/logo.jpeg') }}" alt="">
-        <h2>Sun Source Solutions</h2>
-    </div>
+@section('content')
 
-    <div class="items">
-        <li><i class="fa-solid fa-table-columns"></i><a href="#">Dashboard</a></li>
-        <li><i class="fab fa-uikit"></i><a href="#">UI Elements</a></li>
-        <li><i class="fas fa-th-large"></i><a href="#">Tables</a></li>
-        <li><i class="fas fa-edit"></i><a href="#">Forms</a></li>
-        <li><i class="fab fa-cc-visa"></i><a href="#">Cards</a></li>
-        <li><i class="fas fa-hamburger"></i><a href="#">Model</a></li>
-        <li><i class="fas fa-chart-line"></i><a href="#">Blank</a></li>
-    </div>
-</section>
-    
-<section id="interface">
-    <div class="navigation">
-        <div class="n1">
-            <div>
-                <i id="menu-btn" class="fas fa-bars"></i>
-            </div>
-            <div class="search">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Search">
-            </div>
-        </div>
-        <div class="profile">
-    <i class="far fa-bell"></i>
-    <img src="{{ asset('images/client.png') }}" alt="">
-
-    <!-- Logout Button -->
-    <form method="POST" action="{{ route('logout') }}" style="display:inline;">
-        @csrf
-        <button type="submit" class="logout-button" style="background: #d7fada; border-radius:40px; color:#000; font-size:16px; cursor:pointer; padding:10px;margin:0px 10px 0px 10px;border:none;">
-            <!-- <i class="fas fa-sign-out-alt"></i>  -->
-            Logout
-        </button>
-    </form>
-</div>
-
-    </div>
 
     <h3 class="i-name">Dashboard</h3>
     <div class="values">
@@ -87,128 +37,76 @@
         </div>
     </div>
 
+    <h3 class="i-name">User Table</h3>
     <div class="board">
-        <table width="100%">
-            <thead>
-                <tr>
-                    <td>Name</td>
-                    <td>Title</td>
-                    <td>Status</td>
-                    <td>Role</td>
-                    <td></td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="people">
-                        <img src="{{ asset('images/client2.jpg') }}" alt="">
-                        <div class="people-de">
-                            <h5>John Doe</h5>
-                            <p>john@example.com</p>
-                        </div>
-                    </td>
-                    <td class="people-des">
-                        <h5>Software Engineer</h5>
-                        <p>Web dev</p>
-                    </td>
-                    <td class="active">
-                        <p>Active</p>
-                    </td>
-                    <td class="role">
-                        <p>Owner</p>
-                    </td>
-                    <td class="edit"><a href="#">Edit</a></td>
-                </tr>
-                <!-- Add more rows as needed -->
-                <tr>
-                    <td class="people">
-                        <img src="{{ asset('images/client2.jpg') }}" alt="">
-                        <div class="people-de">
-                            <h5>George Reece</h5>
-                            <p>john@example.com</p>
-                        </div>
-                    </td>
-                    <td class="people-des">
-                        <h5>Software Engineer</h5>
-                        <p>Web dev</p>
-                    </td>
-                    <td class="active">
-                        <p>Active</p>
-                    </td>
-                    <td class="role">
-                        <p>Owner</p>
-                    </td>
-                    <td class="edit"><a href="#">Edit</a></td>
-                </tr>
-                <tr>
-                    <td class="people">
-                        <img src="{{ asset('images/client2.jpg') }}" alt="">
-                        <div class="people-de">
-                            <h5>Thomas Joe</h5>
-                            <p>john@example.com</p>
-                        </div>
-                    </td>
-                    <td class="people-des">
-                        <h5>Software Engineer</h5>
-                        <p>Web dev</p>
-                    </td>
-                    <td class="active">
-                        <p>Active</p>
-                    </td>
-                    <td class="role">
-                        <p>Owner</p>
-                    </td>
-                    <td class="edit"><a href="#">Edit</a></td>
-                </tr>
-                <tr>
-                    <td class="people">
-                        <img src="{{ asset('images/client2.jpg') }}" alt="">
-                        <div class="people-de">
-                            <h5>Charlie Kylie</h5>
-                            <p>john@example.com</p>
-                        </div>
-                    </td>
-                    <td class="people-des">
-                        <h5>Software Engineer</h5>
-                        <p>Web dev</p>
-                    </td>
-                    <td class="active">
-                        <p>Active</p>
-                    </td>
-                    <td class="role">
-                        <p>Owner</p>
-                    </td>
-                    <td class="edit"><a href="#">Edit</a></td>
-                </tr>
-                <tr>
-                    <td class="people">
-                        <img src="{{ asset('images/client2.jpg') }}" alt="">
-                        <div class="people-de">
-                            <h5>John Doe</h5>
-                            <p>john@example.com</p>
-                        </div>
-                    </td>
-                    <td class="people-des">
-                        <h5>Software Engineer</h5>
-                        <p>Web dev</p>
-                    </td>
-                    <td class="active">
-                        <p>Active</p>
-                    </td>
-                    <td class="role">
-                        <p>Owner</p>
-                    </td>
-                    <td class="edit"><a href="#">Edit</a></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</section>
+        <div class="table-responsive">
+            <table class="table table-stripped table-bordered" id="user_table">
 
-<script>
-    document.getElementById('menu-btn').addEventListener('click', function() {
-        document.getElementById('menu').classList.toggle('active');
+                <thead>
+
+                    <tr>
+                        <th>username</th>
+
+                        <th>Email</th>
+                        <th>Role</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+            </table>
+        </div>
+    </div>
+    </section>
+
+@section('script')
+<script type="text/javascript">
+    $(function() {
+        var table = $('#user_table').DataTable({
+
+            processing: true,
+
+            serverSide: true,
+
+            ajax: "{{ route('users.index') }}",
+
+            columns: [
+
+                //   {data: 'id', name: 'id'},
+
+                {
+                    data: 'username',
+                    name: 'username'
+                },
+
+                {
+                    data: 'email',
+                    name: 'email'
+                },
+                {
+                    data: 'role',
+                    name: 'role'
+                },
+
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
+                },
+
+            ]
+
+        });
+
+
+
     });
 </script>
-</body>
-</html>
+
+@endsection
+
+@endsection

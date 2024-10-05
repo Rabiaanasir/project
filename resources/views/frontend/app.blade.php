@@ -41,12 +41,18 @@
             <a href="{{ route('registeration') }}">Install a System</a>
         </li>
     @endif --}}
-
+ {{-- {{dd(Auth::user()->role)}} --}}
     @if (Auth::check())
     <li class="nav-item">
-        <a href="#">{{ Auth::user()->username }}</a>
+        <a href="#">{{ Auth::user()->role }}</a>
         <ul class="dropdown">
-            <li><a href="{{ route('user.profile') }}">Profile</a></li>
+           
+            @if (auth()->user()->role == 'admin')
+            <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>  
+            @else
+            <li><a href="{{ route('user.profile') }}">Profile</a></li>  
+            @endif
+           
             <li><a href="{{ route('logout') }}">Logout</a></li>
         </ul>
     </li>
