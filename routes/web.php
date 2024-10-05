@@ -22,6 +22,7 @@ use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\InstallController;
 use App\Http\Controllers\profileController;
+use App\Http\Controllers\admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,7 +71,7 @@ Route::get('/invest', [investController::class, 'index'])->name('invest');
 // // Routes protected by 'auth' middleware for logged-in users
 // Route::middleware('auth')->group(function () {
 //     Route::get('/dashboard', function () {
-//         return view('dashboard'); 
+//         return view('dashboard');
 //     })->name('dashboard');
 // });
 
@@ -111,7 +112,7 @@ Route::get('/invest', [investController::class, 'index'])->name('invest');
 
 // Route for the install system page (for authenticated users)
 Route::middleware('auth')->group(function () {
-    
+
 });
 
 
@@ -137,11 +138,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/install-system', [InstallController::class, 'index'])->name('installSystem');
 });
 
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', function () {
-        return view('Admin.dashboard');
-    })->name('Admin.dashboard');
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/show/{id}', [UserController::class, 'show'])->name('users.show');
 });
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/user/profile', [AuthController::class, 'showProfile'])->name('user.profile');

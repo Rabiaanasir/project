@@ -26,11 +26,12 @@ public function login(Request $request)
         'password' => 'required',
     ]);
 
-    if (Auth::attempt($credentials)) {
-        if (Auth::user()->isAdmin()) {
-            return redirect()->route('Admin.dashboard');
-        } else {
-            return redirect()->intended('/');
+        if (Auth::attempt($credentials)) {
+            if (Auth::user()->isAdmin()) {
+                return redirect()->route('admin.dashboard');
+            } else {
+                return redirect()->intended('/');
+            }
         }
     }
 
