@@ -15,12 +15,13 @@ class AuthController extends Controller
     {
         // $showLogin = $request->route()->getName() === 'login';
         // return view('frontend.reg', ['showLogin' => $showLogin]);
-        return view('frontend.reg');  
+        return view('frontend.reg');
     }
 
     // Handle login
     public function login(Request $request)
     {
+        // dd($request->all());
         $credentials = $request->validate([
             'username' => 'required',
             'password' => 'required',

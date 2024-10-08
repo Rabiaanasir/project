@@ -22,7 +22,7 @@
             transition: .5s;
         }
         body.active{
-            background: #141a46; 
+            background: #141a46;
             /* background: #03a9f4; */
         }
         .container{
@@ -49,7 +49,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column; 
+            flex-direction: column;
         }
         .form-box{
             position: absolute;
@@ -115,7 +115,7 @@
             padding: 10px;
             outline: none;
             border: 1px solid #333;
-           
+
         }
         .form form h3{
             text-align: center;
@@ -149,7 +149,7 @@
             display: block;
             text-align: center;
         }
-        
+
     </style>
 </head>
 <body>
@@ -167,7 +167,7 @@
         <div class="form-box">
             <!-- Login Form -->
             <div class="form loginform">
-                <form action="{{ route('login') }}" method="POST">
+                <form action="{{ route('login.submit') }}" method="POST">
                     @csrf
                     <h3>Log In</h3>
                     <input type="text" placeholder="Username" name="username">
