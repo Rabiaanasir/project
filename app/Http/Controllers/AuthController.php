@@ -10,21 +10,22 @@ use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
-   // Show the login form
-public function showRegForm()
-{
-    // $showLogin = $request->route()->getName() === 'login';
-    // return view('frontend.reg', ['showLogin' => $showLogin]);
-    return view('frontend.reg');  
-}
+    // Show the login form
+    public function showRegForm()
+    {
+        // $showLogin = $request->route()->getName() === 'login';
+        // return view('frontend.reg', ['showLogin' => $showLogin]);
+        return view('frontend.reg');
+    }
 
-public function login(Request $request)
-{
-    // Validate the input fields
-    $request->validate([
-        'login' => 'required', // Can be either email or username
-        'password' => 'required',
-    ]);
+    // Handle login
+    public function login(Request $request)
+    {
+        // dd($request->all());
+        $credentials = $request->validate([
+            'username' => 'required',
+            'password' => 'required',
+        ]);
 
     // Get the login input
     $loginInput = $request->input('login');

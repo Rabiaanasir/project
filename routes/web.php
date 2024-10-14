@@ -23,6 +23,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\InstallController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\admin\ListingController;
+use App\Http\Controllers\admin\BrandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,59 +59,6 @@ Route::get('/net-metering', [nmController::class, 'index'])->name('net-metering'
 Route::get('/emi', [emiController::class, 'index'])->name('emi');
 Route::get('/invest', [investController::class, 'index'])->name('invest');
 
-
-// Route::get('/dashboard', [dashboardController::class, 'index'])->name('dashboard');
-
-
-// // Authentication routes
-// Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-// Route::post('/login', [AuthController::class, 'login']);
-// Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
-// Route::post('/register', [AuthController::class, 'register']);
-// Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-// // Routes protected by 'auth' middleware for logged-in users
-// Route::middleware('auth')->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('dashboard');
-//     })->name('dashboard');
-// });
-
-// // Routes protected by 'admin' middleware for admin users only
-// Route::middleware(['auth', 'admin'])->group(function () {
-//     Route::get('/admin/dashboard', function () {
-//         return view('admin.dashboard'); // Admin dashboard
-//     })->name('admin.dashboard');
-// });
-
-
-// // Show the combined login/register page
-// Route::get('/login', [AuthController::class, 'showRegForm'])->name('login');
-// Route::get('/register', [AuthController::class, 'showRegForm'])->name('registeration');
-
-// // Handle login submission
-// Route::post('/login', [AuthController::class, 'login']);
-
-// // Handle registration submission
-// Route::post('/register', [AuthController::class, 'register']);
-
-// // Logout
-// Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-// // Routes for authenticated users and admins
-// Route::middleware('auth')->group(function () {
-//     Route::get('/user', function () {
-//         return view('frontend.user');
-//     })->name('user');
-// });
-
-// Route::middleware(['auth', 'admin'])->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('Admin.dashboard');
-//     })->name('Admin.dashboard');
-// });
-
-
 // Route for the install system page (for authenticated users)
 Route::middleware('auth')->group(function () {
 
@@ -122,7 +71,7 @@ Route::get('/register', [AuthController::class, 'showRegForm'])->name('registera
 
 
 // Handle login submission
-Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+Route::post('/loginpost', [AuthController::class, 'login'])->name('login.submit');
 
 // Handle registration submission
 Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
@@ -144,6 +93,24 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     })->name('admin.dashboard');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/show/{id}', [UserController::class, 'show'])->name('users.show');
+
+    // Route::resource('brands', BrandController::class);
+
+    Route::any('/brands', [BrandController::class, 'index'])->name('brands.index');
+Route::post('/brands/store', [BrandController::class, 'store'])->name('brands.store');
+Route::get('/brands/edit/{id}', [BrandController::class, 'edit'])->name('brands.edit');
+Route::put('/brands/update/{id}/', [BrandController::class, 'update'])->name('brands.update');
+Route::delete('/brands/{id}', [BrandController::class, 'destroy'])->name('brands.destroy');
+
+    // Route to show all listings with DataTables
+    Route::get('/listings', [ListingController::class, 'index'])->name('listings.index');  // Display all listings
+    Route::get('/listings/create', [ListingController::class, 'create'])->name('listings.create');
+    Route::post('/listings', [ListingController::class, 'store'])->name('listings.store');  // Store a new listing
+    Route::get('/listings/{id}/edit', [ListingController::class, 'edit'])->name('listings.edit'); // Show form to edit a listing
+    Route::put('/listings/{id}', [ListingController::class, 'update'])->name('listings.update');
+    Route::delete('/listings/{id}', [ListingController::class, 'destroy'])->name('listings.destroy');
+    Route::get('/listings/{id}', [ListingController::class, 'show'])->name('listings.show');
+
 });
 
 

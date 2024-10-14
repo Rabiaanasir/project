@@ -20,7 +20,7 @@
             {{-- @include('dashboard.includes.footer') --}}
         </div>
     </div>
-    @include('Admin.css.dashboard_js')
+    @include('admin.css.dashboard_js')
     <script>
         $(document).ready(function() {
             // Function for handling click on '.btn-modal' elements
