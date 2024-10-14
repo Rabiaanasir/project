@@ -18,28 +18,44 @@ public function showRegForm()
     return view('frontend.reg');  
 }
 
-// Handle login
 public function login(Request $request)
 {
-    $credentials = $request->validate([
-        'username' => 'required',
+    // Validate the input fields
+    $request->validate([
+        'login' => 'required', // Can be either email or username
         'password' => 'required',
     ]);
 
-        if (Auth::attempt($credentials)) {
-            if (Auth::user()->isAdmin()) {
-                return redirect()->route('admin.dashboard');
-            } else {
-                return redirect()->intended('/');
-            }
+    // Get the login input
+    $loginInput = $request->input('login');
+
+    // Check if the input is an email or a username
+    $loginField = filter_var($loginInput, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
+    // Prepare the credentials array based on whether it is email or username
+    $credentials = [
+        $loginField => $loginInput,
+        'password' => $request->input('password')
+    ];
+
+    // Attempt authentication
+    if (Auth::attempt($credentials)) {
+        // Successful login
+        
+        // Check if the authenticated user is an admin
+        if (Auth::user()->isAdmin()) {
+            return redirect()->route('admin.dashboard');
+        } else {
+            return redirect()->intended('/');
         }
     }
 
+    // If authentication fails, return back with an error message
     return back()->withErrors([
-        'username' => 'The provided credentials do not match our records.',
+        'login' => 'The provided credentials do not match our records.',
     ]);
-}  
-    
+}
+
 
     // Handle registration
     public function register(Request $request)

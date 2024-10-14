@@ -9,6 +9,7 @@
         <li><i class="fab fa-uikit"></i><a href="#">UI Elements</a></li>
         <li><i class="fas fa-th-large"></i><a href="#">Tables</a></li>
         <li><i class="fas fa-edit"></i><a href="#">Forms</a></li>
+        <li><i class="fas fa-calendar-check"></i><a href="{{ route('bookings') }}">Booking</a></li>
         <li><i class="fab fa-cc-visa"></i><a href="#">Cards</a></li>
         <li><i class="fas fa-hamburger"></i><a href="#">Model</a></li>
         <li><i class="fas fa-chart-line"></i><a href="#">Blank</a></li>

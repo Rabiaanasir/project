@@ -165,18 +165,20 @@
             </div>
         </div>
   
-
-
-
-        <div class="form-box">
+           <div class="form-box">
             <!--Login Form -->
             <div class="form loginform">
                 <form action="{{ route('login') }}" method="POST">
                     @csrf
                     <h3>Log In</h3>
-                    <input type="text" placeholder="Username" name="username">
+                       <!-- Single field for both username or email -->
+            <input type="text" placeholder="Username or Email" name="login" required>
                     <input type="password" placeholder="Password" name="password">
-                    <input type="submit" value="Log In">
+                     <!-- Show/Hide Password Checkbox -->
+            <label for="showPassword">
+                <input type="checkbox" id="showPassword"> Show Password
+            </label>
+            <input type="submit" value="Log In">
                     <a href="#">Forgot Password?</a>
                 </form>
             </div>
@@ -189,6 +191,10 @@
                     <input type="text" placeholder="Username" id="username" name="username">
                     <input type="email" placeholder="Email Address" id="email" name="email">
                     <input type="password" placeholder="Password" id="password" name="password">
+                      <!-- Show/Hide Password Checkbox -->
+            <label for="showRegisterPassword">
+                <input type="checkbox" id="showRegisterPassword"> Show Password
+            </label>
                     <input type="password" placeholder="Confirm Password" id="password_confirmation" name="password_confirmation">
                     <input type="submit" value="Register">
                 </form>
@@ -213,6 +219,26 @@
             formbox.classList.remove('active');
             body.classList.remove('active');
         };
+        // login password visibility
+        document.getElementById('showPassword').addEventListener('change', function() {
+    const passwordField = document.querySelector('[name="password"]');
+    passwordField.type = this.checked ? 'text' : 'password';
+});
+     // Toggle password visibility
+document.getElementById('showRegisterPassword').addEventListener('change', function() {
+    const passwordField = document.getElementById('password');
+    const confirmPasswordField = document.getElementById('password_confirmation');
+    
+    if (this.checked) {
+        passwordField.type = 'text';
+        confirmPasswordField.type = 'text';
+    } else {
+        passwordField.type = 'password';
+        confirmPasswordField.type = 'password';
+    }
+});
+
+
 
         // Validation function for registration form
         function validateRegisterForm() {
