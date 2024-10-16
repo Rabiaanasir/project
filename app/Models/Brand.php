@@ -16,4 +16,8 @@ class Brand extends Model
     // {
     //     return $this->hasMany(Listing::class);
     // }
+    public function listing()
+    {
+        return $this->hasMany(Listing::class);
+    }
 }
