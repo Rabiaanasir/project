@@ -18,36 +18,38 @@ class AuthController extends Controller
         return view('frontend.reg');
     }
 
-    // Handle login
-    public function login(Request $request)
-    {
-        // dd($request->all());
-        $credentials = $request->validate([
-            'username' => 'required',
-            'password' => 'required',
-        ]);
+   // Handle login
+public function login(Request $request)
+{
+    // Validate the login (either username or email) and password
+    $request->validate([
+        'login' => 'required|string',  // 'login' could be either email or username
+        'password' => 'required|string',
+    ]);
 
-    // Get the login input
+    // Get the login input (either email or username)
     $loginInput = $request->input('login');
 
-    // Check if the input is an email or a username
+    // Determine if the login input is an email or a username
     $loginField = filter_var($loginInput, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
-    // Prepare the credentials array based on whether it is email or username
+    // Prepare the credentials for authentication (either email or username + password)
     $credentials = [
-        $loginField => $loginInput,
-        'password' => $request->input('password')
+        $loginField => $loginInput,   // use either 'email' or 'username' as the key
+        'password' => $request->input('password'),
     ];
 
-    // Attempt authentication
+    // Attempt to authenticate the user
     if (Auth::attempt($credentials)) {
-        // Successful login
-        
-        // Check if the authenticated user is an admin
+        // Authentication successful
+
+        // Check if the authenticated user is an admin using a role check
         if (Auth::user()->isAdmin()) {
+            // If the user is an admin, redirect to the admin dashboard
             return redirect()->route('admin.dashboard');
         } else {
-            return redirect()->intended('/');
+            // Otherwise, redirect regular users to the homepage
+            return redirect()->route('home');
         }
     }
 
@@ -56,7 +58,6 @@ class AuthController extends Controller
         'login' => 'The provided credentials do not match our records.',
     ]);
 }
-
 
     // Handle registration
     public function register(Request $request)
