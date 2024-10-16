@@ -16,4 +16,9 @@ class Listing extends Model
         'brand_id',    // Use brand_id as a foreign key
         'image'        // Include image for mass assignment
     ];
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
 }

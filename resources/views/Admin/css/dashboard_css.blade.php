@@ -4,7 +4,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     {{-- <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet"> --}}
 
     <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -190,67 +190,14 @@
         font-size: 15px;
         color: #828997;
     }
-    .board{
-        width: 94%;
-        margin: 30px 0 30px 30px;
-        overflow: auto;
-        background: #fff;
-        border-radius: 8px;
-    }
-    .board img{
-        width: 45px;
-        height: 45px;
-        object-fit: cover;
-        border-radius: 50%;
-        margin-right: 15px;
-    }
-    .board h5{
-        font-weight: 600;
-        font-size: 14px;
-    }
-    .board p{
-        font-weight: 400;
-        font-size: 13px;
-        color: #787d8d;
-    }
-    .board .people{
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        text-align: start;
-    }
-    table{
-        border-collapse: collapse;
-    }
-    tr{
-        border-bottom: 1px solid #eef0f3;
-    }
-    thead td{
-        font-size: 14px;
-        text-transform: uppercase;
-        font-weight: 400;
-        background: #f9fafb;
-        text-align: start;
-        padding: 15px;
-    }
-    tbody tr td{
-        padding: 10px 15px;
-    }
-    .active p{
-        background: #d7fada;
-        padding: 2px 10px;
-        display: inline-block;
-        border-radius: 40px;
-        color: #2b2b2b;
-    }
-    .edit a{
-        text-decoration: none;
-        font-size: 14px;
-        color: #554cd1;
-        font-weight: 600;
-    }
-
-
+    .board {
+            /* margin-top: 30px; */
+            padding: 20px; /* Padding inside the board container */
+            background-color: #ffffff;
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+            margin: 30px;
+        }
     @media (max-width:769px){
         #menu{
             width: 270px;
@@ -286,15 +233,7 @@
             padding: 16px 20px;
             margin: 10px 20px 10px 0;
         }
-        .board{
-            width: 92%;
-            padding: 0;
-            overflow-x: auto;
-        }
-        table{
-            width: 100%;
-            border-collapse: collapse;
-        }
+
     }
     @media (max-width:477px) {
         #interface .navigation{
@@ -312,9 +251,6 @@
         .values .val-box{
             width: 100%;
             margin: 8px 0;
-        }
-        .board{
-            margin: 30px 15px 30px 15px;
         }
     }
     </style>

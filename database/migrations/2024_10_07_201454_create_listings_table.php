@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('listings', function (Blueprint $table) {
-            $table->id();
+        $table->id();
         $table->unsignedBigInteger('brand_id'); // Foreign key column
         $table->string('title');
         $table->longText('description');
@@ -20,7 +20,6 @@ return new class extends Migration
         $table->integer('watts');
         $table->decimal('price', 8, 2);
         $table->timestamps();
-
 
         $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
         });
