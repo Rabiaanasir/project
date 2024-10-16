@@ -14,6 +14,8 @@ class BrandController extends Controller
     public function index()
     {
         // Fetch all brands
+        $brandWithListing = Brand::with('listing');
+        // dd( $brandWithListing);
         $brands = Brand::all();
         return view('admin.Brands.index', compact('brands'));
     }
