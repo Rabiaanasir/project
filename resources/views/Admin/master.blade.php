@@ -48,7 +48,8 @@
             });
         });
     </script>
-    <script> $(document).on('click', '.modal_edit', function(e) {
+    <script>
+    $(document).on('click', '.modal_edit', function(e) {
         e.preventDefault();
 
         var container_edit = $(this).data('container_edit');
