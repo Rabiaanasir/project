@@ -33,7 +33,7 @@
             </table>
         </div>
     </div>
-{{-- @include('admin.listings.create'); --}}
+@endsection
 @section('script')
 <script type="text/javascript">
     $(document).ready(function () {
@@ -97,10 +97,7 @@
         // Handle Form Submission via AJAX
         $(document).on('submit', '#listingForm', function (e) {
             e.preventDefault();
-
-            // Create a FormData object from the form
             var formData = new FormData(this);
-
             $.ajax({
                 url: "{{ route('listings.store') }}", // POST to store method
                 type: "POST",
@@ -111,43 +108,22 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF token
                 },
                 success: function (response) {
-                    $('#listingForm').trigger("reset"); // Reset form
-                    $('#ajaxModel').modal('hide'); // Close modal
-                    alert('Listing created successfully!');
-                    $('#listing').DataTable().ajax.reload(); // Reload DataTable
-                },
+            $('#listingForm').trigger("reset"); // Reset form
+            toastr.success('Listing created successfully!'); // Success toast
+            $('.view_modal').modal('hide'); // Close modal
+            $('#listing').DataTable().ajax.reload(); // Reload DataTable
+        },
                 error: function (error) {
                     console.error('Error:', error);
-                    alert('Error occurred while storing listing.');
+                    toastr.error('Error occurred while storing listing. Please try again.');
                 }
+
             });
         });
 
 
-
-        // Handle Edit Button Click
-$(document).on('click', '.modal_edit', function (e) {
-    e.preventDefault();
-
-    let href = $(this).data('href'); // URL for loading the form
-
-    $.ajax({
-        url: href,
-        dataType: 'html',
-        success: function (result) {
-            // Inject the form content into the modal
-            $('.listing_modal_edit .modal-content').html(result);
-            $('.listing_modal_edit').modal('show'); // Show the modal
-        },
-        error: function (xhr, status, error) {
-            console.error('Error loading form:', error);
-            toastr.error('Could not load the edit form.');
-        }
-    });
-});
-
 // Handle Form Submission via AJAX
-$(document).on('submit', '#listingForm', function (e) {
+$(document).on('submit', '#listingFormEdit', function (e) {
     e.preventDefault(); // Prevent default form submission
 
     var formData = new FormData(this); // Handle file uploads
@@ -162,8 +138,10 @@ $(document).on('submit', '#listingForm', function (e) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF token
         },
         success: function (response) {
-            $('.listing_modal_edit').modal('hide'); // Close the modal
-            toastr.success('Listing updated successfully!');
+            console.log(response)
+            toastr.success(response.message);
+            $('.edit_modal').modal('hide'); // Close the modal
+
             $('#listing').DataTable().ajax.reload(); // Reload DataTable
         },
         error: function (xhr, status, error) {
@@ -173,9 +151,58 @@ $(document).on('submit', '#listingForm', function (e) {
     });
 });
 
+// Handle Delete Button Click
+$(document).on('click', '.deleteListing', function (e) {
+    e.preventDefault(); // Prevent default anchor behavior
+
+    let deleteUrl = $(this).data('href'); // Get the delete URL
+
+    // Confirm with SweetAlert
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Proceed with AJAX request if confirmed
+            $.ajax({
+                url: deleteUrl,
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (response) {
+                    Swal.fire(
+                        'Deleted!',
+                       response.success || 'The listing was deleted successfully.',
+                        'success'
+                    );
+                    $('#listing').DataTable().ajax.reload(); // Reload DataTable
+                },
+                error: function (xhr) {
+                    // Safely access error message
+                    let errorMessage = 'An error occurred. Please try again.';
+                    if (xhr.responseJSON && xhr.responseJSON.error) {
+                        errorMessage = xhr.responseJSON.error;
+                    }
+
+                    Swal.fire(
+                        'Error!',
+                        errorMessage,
+                        'error'
+                    );
+                }
+            });
+        }
+    });
+});
 
 </script>
 
 @endsection
 
-@endsection
+

@@ -102,8 +102,6 @@ Route::get('/brands/edit/{id}', [BrandController::class, 'edit'])->name('brands.
 Route::put('/brands/update/{id}/', [BrandController::class, 'update'])->name('brands.update');
 Route::delete('/brands/{id}', [BrandController::class, 'destroy'])->name('brands.destroy');
 
-    // Route::put('/listings/{id}', [ListingController::class, 'update'])->name('listings.update');
-    // Route::delete('/listings/{id}', [ListingController::class, 'destroy'])->name('listings.destroy');
     // Route::get('/listings/{id}', [ListingController::class, 'show'])->name('listings.show');
     Route::get('listings', [ListingController::class, 'index'])->name('listings.index');
     Route::get('listings/create', [ListingController::class, 'create'])->name('listings.create');

@@ -25,7 +25,13 @@ class ListingController extends Controller
                                 data-href="' . route('listings.edit', $row->id) . '"
                                 data-container_edit=".edit_modal"
                                 class="btn btn-primary btn-sm modal_edit">Edit</a>';
-                $deleteBtn = '<a href="javascript:void(0)" data-id="' . $row->id . '" class="btn btn-danger btn-sm deleteListing">Delete</a>';
+                // $deleteBtn = '<a href="javascript:void(0)" data-id="' . $row->id . '" class="btn btn-danger btn-sm deleteListing">Delete</a>';
+                $deleteBtn = '<a href="' . route('listings.destroy', $row->id) . '"
+                data-href="' . route('listings.destroy', $row->id) . '"
+                class="btn btn-danger btn-sm deleteListing">
+                Delete
+              </a>';
+
 
                 return $editBtn . ' ' . $deleteBtn;
                 })
@@ -106,12 +112,45 @@ class ListingController extends Controller
         return response()->json(['message' => 'Listing updated successfully.']);
     }
 
+
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
-    {
-        Listing::find($id)->delete();
-        return response()->json(['success' => 'Listing deleted successfully.']);
-    }
+
+
+
+// public function destroy($id)
+// {
+//     try {
+//         // Find the listing with related records (if any)
+//         $listing = Listing::findOrFail($id);
+
+//         // Optional: Delete related records, if necessary
+//         // Example: $listing->relatedModel()->delete();
+
+//         $listing->delete(); // Delete the listing
+
+//         return response()->json(['success' => 'Listing deleted successfully.']);
+//     } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+//         // If the listing is not found, return 404 response
+//         return response()->json(['error' => 'Listing not found.'], 404);
+//     } catch (\Exception $e) {
+//         // Log the real error message for debugging
+//         \Log::error('Listing Deletion Error: ' . $e->getMessage());
+
+//         return response()->json(['error' => 'Failed to delete listing.'], 500);
+//     }
+// }
+public function destroy($id)
+{
+    // Find the listing or return 404 if not found
+    $listing = Listing::findOrFail($id);
+
+    // Delete the listing
+    $listing->delete();
+
+    // Return success response
+    return response()->json(['success' => 'Listing deleted successfully.']);
+}
+
 }
