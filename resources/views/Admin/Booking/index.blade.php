@@ -35,7 +35,7 @@
 @section('script')
     <script type="text/javascript">
         $(document).ready(function() {
-            var table = $('#bookings').DataTable({
+            var bookingtable = $('#bookings').DataTable({
 
                 processing: true,
 
@@ -89,7 +89,7 @@
                 url: formAction, // Use the action URL from the form
                 type: "POST",
                 data: formData,
-                contentType: data,
+                contentType: false,
                 processData: false,
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF token
@@ -98,7 +98,7 @@
                     toastr.success(response.success); // Show success toast
                     $('#bookingForm').trigger("reset"); // Reset form
                     $('.view_modal').modal('hide'); // Close modal (if applicable)
-                    $('#booking').DataTable().ajax.reload(); // Reload DataTable
+                    $(bookingtable).DataTable().ajax.reload(); // Reload DataTable
                 },
                 error: function(error) {
                     console.error('Error:', error);

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 use Yajra\DataTables\DataTables; // For DataTables functionality
 use App\Models\Booking;
 use App\Models\User;
@@ -85,27 +87,32 @@ class BookingController extends Controller
 
 public function store(Request $request)
 {
-    // dd($request->all());
-    dd($request->ajax());
-   if($request->ajax())
-    $request->validate([
-        'user' => 'required|string|max:255',
-        'email' => 'required|email|max:255',
-        'booking_date' => 'required|date',
-        'status' => 'required|in:pending,confirmed,completed,canceled',
-        'booking_code' => 'required|string|unique:bookings,booking_code',
-    ]);
+    if ($request->ajax()) {
+        // Validation rules
+        $request->validate([
+            'user' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'booking_date' => 'required|date',
+        ]);
 
-    Booking::create([
-        'user' => $request->user,
-        'email' => $request->email,
-        'booking_date' => $request->booking_date,
-        'status' => $request->status,
-        'booking_code' => $request->booking_code,
-    ]);
+        // Create booking with default 'pending' status and a random 6-character booking code
+        Booking::create([
+            'user' => $request->user,
+            'email' => $request->email,
+            'booking_date' => $request->booking_date,
+            'status' => 'pending',  // Default status to 'pending'
+            'booking_code' => Str::random(6),  // Generate random 6-character booking code
+        ]);
 
-    return response()->json(['success' => 'Booking created successfully.']);
+        // Return a success response
+        return response()->json(['success' => 'Booking created successfully.']);
+    }
+
+    // Return a fallback response if it's not an AJAX request
+    return response()->json(['error' => 'Invalid request type'], 400);
 }
+
+
 
 public function edit($id)
 {
