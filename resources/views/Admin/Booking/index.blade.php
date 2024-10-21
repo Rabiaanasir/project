@@ -98,7 +98,7 @@
                     toastr.success(response.success); // Show success toast
                     $('#bookingForm').trigger("reset"); // Reset form
                     $('.view_modal').modal('hide'); // Close modal (if applicable)
-                    $(bookingtable).DataTable().ajax.reload(); // Reload DataTable
+                    $('#bookings').ajax.reload(); // Reload DataTable
                 },
                 error: function(error) {
                     console.error('Error:', error);
