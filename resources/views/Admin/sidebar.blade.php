@@ -9,7 +9,11 @@
         <li><i class="fab fa-uikit"></i><a href="{{ route('brands.index') }}">Brands</a></li>
         <li><i class="fas fa-th-large"></i><a href="{{ route('listings.index') }}">Listings</a></li>
         <li><i class="fas fa-edit"></i><a href="#">Forms</a></li>
+<<<<<<< Updated upstream
         <li><i class="fas fa-calendar-check"></i><a href="{{ route('bookings') }}">Booking</a></li>
+=======
+        <li><i class="fas fa-th-large"></i><a href="{{ route('bookings.index') }}">Booking</a></li>
+>>>>>>> Stashed changes
         <li><i class="fab fa-cc-visa"></i><a href="#">Cards</a></li>
         <li><i class="fas fa-hamburger"></i><a href="#">Model</a></li>
         <li><i class="fas fa-chart-line"></i><a href="#">Blank</a></li>

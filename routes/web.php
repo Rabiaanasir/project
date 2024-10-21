@@ -25,6 +25,7 @@ use App\Http\Controllers\profileController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\ListingController;
 use App\Http\Controllers\admin\BrandController;
+use App\Http\Controllers\admin\BookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -111,6 +112,13 @@ Route::post('listings/store', [ListingController::class, 'store'])->name('listin
 Route::get('listings/edit/{id}', [ListingController::class, 'edit'])->name('listings.edit');
 Route::put('/listings/update/{id}', [ListingController::class, 'update'])->name('listings.update');
 Route::delete('listings/delete/{id}', [ListingController::class, 'destroy'])->name('listings.destroy');
+
+Route::get('bookings', [BookingController::class, 'index'])->name('bookings.index');
+Route::get('bookings/create', [BookingController::class, 'create'])->name('bookings.create');
+Route::post('/bookings/store', [BookingController::class, 'store'])->name('bookings.store');
+Route::get('bookings/edit/{id}', [BookingController::class, 'edit'])->name('bookings.edit');
+Route::put('/bookings/update/{id}', [BookingController::class, 'update'])->name('bookings.update');
+Route::delete('bookings/delete/{id}', [BookingController::class, 'destroy'])->name('bookings.destroy');
 
 });
 
