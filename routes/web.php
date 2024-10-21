@@ -112,6 +112,10 @@ Route::delete('listings/delete/{id}', [ListingController::class, 'destroy'])->na
 
 });
 
+// USER/PUBLIC ROUTES (for everyone to access)
+Route::get('/listings', [ListingController::class, 'showUserListings'])->name('frontend.listings');
+Route::get('/listings-data', [ListingController::class, 'getUserListings'])->name('frontend.listings.data');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/user/profile', [AuthController::class, 'showProfile'])->name('user.profile');

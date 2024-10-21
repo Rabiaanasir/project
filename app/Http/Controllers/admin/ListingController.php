@@ -13,144 +13,113 @@ class ListingController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Listing::all();
+            $data = Listing::with('brand')->get(); // Eager load related brand data
             return Datatables::of($data)
-                ->addColumn('action', function ($row) {
-                    // $editBtn = '<a href="" data-id="'.$row->id.'" class="edit btn btn-primary btn-sm editListing">Edit</a>';
-                    // $deleteBtn = '<a href="javascript:void(0)" data-id="'.$row->id.'" class="btn btn-danger btn-sm deleteListing">Delete</a>';
-                    // return $editBtn . ' ' . $deleteBtn;
-                    // $editRoute = route('listings.edit', $row->id); // Generate the edit route
-                // $editBtn = '<a href="' . $editRoute . '" data-id="' . $row->id . '" class="edit btn btn-primary btn-sm editListing">Edit</a>';
-                $editBtn = '<a href="' . route('listings.edit', $row->id) . '"
-                                data-href="' . route('listings.edit', $row->id) . '"
-                                data-container_edit=".edit_modal"
-                                class="btn btn-primary btn-sm modal_edit">Edit</a>';
-                // $deleteBtn = '<a href="javascript:void(0)" data-id="' . $row->id . '" class="btn btn-danger btn-sm deleteListing">Delete</a>';
-                $deleteBtn = '<a href="' . route('listings.destroy', $row->id) . '"
-                data-href="' . route('listings.destroy', $row->id) . '"
-                class="btn btn-danger btn-sm deleteListing">
-                Delete
-              </a>';
-
-
-                return $editBtn . ' ' . $deleteBtn;
+                ->addColumn('image', function ($row) {
+                    // Handle image rendering with default fallback
+                    $imageUrl = $row->image ? asset('storage/images/' . $row->image) : asset('images/default.png');
+                    return '<img src="' . $imageUrl . '" class="listing-image" width="70" height="50" alt="Listing Image" />';
                 })
-                ->rawColumns(['action'])
+                ->addColumn('action', function ($row) {
+                    // Edit button with modal support
+                    $editBtn = '<a href="' . route('listings.edit', $row->id) . '"
+                                    data-href="' . route('listings.edit', $row->id) . '"data-container_edit=".edit_modal" class="btn btn-sm btn-primary modal_edit">Edit</a>';
+
+                    // Delete button
+                    $deleteBtn = '<button data-id="' . $row->id . '"
+                                    class="btn btn-sm btn-danger deleteListing">Delete</button>';
+
+                    return $editBtn . ' ' . $deleteBtn;
+                })
+                ->rawColumns(['image', 'action']) // Allow rendering raw HTML
                 ->make(true);
         }
-        return view('admin.listings.index');
+        return view('admin.listings.index'); // Load view for DataTables
     }
 
     public function create()
     {
-        $brands = Brand::pluck('name','id')->toArray();
-        //  dd($brands);
-        return view('admin.listings.create', compact(['brands']));
+        $brands = Brand::pluck('name', 'id')->toArray(); // Fetch available brands
+        // dd($brands);
+        return view('admin.listings.create', compact('brands')); // Pass brands to view
     }
 
     public function store(Request $request)
     {
+        // Validate request input
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'brand_id' => 'required|exists:brands,id',
+            'price' => 'required|numeric|min:0',
+            'watts' => 'required|integer|min:0',
+            'description' => 'required|string|max:1000',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-         // Validate and store the new listing
-    $request->validate([
-        'title' => 'required|string|max:255',
-        'brand_id' => 'required|integer',
-        'price' => 'required|numeric',
-        'watts' => 'required|integer',
-        'description' => 'required|string',
-        'image' => 'required|image|max:2048',
-    ]);
-// dd($request->hasFile('image'));
-    // Handle file upload
-    if ($request->hasFile('image')) {
-        $imageName = time().'.'.$request->image->extension();
-        $request->image->move(public_path('images'), $imageName);
-    } else {
+        // Handle image upload if present
         $imageName = null;
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->storeAs('public/images', $imageName); // Save to storage/app/public/images
+        }
+
+        // Save new listing with validated data
+        Listing::create(array_merge($validated, ['image' => $imageName]));
+
+        return response()->json(['success' => 'Listing created successfully.']);
     }
-
-    // Save the listing
-   $Listing = Listing::create([
-    'brand_id' => $request->brand_id,
-        'title' => $request->title,
-        'description' => $request->description,
-        'image' => $imageName,
-        'watts' => $request->watts,
-        'price' => $request->price,
-
-    ]);
-// dd($Listing);
-    return response()->json(['success' => 'Listing created successfully.']);
-}
 
     public function edit($id)
     {
-        $listing = Listing::findOrFail($id); // Fetch the listing to edit
-        // dd($listing);
-        $brands = Brand::pluck('name', 'id'); // Fetch available brands
-        return view('admin.listings.edit', compact('listing', 'brands'));
+        $listing = Listing::findOrFail($id); // Find listing by ID or fail
+        $brands = Brand::pluck('name', 'id')->toArray(); // Get brands
+        return view('admin.listings.edit', compact('listing', 'brands')); // Pass data to view
     }
 
     public function update(Request $request, $id)
-    {$listing = Listing::findOrFail($id);
+    {
+        $listing = Listing::findOrFail($id); // Get listing
 
+        // Validate request input
         $data = $request->validate([
-            'title' => 'required',
-            'brand_id' => 'required',
-            'price' => 'required',
-            'watts' => 'required',
-            'description' => 'required',
-            'image' => 'image|nullable',
+            'title' => 'required|string|max:255',
+            'brand_id' => 'required|exists:brands,id',
+            'price' => 'required|numeric|min:0',
+            'watts' => 'required|integer|min:0',
+            'description' => 'required|string|max:1000',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
+        // Handle image upload
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('images', 'public');
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->storeAs('public/images', $imageName); // Store new image
+            $data['image'] = $imageName;
         }
 
+        // Update listing
         $listing->update($data);
 
         return response()->json(['message' => 'Listing updated successfully.']);
     }
 
+    public function destroy($id)
+    {
+        $listing = Listing::findOrFail($id); // Find listing or 404
+        $listing->delete(); // Delete the listing
+        return response()->json(['success' => 'Listing deleted successfully.']);
+    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    public function showUserListings()
+    {
+        return view('frontend.listings'); // Load user listings view
+    }
 
-
-
-// public function destroy($id)
-// {
-//     try {
-//         // Find the listing with related records (if any)
-//         $listing = Listing::findOrFail($id);
-
-//         // Optional: Delete related records, if necessary
-//         // Example: $listing->relatedModel()->delete();
-
-//         $listing->delete(); // Delete the listing
-
-//         return response()->json(['success' => 'Listing deleted successfully.']);
-//     } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-//         // If the listing is not found, return 404 response
-//         return response()->json(['error' => 'Listing not found.'], 404);
-//     } catch (\Exception $e) {
-//         // Log the real error message for debugging
-//         \Log::error('Listing Deletion Error: ' . $e->getMessage());
-
-//         return response()->json(['error' => 'Failed to delete listing.'], 500);
-//     }
-// }
-public function destroy($id)
-{
-    // Find the listing or return 404 if not found
-    $listing = Listing::findOrFail($id);
-
-    // Delete the listing
-    $listing->delete();
-
-    // Return success response
-    return response()->json(['success' => 'Listing deleted successfully.']);
+    public function getUserListings()
+   {
+    $listings = Listing::with('brand')->get(); // Eager load the brand relationship
+    return response()->json(['data' => $listings]); // Return listings as JSON
+   }
 }
 
-}
+
