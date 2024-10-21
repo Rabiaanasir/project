@@ -29,7 +29,7 @@ nav img{
   .navbar .nav-items{
       float: right;
       margin-top: 1.5rem;
-      margin-right: 100px 
+      margin-right: 100px
   }
   .navbar .nav-item{
       display: inline-block;
@@ -56,12 +56,12 @@ nav img{
     display: block;
     padding: 5px 10px;
     margin: 5px 10px;
-  } 
+  }
   ul li ul.dropdown{
     background-color: darkgoldenrod;
     padding: 5px 10px;
     position: absolute;
-    z-index: 999; 
+    z-index: 999;
     display: none;
   }
   .dropdown a:hover{
@@ -77,7 +77,7 @@ nav img{
     color:#f4f4f4;
   }
   .login {
-    background: rgb(233, 199, 6);         
+    background: rgb(233, 199, 6);
     /* padding: 1px 20px;          Retain original padding */
     display: inline-block;      /* Button-like appearance */
     border-radius: 30px;        /* Smooth, round corners */
@@ -123,20 +123,20 @@ footer {
   }
   .right-section{
     float: right;
-  }  
-  
+  }
+
   footer ul {
     list-style-type: none;
     padding: 0;
-    margin: 0; 
+    margin: 0;
   }
-  
+
   footer ul li {
     display: inline;
     margin-right: 25px; /* Adjust spacing between list items as needed */
     letter-spacing: normal;
   }
-  
+
   footer ul li a {
     color: #f4f4f4;
     text-decoration: none;
@@ -151,11 +151,11 @@ footer {
   footer .fab{
     color: #f4f4f4;
     margin-right: 8px;
-  } 
+  }
 
 
   /*---------- FAQ styling-------- */
-    
+
   .section-faq{
       max-width: 900px;
       margin: 20px auto;
@@ -164,7 +164,7 @@ footer {
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       padding: 40px 80px;
     }
-    
+
     .section-faq h1 {
       text-align: center;
       color: navy;
@@ -172,50 +172,50 @@ footer {
       font-size: 40px;
       font-weight: 530;
     }
-    
+
     .faq-item {
       border-bottom: 1px solid #000;
       padding: 10px 0px;
     }
-    
+
     .faq-question {
       display: flex;
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
     }
-    
+
     .faq-question h3 {
       margin: 0;
       font-size: 25px;
       color: navy;
       font-weight: 500;
     }
-    
+
     .faq-toggle {
       font-size: 34px;
       color: navy;
       transition: transform 0.3s;
     }
-    
+
     .faq-answer {
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.3s ease;
     }
-    
+
     .faq-answer p {
       margin: 10px 0 0;
       font-size: 16px;
       color: #000;
       font-size: 20px;
     }
-    
+
     /* Open state */
     .faq-item.open .faq-answer {
       max-height: 300px;
     }
-    
+
     .faq-item.open .faq-toggle {
       transform: rotate(45deg);
     }

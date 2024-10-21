@@ -155,8 +155,9 @@ $(document).on('submit', '#listingFormEdit', function (e) {
 $(document).on('click', '.deleteListing', function (e) {
     e.preventDefault(); // Prevent default anchor behavior
 
-    let deleteUrl = $(this).data('href'); // Get the delete URL
-
+    // let deleteUrl = $(this).data('href'); // Get the delete URL
+    let listingId = $(this).data('id'); // Get the listing ID from the button
+    let deleteUrl = `/admin/listings/delete/${listingId}`;
     // Confirm with SweetAlert
     Swal.fire({
         title: 'Are you sure?',
