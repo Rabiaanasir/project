@@ -25,6 +25,7 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\ListingController;
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\BookingController;
+use App\Http\Controllers\admin\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -118,6 +119,13 @@ Route::post('/bookings/store', [BookingController::class, 'store'])->name('booki
 Route::get('bookings/edit/{id}', [BookingController::class, 'edit'])->name('bookings.edit');
 Route::put('/bookings/update/{id}', [BookingController::class, 'update'])->name('bookings.update');
 Route::delete('bookings/delete/{id}', [BookingController::class, 'destroy'])->name('bookings.destroy');
+
+Route::get('projects', [ProjectController::class, 'index'])->name('projects.index');
+Route::get('projects/create', [ProjectController::class, 'create'])->name('projects.create');
+Route::post('projects/store', [ProjectController::class, 'store'])->name('projects.store'); // Store uses POST
+Route::get('projects/edit/{id}', [ProjectController::class, 'edit'])->name('projects.edit');
+Route::put('projects/update/{id}', [ProjectController::class, 'update'])->name('projects.update');
+Route::delete('projects/delete/{id}', [ProjectController::class, 'destroy'])->name('projects.destroy');
 });
 
 // USER/PUBLIC ROUTES (for everyone to access)
