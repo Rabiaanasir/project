@@ -164,7 +164,7 @@
                 <button class="registerbtn">Register</button>
             </div>
         </div>
-  
+
            <div class="form-box">
             <!--Login Form -->
             <div class="form loginform">
@@ -179,7 +179,6 @@
                 <input type="checkbox" id="showPassword"> Show Password
             </label>
             <input type="submit" value="Log In">
-                    <a href="#">Forgot Password?</a>
                 </form>
             </div>
 
@@ -191,11 +190,11 @@
                     <input type="text" placeholder="Username" id="username" name="username">
                     <input type="email" placeholder="Email Address" id="email" name="email">
                     <input type="password" placeholder="Password" id="password" name="password">
+                    <input type="password" placeholder="Confirm Password" id="password_confirmation" name="password_confirmation">
                       <!-- Show/Hide Password Checkbox -->
             <label for="showRegisterPassword">
                 <input type="checkbox" id="showRegisterPassword"> Show Password
             </label>
-                    <input type="password" placeholder="Confirm Password" id="password_confirmation" name="password_confirmation">
                     <input type="submit" value="Register">
                 </form>
                 <!-- Error Message (general, displayed at the end) -->
@@ -228,7 +227,7 @@
 document.getElementById('showRegisterPassword').addEventListener('change', function() {
     const passwordField = document.getElementById('password');
     const confirmPasswordField = document.getElementById('password_confirmation');
-    
+
     if (this.checked) {
         passwordField.type = 'text';
         confirmPasswordField.type = 'text';

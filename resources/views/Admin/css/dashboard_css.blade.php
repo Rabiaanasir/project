@@ -80,7 +80,14 @@
         font-weight: 300px;
         transition: 0.3s ease;
     }
-
+a{
+    color: rgb(134,141,151);
+    text-decoration: none;
+}
+a:hover{
+    color: #e5e7eb;
+    text-decoration: none;
+}
     #interface{
         width: calc(100% - 300px);
         margin-left: 300px;

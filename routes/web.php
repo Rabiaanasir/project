@@ -11,7 +11,6 @@ use App\Http\Controllers\agriController;
 use App\Http\Controllers\commercialController;
 use App\Http\Controllers\blogController;
 use App\Http\Controllers\financeController;
-use App\Http\Controllers\projectsController;
 use App\Http\Controllers\nmController;
 use App\Http\Controllers\contactController;
 use App\Http\Controllers\calculatorController;
@@ -25,6 +24,7 @@ use App\Http\Controllers\profileController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\ListingController;
 use App\Http\Controllers\admin\BrandController;
+use App\Http\Controllers\admin\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +50,7 @@ Route::get('/heaters', [heatersController::class, 'index'])->name('heaters');
 Route::get('/agriculture', [agriController::class, 'index'])->name('agriculture');
 Route::get('/commercial', [commercialController::class, 'index'])->name('commercial');
 Route::get('/blog', [blogController::class, 'index'])->name('blog');
-Route::get('/projects', [projectsController::class, 'index'])->name('projects');
+// Route::get('/projects', [projectsController::class, 'index'])->name('projects');
 Route::get('/financing', [financeController::class, 'index'])->name('financing');
 Route::get('/contact-us', [contactController::class, 'index'])->name('contact-us');
 Route::get('/calculator', [calculatorController::class, 'index'])->name('calculator');
@@ -104,17 +104,30 @@ Route::delete('/brands/{id}', [BrandController::class, 'destroy'])->name('brands
 
     // Route::get('/listings/{id}', [ListingController::class, 'show'])->name('listings.show');
     Route::get('listings', [ListingController::class, 'index'])->name('listings.index');
+    Route::get('listings/view/{id}', [ListingController::class, 'view'])->name('listings.view');
     Route::get('listings/create', [ListingController::class, 'create'])->name('listings.create');
 Route::post('listings/store', [ListingController::class, 'store'])->name('listings.store');
 Route::get('listings/edit/{id}', [ListingController::class, 'edit'])->name('listings.edit');
 Route::put('/listings/update/{id}', [ListingController::class, 'update'])->name('listings.update');
 Route::delete('listings/delete/{id}', [ListingController::class, 'destroy'])->name('listings.destroy');
 
+Route::get('projects', [ProjectController::class, 'index'])->name('projects.index');
+Route::get('projects/create', [ProjectController::class, 'create'])->name('projects.create');
+Route::post('projects/store', [ProjectController::class, 'store'])->name('projects.store'); // Store uses POST
+Route::get('projects/edit/{id}', [ProjectController::class, 'edit'])->name('projects.edit');
+Route::put('projects/update/{id}', [ProjectController::class, 'update'])->name('projects.update');
+Route::delete('projects/delete/{id}', [ProjectController::class, 'destroy'])->name('projects.destroy');
+
+
 });
 
 // USER/PUBLIC ROUTES (for everyone to access)
 Route::get('/listings', [ListingController::class, 'showUserListings'])->name('frontend.listings');
 Route::get('/listings-data', [ListingController::class, 'getUserListings'])->name('frontend.listings.data');
+Route::get('/product/{id}', [ListingController::class, 'show'])->name('product.show');
+
+// Frontend route to display projects to users
+Route::get('/projects', [ProjectController::class, 'frontendProjects'])->name('frontend.projects');
 
 
 Route::middleware('auth')->group(function () {
