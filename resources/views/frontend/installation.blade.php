@@ -118,8 +118,8 @@
         </td>
       </tr>
       <tr>
-        <td>Water Pumps</td>
-        <td>500W</td>
+        <td>Water Pumps 1HP</td>
+        <td>700W</td>
         <td>
           <div class="quantity-container">
             <button class="quantity-btn" onclick="updateQuantity('waterPumps', -1)">-</button>
@@ -128,7 +128,7 @@
           </div>
         </td>
       </tr>
-      <tr>
+      {{-- <tr>
         <td>Oven</td>
         <td>2000W</td>
         <td>
@@ -138,10 +138,10 @@
             <button class="quantity-btn" onclick="updateQuantity('oven', 1)">+</button>
           </div>
         </td>
-      </tr>
+      </tr> --}}
       <tr>
         <td>Iron</td>
-        <td>1200W</td>
+        <td>1000W</td>
         <td>
           <div class="quantity-container">
             <button class="quantity-btn" onclick="updateQuantity('iron', -1)">-</button>
@@ -162,8 +162,8 @@
         </td>
       </tr>
       <tr>
-        <td>AC (1 ton)</td>
-        <td>1500W</td>
+        <td> Split AC (1 ton)</td>
+        <td>1800W</td>
         <td>
           <div class="quantity-container">
             <button class="quantity-btn" onclick="updateQuantity('ac1ton', -1)">-</button>
@@ -173,8 +173,8 @@
         </td>
       </tr>
       <tr>
-        <td>AC (1.5 ton)</td>
-        <td>2000W</td>
+        <td>Split AC (1.5 ton)</td>
+        <td>2400W</td>
         <td>
           <div class="quantity-container">
             <button class="quantity-btn" onclick="updateQuantity('ac1_5ton', -1)">-</button>
@@ -184,7 +184,7 @@
         </td>
       </tr>
       <tr>
-        <td>AC (2 ton)</td>
+        <td>Split AC (2 ton)</td>
         <td>3000W</td>
         <td>
           <div class="quantity-container">
@@ -195,13 +195,57 @@
         </td>
       </tr>
       <tr>
-        <td>Other</td>
-        <td>500W</td>
+        <td>Split AC (3.5 ton)</td>
+        <td>7500W</td>
         <td>
           <div class="quantity-container">
-            <button class="quantity-btn" onclick="updateQuantity('other', -1)">-</button>
-            <input type="text" id="other" class="quantity-input" value="0" readonly>
-            <button class="quantity-btn" onclick="updateQuantity('other', 1)">+</button>
+            <button class="quantity-btn" onclick="updateQuantity('ac3_5ton', -1)">-</button>
+            <input type="text" id="ac3_5ton" class="quantity-input" value="0" readonly>
+            <button class="quantity-btn" onclick="updateQuantity('ac3_5ton', 1)">+</button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Split AC (4 ton)</td>
+        <td>8000W</td>
+        <td>
+          <div class="quantity-container">
+            <button class="quantity-btn" onclick="updateQuantity('ac4ton', -1)">-</button>
+            <input type="text" id="ac4ton" class="quantity-input" value="0" readonly>
+            <button class="quantity-btn" onclick="updateQuantity('ac4ton', 1)">+</button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Inverter AC (1 ton)</td>
+        <td>1000W</td>
+        <td>
+          <div class="quantity-container">
+            <button class="quantity-btn" onclick="updateQuantity('i_ac1ton', -1)">-</button>
+            <input type="text" id="i_ac1ton" class="quantity-input" value="0" readonly>
+            <button class="quantity-btn" onclick="updateQuantity('i_ac1ton', 1)">+</button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Inverter AC (1.5 ton)</td>
+        <td>1500W</td>
+        <td>
+          <div class="quantity-container">
+            <button class="quantity-btn" onclick="updateQuantity('i_ac1_5ton', -1)">-</button>
+            <input type="text" id="i_ac1_5ton" class="quantity-input" value="0" readonly>
+            <button class="quantity-btn" onclick="updateQuantity('i_ac1_5ton', 1)">+</button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Inverter AC (2 ton)</td>
+        <td>2000W</td>
+        <td>
+          <div class="quantity-container">
+            <button class="quantity-btn" onclick="updateQuantity('i_ac2ton', -1)">-</button>
+            <input type="text" id="i_ac2ton" class="quantity-input" value="0" readonly>
+            <button class="quantity-btn" onclick="updateQuantity('i_ac2ton', 1)">+</button>
           </div>
         </td>
       </tr>

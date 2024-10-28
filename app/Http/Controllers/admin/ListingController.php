@@ -21,6 +21,11 @@ class ListingController extends Controller
                     return '<img src="' . $imageUrl . '" class="listing-image" width="70" height="50" alt="Listing Image" />';
                 })
                 ->addColumn('action', function ($row) {
+                    // View button
+                    $viewBtn = '<a href="' . route('listings.view', $row->id) . '"
+                    data-href="' . route('listings.view', $row->id) . '"
+                    data-container_view=".view_modal"
+                    class="btn btn-sm btn-success modal_view">View</a>';
                     // Edit button with modal support
                     $editBtn = '<a href="' . route('listings.edit', $row->id) . '"
                                     data-href="' . route('listings.edit', $row->id) . '"data-container_edit=".edit_modal" class="btn btn-sm btn-primary modal_edit">Edit</a>';
@@ -29,13 +34,30 @@ class ListingController extends Controller
                     $deleteBtn = '<button data-id="' . $row->id . '"
                                     class="btn btn-sm btn-danger deleteListing">Delete</button>';
 
-                    return $editBtn . ' ' . $deleteBtn;
+                    return $viewBtn . ' ' . $editBtn . ' ' . $deleteBtn;
+                })
+                ->addColumn('description', function ($row) {
+                    // Truncate description to 50 characters and append '...' if it's too long
+                    $truncatedDescription = strlen($row->description) > 50
+                        ? substr($row->description, 0, 35) . '...'
+                        : $row->description;
+
+                    return $truncatedDescription; // Return truncated description
                 })
                 ->rawColumns(['image', 'action']) // Allow rendering raw HTML
                 ->make(true);
         }
         return view('admin.listings.index'); // Load view for DataTables
     }
+
+    public function view($id)
+        {
+            // Fetch the listing with the specified ID along with its related brand
+            $listing = Listing::with('brand')->findOrFail($id);
+
+            // Return the view with the listing data
+            return view('admin.listings.view', compact('listing'));
+        }
 
     public function create()
     {
@@ -46,6 +68,7 @@ class ListingController extends Controller
 
     public function store(Request $request)
     {
+
         // Validate request input
         $validated = $request->validate([
             'title' => 'required|string|max:255',
@@ -53,7 +76,7 @@ class ListingController extends Controller
             'price' => 'required|numeric|min:0',
             'watts' => 'required|integer|min:0',
             'description' => 'required|string|max:1000',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|max:2048',
         ]);
 
         // Handle image upload if present
@@ -87,7 +110,8 @@ class ListingController extends Controller
             'price' => 'required|numeric|min:0',
             'watts' => 'required|integer|min:0',
             'description' => 'required|string|max:1000',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            // 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|max:2048',
         ]);
 
         // Handle image upload
@@ -110,6 +134,11 @@ class ListingController extends Controller
         return response()->json(['success' => 'Listing deleted successfully.']);
     }
 
+    public function show($id)
+{
+    $listing = Listing::with('brand')->findOrFail($id); // Fetch product with brand details
+    return view('frontend.product_detail', compact('listing')); // Pass product to the view
+}
     public function showUserListings()
     {
         return view('frontend.listings'); // Load user listings view

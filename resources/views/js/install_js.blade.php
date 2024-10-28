@@ -10,14 +10,19 @@ const wattages = {
   washingMachines: 800,     // Washing Machines
   freezers: 350,            // Freezers
   refrigerators: 350,       // Refrigerators
-  waterPumps: 500,          // Water Pumps
-  oven: 2000,               // Oven
-  iron: 1200,               // Iron
+  waterPumps: 700,          // Water Pumps
+//   oven: 2000,               // Oven
+  iron: 1000,               // Iron
   microwaveOven: 1200,      // Microwave Oven
-  ac1ton: 1500,             // AC (1 ton)
-  ac1_5ton: 2000,           // AC (1.5 ton)
+  ac1ton: 1800,             // AC (1 ton)
+  ac1_5ton: 2400,           // AC (1.5 ton)
   ac2ton: 3000,             // AC (2 ton)
-  other: 500,               // Other
+  ac3_5ton: 7500,           // AC (1.5 ton)
+  ac4ton: 8000,             // AC (2 ton)
+//   other: 500,              // Other
+  i_ac1ton: 1000,
+  i_ac1_5ton: 1500,
+  i_ac2ton: 2000,
 };
 
 function updateQuantity(appliance, change) {

@@ -21,14 +21,8 @@
                             <li><a href="{{ route('heaters') }}">Solar Water Heaters</a></li>
                         </ul>
                        </li>
-                   <!--<li class="nav-item"><a href="">Solutions
-                        <ul class="dropdown">
-                            <li><a href="{{ route('commercial') }}">Commercial</a></li>
-                            <li><a href="{{ route('agriculture') }}">Agriculture</a></li>
-                        </ul>
-                       </li> -->
-                       <li class="nav-item"><a href="{{ route('projects') }}">Projects</a></li>
-                    <li class="nav-item"><a href="                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ">Blog</a></li>
+                       <li class="nav-item"><a href="{{ route('frontend.projects') }}">Projects</a></li>
+                    <li class="nav-item"><a href="{{ route('blog') }}">Blog</a></li>
                       {{-- @if(Auth::check()) --}}
         <li class="nav-item">
             <!-- If logged in, go directly to install system -->
@@ -45,13 +39,13 @@
     <li class="nav-item">
         <a href="#">{{ Auth::user()->role }}</a>
         <ul class="dropdown">
-           
+
             @if (auth()->user()->role == 'admin')
-            <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>  
+            <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
             @else
-            <li><a href="{{ route('user.profile') }}">Profile</a></li>  
+            <li><a href="{{ route('user.profile') }}">Profile</a></li>
             @endif
-           
+
             <li><a href="{{ route('logout') }}">Logout</a></li>
         </ul>
     </li>
@@ -79,7 +73,7 @@
           <li> <i class="fab fa-facebook fa-2x"></i></li>
             <li><i class="fab fa-twitter fa-2x"></i></li>
             <li><i class="fab fa-instagram fa-2x"></i></li>
-          
+
         </ul>
       </div>
 </footer>
