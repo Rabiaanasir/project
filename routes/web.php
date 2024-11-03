@@ -19,13 +19,14 @@ use App\Http\Controllers\emiController;
 use App\Http\Controllers\investController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\InstallController;
+// use App\Http\Controllers\InstallController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\ListingController;
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\BookingController;
 use App\Http\Controllers\admin\ProjectController;
+use App\Http\Controllers\ApplianceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,11 +61,6 @@ Route::get('/net-metering', [nmController::class, 'index'])->name('net-metering'
 Route::get('/emi', [emiController::class, 'index'])->name('emi');
 Route::get('/invest', [investController::class, 'index'])->name('invest');
 
-// Route for the install system page (for authenticated users)
-Route::middleware('auth')->group(function () {
-
-});
-
 
 // Show the combined login/register page
 Route::get('/login', [AuthController::class, 'showRegForm'])->name('login');
@@ -85,8 +81,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/user', function () {
         return view('frontend.user');
     })->name('user');
-    Route::get('/install-system', [InstallController::class, 'index'])->name('installSystem');
+    // Route::get('/install-system', [InstallController::class, 'index'])->name('installSystem');
+    Route::get('/appliances', [ApplianceController::class, 'index'])->name('appliances.index');
 });
+Route::post('/appliances', [ApplianceController::class, 'store'])->middleware('auth')->name('appliances.store');
+Route::any('/appliances/calculateSystemRequirements', [ApplianceController::class, 'calculateSystemRequirements'])->name('appliances.calculateSystemRequirements');
+
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', function () {
@@ -122,10 +122,14 @@ Route::delete('bookings/delete/{id}', [BookingController::class, 'destroy'])->na
 
 Route::get('projects', [ProjectController::class, 'index'])->name('projects.index');
 Route::get('projects/create', [ProjectController::class, 'create'])->name('projects.create');
-Route::post('projects/store', [ProjectController::class, 'store'])->name('projects.store'); // Store uses POST
+Route::post('projects/store', [ProjectController::class, 'store'])->name('projects.store');
 Route::get('projects/edit/{id}', [ProjectController::class, 'edit'])->name('projects.edit');
 Route::put('projects/update/{id}', [ProjectController::class, 'update'])->name('projects.update');
 Route::delete('projects/delete/{id}', [ProjectController::class, 'destroy'])->name('projects.destroy');
+
+Route::get('/appliances', [ApplianceController::class, 'show'])->name('admin.appliances');
+Route::get('/appliances/data', [ApplianceController::class, 'getAppliancesData'])->name('appliances.data');
+
 });
 
 // USER/PUBLIC ROUTES (for everyone to access)
@@ -141,3 +145,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/profile', [AuthController::class, 'showProfile'])->name('user.profile');
     Route::post('/user/profile', [AuthController::class, 'updateProfile'])->name('user.profile.update');
 });
+
+
+// Show appliance form
+// Route::get('/appliances', [ApplianceController::class, 'index'])->name('appliances.index');
+
+// Handle appliance submission (for authenticated users)
+// Route::post('/appliances', [ApplianceController::class, 'store'])->middleware('auth')->name('appliances.store');
