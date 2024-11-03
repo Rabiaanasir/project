@@ -88,11 +88,51 @@ public function login(Request $request)
 
 
     // Show the user profile page
-    public function showProfile()
-    {
-        $user = Auth::user();  // Get the authenticated user
-        return view('frontend.userProfile', compact('user'));
-    }
+    // public function showProfile()
+    // {
+    //     $user = Auth::user();  // Get the authenticated user
+    //     return view('frontend.userProfile', compact('user'));
+    // }
+//     public function showProfile()
+// {
+//     $user = Auth::user(); // Get the authenticated user
+
+//     // Assume $totalWattage, $requiredSystemSize, and $recommendedSolarCapacity are already calculated
+//     // Replace this section with actual logic to calculate or retrieve these values for the user
+//     $totalWattage = 3000; // Example value
+//     $requiredSystemSize = [
+//         'systemRequired' => 'Hybrid or On-Grid System',
+//         'hybridInverterSize' => '5 kW',
+//         'hybridPanels' => 10,
+//         'hybridAnnualGeneration' => 5000,
+//         'onGridInverterSize' => '5 kW',
+//         'onGridPanels' => 12,
+//         'onGridAnnualGeneration' => 5200,
+//     ];
+//     $recommendedSolarCapacity = '5.8 kW';
+
+//     return view('frontend.userProfile', compact('user', 'totalWattage', 'requiredSystemSize', 'recommendedSolarCapacity'));
+// }
+public function showProfile()
+{
+    $user = Auth::user(); // Get the authenticated user
+
+    // Retrieve stored data if available; otherwise, provide a default or prompt for calculation
+    $totalWattage = session('totalWattage', 0); // Fetch from session if it exists
+    $requiredSystemSize = session('requiredSystemSize', [
+        'systemRequired' => 'Not calculated',
+        'hybridInverterSize' => 'N/A',
+        'hybridPanels' => 'N/A',
+        'hybridAnnualGeneration' => 'N/A',
+        'onGridInverterSize' => 'N/A',
+        'onGridPanels' => 'N/A',
+        'onGridAnnualGeneration' => 'N/A',
+    ]);
+    $recommendedSolarCapacity = session('recommendedSolarCapacity', 'N/A');
+
+    return view('frontend.userProfile', compact('user', 'totalWattage', 'requiredSystemSize', 'recommendedSolarCapacity'));
+}
+
 
     // Update the user profile
     public function updateProfile(Request $request)

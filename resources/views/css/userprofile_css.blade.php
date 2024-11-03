@@ -95,5 +95,75 @@
             height: 150px;
             object-fit: cover;
         }
-        
+
+        /* Container styling */
+.requirements-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 30px;
+    background: #fefefe;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Header styling */
+.requirements-header {
+    color: #009688;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+/* Info box styling */
+.info-box {
+    padding: 15px;
+    margin: 15px 0;
+    background: #d7f2e3;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+}
+
+/* System types layout */
+.system-types {
+    display: flex;
+    gap: 20px; /* Space between cards */
+    justify-content: space-between; /* Distribute space between the cards */
+    flex-wrap: wrap; /* Allow wrapping of cards if necessary */
+    margin-top: 20px;
+}
+
+/* System card styling */
+.system-card {
+    flex: 1; /* Allow cards to grow equally */
+    max-width: 400px; /* Limit maximum width */
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, background-color 0.3s ease;
+    text-align: left;
+    flex-basis: calc(50% - 10px); /* Make cards take up half the space with a gap */
+}
+
+/* Hover effects */
+.system-card:hover {
+    transform: translateY(-4px);
+    background-color: #e8f7f3;
+}
+
+.system-card h2 {
+    font-size: 1rem;
+    color: #00796b;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+
     </style>
