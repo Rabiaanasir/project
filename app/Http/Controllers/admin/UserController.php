@@ -24,13 +24,17 @@ class UserController extends Controller
                     $viewBtn = '<button data-href="' . $viewUrl . '" class="btn btn-primary btn-modal" data-container_modal=".view_modal">
                               View
                             </button>';
-                    $editBtn = '<a href="javascript:void(0)" class="edit btn btn-warning btn-sm">Edit</a>';
-                    return $viewBtn . ' ' . $editBtn;
+                    // $editBtn = '<a href="javascript:void(0)" class="edit btn btn-warning btn-sm">Edit</a>';
+                    // return $viewBtn . ' ' . $editBtn;
+                    $deleteBtn = '<button data-id="' . $row->id . '"
+                    class="btn btn-sm btn-danger deleteusers">Delete</button>';
+
+                    return $viewBtn . ' ' . $deleteBtn;
                 })
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('admin.dashboard');
+        return view('admin.users.index');
     }
 
 
@@ -78,8 +82,13 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $user->delete();  //Delete the project
+
+        return response()->json(['success' => 'User deleted successfully.']);
     }
+
 }

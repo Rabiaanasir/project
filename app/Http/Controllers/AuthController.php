@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Appliance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -88,11 +89,11 @@ public function login(Request $request)
 
 
     // Show the user profile page
-    // public function showProfile()
-    // {
-    //     $user = Auth::user();  // Get the authenticated user
-    //     return view('frontend.userProfile', compact('user'));
-    // }
+    public function showProfile()
+    {
+        $user = Auth::user();  // Get the authenticated user
+        return view('frontend.userProfile', compact('user'));
+    }
 //     public function showProfile()
 // {
 //     $user = Auth::user(); // Get the authenticated user
@@ -113,25 +114,130 @@ public function login(Request $request)
 
 //     return view('frontend.userProfile', compact('user', 'totalWattage', 'requiredSystemSize', 'recommendedSolarCapacity'));
 // }
-public function showProfile()
+// public function showProfile()
+// {
+//     // Get the authenticated user
+//     $user = Auth::user();
+
+//     // Retrieve the latest appliance entry for this user
+//     $applianceData = Appliance::where('user_id', $user->id)->latest()->first();
+
+//     // If appliance data exists, use it; otherwise, set default values
+//     $totalWattage = $applianceData ? $applianceData->total_wattage : 0;
+
+//     // Calculate the system requirements based on the total wattage
+//     $requiredSystemSize = $this->calculateSystemSize($totalWattage);
+//     $recommendedSolarCapacity = $this->getRecommendedSolarCapacity($totalWattage);
+
+//     // Pass data to the profile view
+//     return view('frontend.userProfile', [
+//         'user' => $user,
+//         'totalWattage' => $totalWattage,
+//         'requiredSystemSize' => $requiredSystemSize,
+//         'recommendedSolarCapacity' => $recommendedSolarCapacity,
+//     ]);
+// }
+
+private function calculateSystemSize($totalWattage)
 {
-    $user = Auth::user(); // Get the authenticated user
+    // Convert wattage to kilowatts
+    $totalKW = $totalWattage / 1000;
 
-    // Retrieve stored data if available; otherwise, provide a default or prompt for calculation
-    $totalWattage = session('totalWattage', 0); // Fetch from session if it exists
-    $requiredSystemSize = session('requiredSystemSize', [
-        'systemRequired' => 'Not calculated',
-        'hybridInverterSize' => 'N/A',
-        'hybridPanels' => 'N/A',
-        'hybridAnnualGeneration' => 'N/A',
-        'onGridInverterSize' => 'N/A',
-        'onGridPanels' => 'N/A',
-        'onGridAnnualGeneration' => 'N/A',
-    ]);
-    $recommendedSolarCapacity = session('recommendedSolarCapacity', 'N/A');
+    // Define system requirements based on inverter types and wattage
+    $hybridInverter = $this->getInverterSize('hybrid', $totalKW);
+    $onGridInverter = $this->getInverterSize('on-grid', $totalKW);
 
-    return view('frontend.userProfile', compact('user', 'totalWattage', 'requiredSystemSize', 'recommendedSolarCapacity'));
+    return [
+        'systemType' => $totalKW > 12 ? 'On-Grid' : 'Hybrid or Off-Grid',
+        'systemRequired' => number_format($totalKW, 2) . ' kW',
+        'recommendedInverter' => $totalKW > 12 ? 'On-Grid Inverter' : 'Hybrid or Off-Grid Inverter',
+        'hybridInverterSize' => $hybridInverter['size'],
+        'onGridInverterSize' => $onGridInverter['size'],
+        'hybridPanels' => $hybridInverter['numberOfPanels'] . ' panels (585W each)',
+        'onGridPanels' => $onGridInverter['numberOfPanels'] . ' panels (585W each)',
+        'hybridAnnualGeneration' => number_format($hybridInverter['annualGeneration'], 2) . ' kWh',
+        'onGridAnnualGeneration' => number_format($onGridInverter['annualGeneration'], 2) . ' kWh',
+    ];
 }
+
+private function getRecommendedSolarCapacity($totalWattage)
+{
+    if ($totalWattage >= 1000 && $totalWattage < 2000) {
+        return '1 - 2 kW: Suitable for a small household, supporting essentials like lights, fans, and a few small appliances.';
+    } elseif ($totalWattage >= 2000 && $totalWattage < 3000) {
+        return '3 kW: Good for a small household with moderate usage, supporting essential appliances and some electronics.';
+    } elseif ($totalWattage >= 3000 && $totalWattage < 5000) {
+        return '5 kW: Ideal for an average household, powering essentials and moderate additional appliances like a TV, small fridge, etc.';
+    } elseif ($totalWattage >= 5000 && $totalWattage < 7000) {
+        return '7 kW: Suitable for a larger home with multiple heavy appliances, including refrigerators, TVs, fans, and lights.';
+    } elseif ($totalWattage >= 7000 && $totalWattage < 10000) {
+        return '10 kW: Recommended for a large house with several major appliances, including air conditioners, large refrigerators, and kitchen appliances.';
+    } elseif ($totalWattage >= 10000) {
+        return '10 kW+: Custom solution needed based on specific requirements. High-consumption homes or small commercial.';
+    }
+
+    return 'No recommendation available.';
+}
+
+private function getInverterSize($type, $totalKW)
+{
+    $inverterSizeKw = 0;
+
+    if ($type === 'hybrid') {
+        if ($totalKW <= 1.2) {
+            $inverterSizeKw = 1.2;
+        } elseif ($totalKW <= 2.5) {
+            $inverterSizeKw = 2.5;
+        } elseif ($totalKW <= 3.2) {
+            $inverterSizeKw = 3.2;
+        } elseif ($totalKW <= 3.6) {
+            $inverterSizeKw = 3.6;
+        } elseif ($totalKW <= 5.6) {
+            $inverterSizeKw = 5.6;
+        } elseif ($totalKW <= 6.6) {
+            $inverterSizeKw = 6.6;
+        } elseif ($totalKW <= 8) {
+            $inverterSizeKw = 8;
+        } elseif ($totalKW <= 12) {
+            $inverterSizeKw = 12;
+        } else {
+            return null;
+        }
+    } elseif ($type === 'on-grid') {
+        if ($totalKW <= 5) {
+            $inverterSizeKw = 5;
+        } elseif ($totalKW <= 10) {
+            $inverterSizeKw = 10;
+        } elseif ($totalKW <= 15) {
+            $inverterSizeKw = 15;
+        } elseif ($totalKW <= 20) {
+            $inverterSizeKw = 20;
+        } elseif ($totalKW <= 25) {
+            $inverterSizeKw = 25;
+        } elseif ($totalKW <= 30) {
+            $inverterSizeKw = 30;
+        } elseif ($totalKW <= 35) {
+            $inverterSizeKw = 35;
+        } elseif ($totalKW <= 40) {
+            $inverterSizeKw = 40;
+        } elseif ($totalKW <= 45) {
+            $inverterSizeKw = 45;
+        } elseif ($totalKW <= 50) {
+            $inverterSizeKw = 50;
+        }
+    }
+
+    $numberOfPanels = ceil(($inverterSizeKw * 1000) / 585);
+    $annualGeneration = $inverterSizeKw * 1440;
+
+    return [
+        'size' => "{$inverterSizeKw} kW",
+        'numberOfPanels' => $numberOfPanels,
+        'annualGeneration' => $annualGeneration,
+    ];
+}
+
+
 
 
     // Update the user profile

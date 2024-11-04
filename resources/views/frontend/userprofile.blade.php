@@ -1,4 +1,4 @@
-{{--
+
 
   @include('css.userprofile_css')
 
@@ -51,11 +51,11 @@
     </div>
 </div>
 
-@include('js.userprofile_js') --}}
+@include('js.userprofile_js')
 
 
 
-  @include('css.userprofile_css')
+  {{-- @include('css.userprofile_css')
 
 <div class="profile-container">
     <h2>User Profile</h2>
@@ -74,49 +74,6 @@
         <p><strong>Email:</strong> {{ $user->email }}</p>
         <button id="edit-profile" class="btn btn-primary">Edit Profile</button>
     </div>
-
-    {{-- <!-- System Requirements Section -->
-    <div class="requirements-container">
-        <h1 class="requirements-header">Solar System Requirements</h1>
-
-        <!-- Total wattage info box -->
-        <div class="info-box">
-            <p>Total Wattage of Appliances: <strong>{{ $totalWattage }} W</strong></p>
-        </div>
-
-        <!-- System requirement info box -->
-        <div class="info-box">
-            <p>System Required: <strong>{{ $requiredSystemSize['systemRequired'] }}</strong></p>
-        </div>
-
-        <!-- Solar capacity recommendation info box -->
-        <div class="info-box">
-            <p>Solar Capacity Recommendation: <strong>{{ $recommendedSolarCapacity }}</strong></p>
-        </div>
-
-        <!-- System Types -->
-        <div class="system-types">
-            <!-- Hybrid System Card -->
-            <div class="system-card">
-                <h2>Hybrid System</h2>
-                @if(isset($requiredSystemSize['hybridInverterSize']) && $requiredSystemSize['hybridInverterSize'] !== 'Not applicable')
-                    <p><strong>Inverter Size:</strong> {{ $requiredSystemSize['hybridInverterSize'] }}</p>
-                    <p><strong>Number of Panels:</strong> {{ $requiredSystemSize['hybridPanels'] ?? 'Not calculated' }}</p>
-                    <p><strong>Estimated Annual Generation:</strong> {{ $requiredSystemSize['hybridAnnualGeneration'] ?? 'Not calculated' }}</p>
-                @else
-                    <p>This hybrid system is not suitable based on the current requirements.</p>
-                @endif
-            </div>
-
-            <!-- On-Grid System Card -->
-            <div class="system-card">
-                <h2>On-Grid System</h2>
-                <p><strong>Inverter Size:</strong> {{ $requiredSystemSize['onGridInverterSize'] }}</p>
-                <p><strong>Number of Panels:</strong> {{ $requiredSystemSize['onGridPanels'] }} (585W each)</p>
-                <p><strong>Estimated Annual Generation:</strong> {{ $requiredSystemSize['onGridAnnualGeneration'] }} kWh</p>
-            </div>
-        </div>
-    </div> --}}
     <!-- System Requirements Section -->
 <div class="requirements-container">
     <h1 class="requirements-header">Solar System Requirements</h1>
@@ -159,7 +116,7 @@
         </div>
     </div>
 </div>
-
 </div>
 
-@include('js.userprofile_js')
+
+@include('js.userprofile_js') --}}
