@@ -27,6 +27,7 @@ use App\Http\Controllers\admin\BookingController;
 use App\Http\Controllers\admin\ProjectController;
 use App\Http\Controllers\ApplianceController;
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\BlogPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +52,7 @@ Route::get('/batteries', [batteriesController::class, 'index'])->name('batteries
 Route::get('/heaters', [heatersController::class, 'index'])->name('heaters');
 Route::get('/agriculture', [agriController::class, 'index'])->name('agriculture');
 Route::get('/commercial', [commercialController::class, 'index'])->name('commercial');
-Route::get('/blog', [blogController::class, 'index'])->name('blog');
+Route::get('/blog', [BlogPostController::class, 'frontendBlogPosts'])->name('blog');
 // Route::get('/projects', [projectsController::class, 'index'])->name('projects');
 Route::get('/financing', [financeController::class, 'index'])->name('financing');
 Route::get('/contact-us', [contactController::class, 'index'])->name('contact-us');
@@ -131,6 +132,13 @@ Route::delete('projects/delete/{id}', [ProjectController::class, 'destroy'])->na
 Route::get('/appliances', [ApplianceController::class, 'show'])->name('admin.appliances');
 Route::get('/appliances/data', [ApplianceController::class, 'getAppliancesData'])->name('appliances.data');
 
+Route::get('posts', [BlogPostController::class, 'index'])->name('posts.index');
+Route::get('posts/view/{id}', [BlogPostController::class, 'view'])->name('posts.view');
+Route::get('posts/create', [BlogPostController::class, 'create'])->name('posts.create');
+Route::post('posts/store', [BlogPostController::class, 'store'])->name('posts.store');
+Route::get('posts/edit/{id}', [BlogPostController::class, 'edit'])->name('posts.edit');
+Route::put('posts/update/{id}', [BlogPostController::class, 'update'])->name('posts.update');
+Route::delete('posts/delete/{id}', [BlogPostController::class, 'destroy'])->name('posts.destroy');
 });
 
 // USER/PUBLIC ROUTES (for everyone to access)

@@ -20,32 +20,7 @@ class ApplianceController extends Controller
     /**
      * Store the appliance data along with the total wattage.
      */
-    // public function store(Request $request)
-    // {
-    //     // Calculate total wattage from the inputs
-    //     $totalWattage = 0;
 
-    //     // Sum up wattage from predefined appliances
-    //     foreach ($request->input('appliance', []) as $appliance) {
-    //         $wattage = $request->input(strtolower($appliance) . '_watt', 0);
-    //         $totalWattage += (int) $wattage;
-    //     }
-
-    //     // Sum up wattage from custom appliances
-    //     if ($request->has('custom_wattage')) {
-    //         foreach ($request->input('custom_wattage', []) as $customWatt) {
-    //             $totalWattage += (int) $customWatt;
-    //         }
-    //     }
-
-    //     // Store the total wattage along with the user ID in the appliances table
-    //     Appliance::create([
-    //         'user_id' => Auth::id(),
-    //         'total_wattage' => $totalWattage,
-    //     ]);
-
-    //     return redirect()->back()->with('success', 'Appliance data saved successfully!');
-    // }
 
     public function store(Request $request)
 {
