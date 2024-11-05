@@ -19,7 +19,6 @@ use App\Http\Controllers\emiController;
 use App\Http\Controllers\investController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\AuthController;
-// use App\Http\Controllers\InstallController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\ListingController;
@@ -27,6 +26,7 @@ use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\BookingController;
 use App\Http\Controllers\admin\ProjectController;
 use App\Http\Controllers\ApplianceController;
+use App\Http\Controllers\admin\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,10 +92,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
+    Route::get('/dashboard',[AdminController::class,'index'])->name('admin.dashboard');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/show/{id}', [UserController::class, 'show'])->name('users.show');
+    Route::delete('/users/delete/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
-    // Route::resource('brands', BrandController::class);
 
     Route::any('/brands', [BrandController::class, 'index'])->name('brands.index');
 Route::post('/brands/store', [BrandController::class, 'store'])->name('brands.store');
@@ -145,10 +146,3 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/profile', [AuthController::class, 'showProfile'])->name('user.profile');
     Route::post('/user/profile', [AuthController::class, 'updateProfile'])->name('user.profile.update');
 });
-
-
-// Show appliance form
-// Route::get('/appliances', [ApplianceController::class, 'index'])->name('appliances.index');
-
-// Handle appliance submission (for authenticated users)
-// Route::post('/appliances', [ApplianceController::class, 'store'])->middleware('auth')->name('appliances.store');

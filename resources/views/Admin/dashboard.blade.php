@@ -1,113 +1,49 @@
-@extends('Admin.master')
-@section('css')
 
+@extends('Admin.master')
+
+@section('css')
+    <!-- Add any CSS you need for styling -->
 @endsection
 
 @section('content')
-
-
     <h3 class="i-name">Dashboard</h3>
+
     <div class="values">
         <div class="val-box">
             <i class="fas fa-users"></i>
             <div>
-                <h3>8,267</h3>
-                <span>New Users</span>
+                <h3>{{ $userCount }}</h3>
+                <span>Total Users</span>
             </div>
         </div>
+
         <div class="val-box">
-            <i class="fas fa-shopping-cart"></i>
+            <i class="fas fa-tasks"></i>
             <div>
-                <h3>200,521</h3>
-                <span>Total Orders</span>
+                <h3>{{ $completedProjectsCount }}</h3>
+                <span>Projects Completed</span>
             </div>
         </div>
+
         <div class="val-box">
-            <i class="fa-light fa-acorn"></i>
+            <i class="fas fa-calendar-check"></i>
             <div>
-                <h3>215,542</h3>
-                <span>Products Sell</span>
+                <h3>{{ $totalBookingsCount }}</h3>
+                <span>Total Bookings</span>
             </div>
         </div>
+
         <div class="val-box">
-            <i class="fas fa-dollar-sign"></i>
+            <i class="fas fa-tools"></i>
             <div>
-                <h3>$677.89</h3>
-                <span>This Month</span>
+                <h3>{{ $totalCalculationsCount }}</h3>
+                <span>Total Calculations</span>
             </div>
         </div>
     </div>
-
-    <h3 class="i-name">User Table</h3>
-    <div class="board">
-        <div class="table-responsive">
-            <table class="table table-stripped table-bordered" id="user_table">
-
-                <thead>
-
-                    <tr>
-                        <th>username</th>
-
-                        <th>Email</th>
-                        <th>Role</th>
-
-                        <th>Action</th>
-
-                    </tr>
-
-                </thead>
-
-
-            </table>
-        </div>
-    </div>
-    </section>
+@endsection
 
 @section('script')
-<script type="text/javascript">
-    $(function() {
-        var table = $('#user_table').DataTable({
-
-            processing: true,
-
-            serverSide: true,
-
-            ajax: "{{ route('users.index') }}",
-
-            columns: [
-
-                //   {data: 'id', name: 'id'},
-
-                {
-                    data: 'username',
-                    name: 'username'
-                },
-
-                {
-                    data: 'email',
-                    name: 'email'
-                },
-                {
-                    data: 'role',
-                    name: 'role'
-                },
-
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: false,
-                    searchable: false
-                },
-
-            ]
-
-        });
-
-
-
-    });
-</script>
-
+    <!-- Add any JavaScript needed -->
 @endsection
 
-@endsection

@@ -8,6 +8,7 @@
 
 
         <a href="{{ route('admin.dashboard') }}"><li><i class="fa-solid fa-table-columns"></i>Dashboard</li></a>
+        <a href="{{ route('users.index') }}"><li><i class="fa-solid fa-table-columns"></i>Users</li></a>
         <a href="{{ route('brands.index') }}"><li><i class="fab fa-uikit"></i>Brands</li></a>
         <a href="{{ route('listings.index') }}"><li><i class="fas fa-th-large"></i>Listings</li></a>
         <a href="{{ route('projects.index') }}"><li><i class="fas fa-edit"></i>Projects</li></a>

@@ -124,20 +124,6 @@ return view('admin.appliances.index', compact('appliances'));
                 ->editColumn('created_at', function ($row) {
                     return $row->created_at->format('d M Y, H:i A'); // Format the created_at date
                 })
-                // ->addColumn('action', function ($row) {
-                //     // Generate buttons for actions
-                //     $viewUrl = route('appliances.show', $row->id);
-                //     $viewBtn = '<button data-href="' . $viewUrl . '" class="btn btn-primary btn-modal" data-container_modal=".view_modal">View</button>';
-
-                //     $editUrl = route('appliances.edit', $row->id);
-                //     $editBtn = '<button data-href="' . $editUrl . '" class="modal_edit btn btn-warning btn-sm" data-container_edit=".edit_modal">Edit</button>';
-
-                //     $deleteUrl = route('appliances.destroy', $row->id);
-                //     $deleteBtn = '<button data-url="' . $deleteUrl . '" class="delete-appliance btn btn-danger btn-sm">Delete</button>';
-
-                //     return $viewBtn . ' ' . $editBtn . ' ' . $deleteBtn; // Return buttons
-                // })
-                // ->rawColumns(['action']) // Allow raw HTML in action column
                 ->make(true);
         }
 
