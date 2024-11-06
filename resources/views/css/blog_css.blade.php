@@ -22,7 +22,7 @@ header{
     transform: translate(-50%, -50%);
 }
 /**blog**/
-.blog-heading{
+/* .blog-heading{
     margin-left: 620px;
     justify-content: center;
     font-size: 20px;
@@ -38,7 +38,7 @@ h3{
   margin-left: 2px;
 }
 
-/** Image Section Styling**/
+/** Image Section Styling**
 .row{
     min-height: 70vh;
     margin: 5rem 0;
@@ -146,5 +146,74 @@ h3{
 }
 .videos{
    margin-left: 230px;
-}
+}*/
+        h1{
+            color:navy;
+            font-weight: 600;
+            font-size: 50px;
+        }
+        /* Main Blog Layout Styling */
+        .blog-post {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            transition: transform 0.2s ease-in-out;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px); /* Slight lift on hover */
+        }
+
+        .blog-image {
+            flex: 1;
+            max-width: 300px;
+            height: auto;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .blog-content {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .blog-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .blog-description {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .blog-post {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .blog-image {
+                max-width: 100%;
+                margin: 0 auto 15px;
+            }
+        }
 </style>
