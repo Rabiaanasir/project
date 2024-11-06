@@ -94,49 +94,6 @@ public function login(Request $request)
         $user = Auth::user();  // Get the authenticated user
         return view('frontend.userProfile', compact('user'));
     }
-//     public function showProfile()
-// {
-//     $user = Auth::user(); // Get the authenticated user
-
-//     // Assume $totalWattage, $requiredSystemSize, and $recommendedSolarCapacity are already calculated
-//     // Replace this section with actual logic to calculate or retrieve these values for the user
-//     $totalWattage = 3000; // Example value
-//     $requiredSystemSize = [
-//         'systemRequired' => 'Hybrid or On-Grid System',
-//         'hybridInverterSize' => '5 kW',
-//         'hybridPanels' => 10,
-//         'hybridAnnualGeneration' => 5000,
-//         'onGridInverterSize' => '5 kW',
-//         'onGridPanels' => 12,
-//         'onGridAnnualGeneration' => 5200,
-//     ];
-//     $recommendedSolarCapacity = '5.8 kW';
-
-//     return view('frontend.userProfile', compact('user', 'totalWattage', 'requiredSystemSize', 'recommendedSolarCapacity'));
-// }
-// public function showProfile()
-// {
-//     // Get the authenticated user
-//     $user = Auth::user();
-
-//     // Retrieve the latest appliance entry for this user
-//     $applianceData = Appliance::where('user_id', $user->id)->latest()->first();
-
-//     // If appliance data exists, use it; otherwise, set default values
-//     $totalWattage = $applianceData ? $applianceData->total_wattage : 0;
-
-//     // Calculate the system requirements based on the total wattage
-//     $requiredSystemSize = $this->calculateSystemSize($totalWattage);
-//     $recommendedSolarCapacity = $this->getRecommendedSolarCapacity($totalWattage);
-
-//     // Pass data to the profile view
-//     return view('frontend.userProfile', [
-//         'user' => $user,
-//         'totalWattage' => $totalWattage,
-//         'requiredSystemSize' => $requiredSystemSize,
-//         'recommendedSolarCapacity' => $recommendedSolarCapacity,
-//     ]);
-// }
 
 private function calculateSystemSize($totalWattage)
 {
