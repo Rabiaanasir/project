@@ -28,6 +28,7 @@ use App\Http\Controllers\admin\ProjectController;
 use App\Http\Controllers\ApplianceController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\BlogPostController;
+use App\Http\Controllers\admin\PackageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,7 +58,7 @@ Route::get('/blog', [BlogPostController::class, 'frontendBlogPosts'])->name('blo
 Route::get('/financing', [financeController::class, 'index'])->name('financing');
 Route::get('/contact-us', [contactController::class, 'index'])->name('contact-us');
 Route::get('/calculator', [calculatorController::class, 'index'])->name('calculator');
-Route::get('/packages', [packagesController::class, 'index'])->name('packages');
+Route::get('/packages', [PackageController::class, 'frontendPackages'])->name('packages');
 Route::get('/net-metering', [nmController::class, 'index'])->name('net-metering');
 Route::get('/emi', [emiController::class, 'index'])->name('emi');
 Route::get('/invest', [investController::class, 'index'])->name('invest');
@@ -139,6 +140,15 @@ Route::post('posts/store', [BlogPostController::class, 'store'])->name('posts.st
 Route::get('posts/edit/{id}', [BlogPostController::class, 'edit'])->name('posts.edit');
 Route::put('posts/update/{id}', [BlogPostController::class, 'update'])->name('posts.update');
 Route::delete('posts/delete/{id}', [BlogPostController::class, 'destroy'])->name('posts.destroy');
+
+Route::get('packages', [PackageController::class, 'index'])->name('packages.index');
+Route::get('packages/view/{id}', [PackageController::class, 'view'])->name('packages.view');
+Route::get('packages/create', [PackageController::class, 'create'])->name('packages.create');
+Route::post('packages/store', [PackageController::class, 'store'])->name('packages.store');
+Route::get('packages/edit/{id}', [PackageController::class, 'edit'])->name('packages.edit');
+Route::put('packages/update/{id}', [PackageController::class, 'update'])->name('packages.update');
+Route::delete('packages/delete/{id}', [PackageController::class, 'destroy'])->name('packages.destroy');
+
 });
 
 // USER/PUBLIC ROUTES (for everyone to access)

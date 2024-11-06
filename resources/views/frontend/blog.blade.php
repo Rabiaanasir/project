@@ -118,107 +118,115 @@ Solar power is a clean and sustainable energy source since it doesn’t harm eco
 @endsection --}}
 
 
+
 @extends('frontend.app')
-@section('css')
-@include('css.common_css')
-  @include('css.blog_css')
 
 @section('css')
-<style>
-    a{
-        text-decoration: none;
-    }
-    .card {
-        position: relative; /* Positioning context for absolute elements */
-        overflow: hidden; /* Ensure no overflow from the card */
-        border: none; /* Remove default border */
-    }
+    @include('css.common_css')
+    @include('css.blog_css')
+    <style>
+        h1{
+            color:navy;
+            font-weight: 600;
+            font-size: 50px;
+        }
+        /* Main Blog Layout Styling */
+        .blog-post {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            transition: transform 0.2s ease-in-out;
+            font-family: 'Montserrat', sans-serif;
+        }
 
-    .card-title {
-        font-size: 1.5rem; /* Larger title */
-        font-weight: bold;
-        text-align: center; /* Center align title */
-        margin-bottom: 10px; /* Spacing below the title */
-    }
+        .blog-post:hover {
+            transform: translateY(-5px); /* Slight lift on hover */
+        }
 
-    .card-text {
-        font-size: 0.9rem; /* Font size for description */
-        color: #555;
-        text-align: center; /* Center align description */
-    }
+        .blog-image {
+            flex: 1;
+            max-width: 300px;
+            height: auto;
+            overflow: hidden;
+            border-radius: 8px;
+        }
 
-    .image-container {
-        position: absolute; /* Position image over other content */
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 200px; /* Fixed height for consistency */
-        overflow: hidden; /* Prevent overflow */
-    }
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
 
-    .image-container img {
-        width: 100%; /* Full width of container */
-        height: 100%; /* Full height of container */
-        object-fit: cover; /* Maintain aspect ratio */
-        object-position: center; /* Center the image */
-    }
+        .blog-content {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-    .content {
-        padding: 220px 0 0; /* Top padding to avoid overlap with image */
-        text-align: center; /* Center content when no image exists */
-    }
+        .blog-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
 
-    .placeholder {
-        height: 200px; /* Same height as image */
-        background-color: #f0f0f0; /* Light grey background for placeholder */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0; /* No margin */
-    }
+        .blog-description {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+        }
 
-    .placeholder img {
-        width: 50%; /* Width for placeholder image */
-        opacity: 0.5; /* Slightly transparent */
-    }
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .blog-post {
+                flex-direction: column;
+                text-align: center;
+            }
 
-    /* .container {
-        padding-top: 50px; /* Add spacing to the top *
-    } */
-</style>
-
+            .blog-image {
+                max-width: 100%;
+                margin: 0 auto 15px;
+            }
+        }
+    </style>
 @endsection
+
 @section('content')
 <header>
     <div class="header-content">
-        <h1 >From the Blog</h1>
+        <h1>From the Blog</h1>
         <h2>Get Sun Source Solutions & never lose power day and night</h2>
-       </div>
-
-
+    </div>
 </header>
+
 <div class="container mt-5">
     <h1 class="text-center mb-4">Blog Posts</h1>
-    <div class="row">
+    <div>
+        <section class="row">
+            <div class="imgewrapper">
         @foreach($blogPosts as $post)
-            <div class="col-md-4 mb-4">
-                <div class="card shadow-sm"> <!-- Add shadow for depth -->
-                    <div class="image-container">
-                        @if($post->image)
-                            <img src="{{ asset('storage/images/' . $post->image) }}" alt="{{ $post->title }}">
-                        @else
-
-                        @endif
-                    </div>
-                    <div class="content">
-                        <h5 class="card-title">{{ $post->title }}</h5>
-                        <p class="card-text">
-                            {{ ($post->description) }} <!-- Limit description to 100 characters -->
-                        </p>
-                    </div>
+            <div class="blog-post">
+                <div class="blog-image">
+                    @if($post->image)
+                        <img src="{{ asset('storage/images/' . $post->image) }}" alt="{{ $post->title }}">
+                    @else
+                        <img src="{{ asset('images/placeholder.png') }}" alt="Placeholder">
+                    @endif
+                </div>
+                <div class="blog-content">
+                    <h2 class="blog-title">{{ $post->title }}</h2>
+                    <p class="blog-description">{{($post->description) }}</p> <!-- Limits text to 150 characters -->
                 </div>
             </div>
         @endforeach
     </div>
 </div>
+</div>
+</section>
 @endsection
