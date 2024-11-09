@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Project;
 use App\Models\Appliance;
 use App\Models\Booking;
+use App\Models\Feedback;
 
 
 class homeController extends Controller
@@ -18,18 +19,33 @@ class homeController extends Controller
     // {
     //     return view('frontend.home');
     // }
-    public function index()
-    {
-        // Example counts - adjust with actual model queries
-        $data = [
-            'userCount' => User::count(),
-            'completedProjectsCount' => Project::count(),
-            'totalBookingsCount' => Booking::count(),
-            'totalCalculationsCount' => Appliance::count(),
-        ];
+    // public function index()
+    // {
+    //     // Example counts - adjust with actual model queries
+    //     $data = [
+    //         'userCount' => User::count(),
+    //         'completedProjectsCount' => Project::count(),
+    //         'totalBookingsCount' => Booking::count(),
+    //         'totalCalculationsCount' => Appliance::count(),
+    //     ];
 
-        return view('frontend.home', $data);
-    }
+    //     return view('frontend.home', $data);
+    // }
+    public function index()
+{
+    // Example counts - adjust with actual model queries
+    $data = [
+        'userCount' => User::count(),
+        'completedProjectsCount' => Project::count(),
+        'totalBookingsCount' => Booking::count(),
+        'totalCalculationsCount' => Appliance::count(),
+    ];
+
+    // Fetch feedback data - limit to latest 5 for example, can adjust as needed
+    $data['feedbacks'] = Feedback::with('user')->latest()->take(5)->get();
+
+    return view('frontend.home', $data);
+}
 
     /**
      * Show the form for creating a new resource.

@@ -125,7 +125,7 @@
 @endsection
 
 @section('content')
-<div class="container">
+{{-- <div class="container">
   <h1 class="text-center mt-5" style="color: #007bff;">Select Appliances for Solar Panel System</h1>
 
   @if(session('success'))
@@ -166,7 +166,78 @@
 
     <button type="submit" class="btn btn-success mt-3 w-100 mb-5">Calculate System Requirements</button>
   </form>
+</div> --}}
+<div class="container my-5">
+    <div class="alert alert-warning text-center mt-3" role="alert">
+        Please <a href="{{ route('login') }}" class="alert-link">log in</a> to submit your appliance selection.
+    </div>
+    <h1 class="text-center mb-4">Select Appliances for Solar Panel System</h1>
+
+    <!-- Check if the user is logged in -->
+    <form action="{{ route('appliances.store') }}" method="POST">
+        @csrf
+
+        <!-- Appliance List -->
+        <div class="appliance-list mb-4">
+            <h3>Select Appliances</h3>
+            <div class="row gy-3">
+                @foreach (['Fan', 'Television', 'Refrigerator', 'Air Conditioner', 'Washing Machine'] as $appliance)
+                    <div class="col-md-6 d-flex align-items-center">
+                        <input class="form-check-input me-2 appliance-checkbox"
+                               type="checkbox"
+                               value="{{ $appliance }}"
+                               name="appliance[]"
+                               {{ auth()->check() ? '' : 'disabled' }}>
+                        <label class="me-3">{{ $appliance }}</label>
+                        <input type="number" class="form-control appliance-watt-input"
+                               name="{{ strtolower($appliance) }}_watt"
+                               placeholder="Enter Wattage (W)"
+                               min="1"
+                               {{ auth()->check() ? '' : 'disabled' }}>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
+        <!-- Custom Appliance Section -->
+        <div id="custom-appliance-container">
+            <h3>Add Custom Appliance</h3>
+            <div class="custom-appliance-row d-flex mb-3">
+                <input type="text" class="form-control me-2"
+                       name="custom_appliance[]"
+                       placeholder="Custom Appliance Name"
+                       {{ auth()->check() ? '' : 'disabled' }}>
+                <input type="number" class="form-control me-2 custom-watt-input"
+                       name="custom_wattage[]"
+                       placeholder="Enter Wattage (W)"
+                       min="1"
+                       {{ auth()->check() ? '' : 'disabled' }}>
+                <button type="button" class="btn btn-danger btn-remove"
+                        onclick="removeCustomRow(this)"
+                        {{ auth()->check() ? '' : 'disabled' }}>Remove</button>
+            </div>
+        </div>
+
+        <button type="button" id="add-custom-appliance-btn"
+                class="btn btn-primary mb-3"
+                {{ auth()->check() ? '' : 'disabled' }}>Add Another Custom Appliance</button>
+
+        <div id="total-wattage" class="alert alert-info">Total Wattage: 0 W</div>
+
+        <!-- Submit Button -->
+        @if (auth()->check())
+            <button type="submit" class="btn btn-success mt-3 w-100 mb-5">Calculate System Requirements</button>
+        @else
+            <button type="button" class="btn btn-secondary mt-3 w-100 mb-5" disabled>
+                Log in to Calculate System Requirements
+            </button>
+            {{-- <div class="alert alert-warning text-center mt-3" role="alert">
+                Please <a href="{{ route('login') }}" class="alert-link">log in</a> to submit your appliance selection.
+            </div> --}}
+        @endif
+    </form>
 </div>
+
 @endsection
 
 @section('js')

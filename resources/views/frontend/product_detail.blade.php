@@ -61,7 +61,7 @@
         <div class="col-md-6">
             <div class="product-details">
                 <h1 class="product-title">{{ $listing->title }}</h1>
-                <p class="product-price">$ {{ $listing->price }}</p>
+                <p class="product-price">Rs {{ $listing->price }}</p>
                 <p class="text-muted">Brand: {{ $listing->brand->name }}</p>
                 <p class="product-description">{{ $listing->description }}</p>
                 <p><strong>Power:</strong> {{ $listing->watts }} watts</p>

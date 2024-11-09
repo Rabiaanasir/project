@@ -29,6 +29,7 @@ use App\Http\Controllers\ApplianceController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\BlogPostController;
 use App\Http\Controllers\admin\PackageController;
+use App\Http\Controllers\admin\FeedbackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,10 +59,11 @@ Route::get('/blog', [BlogPostController::class, 'frontendBlogPosts'])->name('blo
 Route::get('/financing', [financeController::class, 'index'])->name('financing');
 Route::get('/contact-us', [contactController::class, 'index'])->name('contact-us');
 Route::get('/calculator', [calculatorController::class, 'index'])->name('calculator');
-Route::get('/packages', [PackageController::class, 'frontendPackages'])->name('packages');
+Route::get('/packages', [packagesController::class, 'index'])->name('packages');
 Route::get('/net-metering', [nmController::class, 'index'])->name('net-metering');
 Route::get('/emi', [emiController::class, 'index'])->name('emi');
 Route::get('/invest', [investController::class, 'index'])->name('invest');
+Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store'); // Feedback submission
 
 
 // Show the combined login/register page
@@ -84,8 +86,8 @@ Route::middleware('auth')->group(function () {
         return view('frontend.user');
     })->name('user');
     // Route::get('/install-system', [InstallController::class, 'index'])->name('installSystem');
-    Route::get('/appliances', [ApplianceController::class, 'index'])->name('appliances.index');
 });
+Route::get('/appliances', [ApplianceController::class, 'index'])->name('appliances.index');
 Route::post('/appliances', [ApplianceController::class, 'store'])->middleware('auth')->name('appliances.store');
 Route::any('/appliances/calculateSystemRequirements', [ApplianceController::class, 'calculateSystemRequirements'])->name('appliances.calculateSystemRequirements');
 
@@ -149,6 +151,10 @@ Route::get('packages/edit/{id}', [PackageController::class, 'edit'])->name('pack
 Route::put('packages/update/{id}', [PackageController::class, 'update'])->name('packages.update');
 Route::delete('packages/delete/{id}', [PackageController::class, 'destroy'])->name('packages.destroy');
 
+Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
+Route::get('/feedback/data', [FeedbackController::class, 'getData'])->name('feedback.data');
+Route::get('/feedback/view/{id}', [FeedbackController::class, 'show'])->name('feedback.show');
+Route::delete('feedback/delete/{id}', [FeedbackController::class, 'destroy'])->name('feedback.destroy');
 });
 
 // USER/PUBLIC ROUTES (for everyone to access)
