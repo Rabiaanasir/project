@@ -146,7 +146,7 @@
 </div>
 </div>
 <!-- Financing Section -->
-<div class="card-container">
+{{-- <div class="card-container">
   <div class="card">
       <img src=".{{ asset('images/fina.jpg') }}">
       <div class="card-content">
@@ -164,7 +164,7 @@
           </p>
           <a href="{{ route('emi') }}" class="card-button">Apply Here</a>
       </div>
-</div>
+</div> --}}
 <!-- Net Metering -->
 <div class="row">
               <!-- <div class="row">--->
@@ -179,7 +179,7 @@
     </div>
 </div>
 <!-- Testimonials -->
-<div class="container2">
+{{-- <div class="container2">
   <h2>What Our Customers Say...</h2>
   <div class="slide-container active">
     <div class="slide">
@@ -241,7 +241,50 @@
     <div id="next" class="fas fa-chevron-right" onclick="next()"></div>
       <div id="prev" class="fas fa-chevron-left" onclick="prev()"></div>
   </div>
+</div> --}}
+
+
+ {{-- <div class="container">
+     <h3 class="text-center my-4">User Feedback</h3>
+     <div class="feedback-grid">
+         @foreach ($feedbacks as $feedback)
+             <div class="card">
+                 <div class="card-header">
+                     {{ $feedback->name }}
+                     <!-- Check if the feedback is from a registered user -->
+                     <span class="badge">{{ $feedback->user ? 'Verified' : 'Guest' }}</span>
+                 </div>
+                 <div class="card-body">
+                     <p><strong>Email:</strong> {{ $feedback->user ? $feedback->user->email : 'N/A' }}</p>
+                     <p><strong>Message:</strong> {{ Str::limit($feedback->message, 100) }}</p>
+                     <a href="{{ route('feedback.show', $feedback->id) }}" class="view-details">View Details</a>
+                 </div>
+             </div>
+         @endforeach
+     </div>
+ </div> --}}
+ <div class="container2">
+    <h2 class="text-center">What Our Customers Say...</h2>
+    {{-- <h3  my-4">User Feedback</h3> --}}
+    <div class="feedback-grid">
+        <!-- Display only the first 3 feedback items -->
+        @foreach ($feedbacks->slice(0, 3) as $feedback)
+            <div class="card">
+                <div class="card-header">
+                    {{ $feedback->name }}
+                    <!-- Display 'Verified' if the feedback is from a registered user -->
+                    <span class="badge">{{ $feedback->user ? 'Verified' : 'Guest' }}</span>
+                </div>
+                <div class="card-body">
+                    <p><strong>Name: {{ $feedback->username }}</strong></p> <!-- Display full message -->
+                    <p><strong>Message:</strong> {{ $feedback->message }}</p> <!-- Display full message -->
+                </div>
+            </div>
+        @endforeach
+    </div>
 </div>
+
+
 
 @endsection
 @section('js')
