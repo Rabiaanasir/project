@@ -23,7 +23,7 @@ class User extends Authenticatable
         'password',
         'role',
     ];
-    
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -50,4 +50,12 @@ class User extends Authenticatable
     {
         return $this->role === 'admin';
     }
+
+    // In App\Models\User.php
+
+public function bookings()
+{
+    return $this->hasMany(Booking::class, 'user_id'); // 'user_id' is the foreign key in the 'bookings' table
+}
+
 }
