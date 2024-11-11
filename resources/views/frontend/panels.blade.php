@@ -8,7 +8,7 @@
 <header>
     <div class="header-content">
         <h2 class="lg-heading text-light ">SOLAR PANELS</h2>
-    </div> 
+    </div>
 </header>
 <section class="section1">
     <div class="text-box">
@@ -22,7 +22,7 @@
     <p>Not sure what’s best for you? Get a free consultation from our experts.</p>
     <p>Contact: 1234-567890<br>
         Email: sales@sunsourcesolutions.com.pk</p>
-    <button>REQUEST A CALL</button>    
+    <button><a href= "{{ route('contact-us') }}">REQUEST A CALL</a></button>
     </div>
 </section>
 <section class="row">
@@ -34,7 +34,7 @@
             <p>Bifacial solar panels have the ability to generate electricity from both sides of the module, making them the most popular solar panels in Pakistan at the moment. They are highly efficient and produce more electricity per watt compared to other technologies in the market. While the price of bifacial solar panels in Pakistan is a bit higher than mono panels, their high production rate makes them the top choice for many..</p>
         </div>
     </div>
-    
+
     <div class="imgwrapper">
         <img class="img2" src="{{ asset('images/solar-panels2.png') }}">
         <div class="text2">
@@ -52,7 +52,7 @@
             <p>The company has revolutionized the panels industry with the introduction of their bifacial solar panels, highly efficient and capable of generating more electricity by producing power from both ends. Sun Source Solutions always prioritizes the latest and advanced PV modules in its installations, with Canadian solar panels being our top choice. Even their monocrystalline panels are very efficient and have a solid track record for durability.</p>
         </div>
     </div>
-    
+
     <div class="imgwrapper">
         <img class="img2" src="{{ asset('images/longi.png') }}">
         <div class="text2">
@@ -68,7 +68,7 @@
             <p>Jinko Solar panels stand out as leaders in manufacturing top-quality photovoltaic solar panels worldwide. Their success in the renewable sector is driven by excellent customer service and reliable modules with a high efficiency rate. Notably, Jinko panels perform exceptionally well even in cold weather conditions. Similar to Canadian solar panels, Jinko also manufactures bifacial panels and mono-crystalline cells, showcasing their commitment to incorporating the latest technology while maintaining competitive market prices. This is why Jinko Solar has secured a spot on Sun Source Solutions list for both domestic and commercial solar system installations.</p>
         </div>
     </div>
-    
+
     <div class="imgwrapper">
         <img class="img2" src="{{ asset('images/JA.png') }}">
         <div class="text2">

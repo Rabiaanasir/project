@@ -27,7 +27,7 @@
         <p>Not sure what’s best for you? Get a free consultation from our experts.</p>
         <p>Contact: 1234-567890<br>
             Email: sales@sunsourcesolutions.com.pk</p>
-        <button>REQUEST A CALL</button>    
+        <button><a href= "{{ route('contact-us') }}">REQUEST A CALL</a></button>
         </div>
     </section>
     <section class="row">
@@ -47,7 +47,7 @@
             </div>
         </div>
     </section>
-    
+
 <!-- FAQ Section -->
 <section class="section-faq">
     <h1>Frequently Asked Questions</h1>

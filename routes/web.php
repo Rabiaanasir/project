@@ -23,7 +23,7 @@ use App\Http\Controllers\profileController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\ListingController;
 use App\Http\Controllers\admin\BrandController;
-use App\Http\Controllers\admin\BookingController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\admin\ProjectController;
 use App\Http\Controllers\ApplianceController;
 use App\Http\Controllers\admin\AdminController;
@@ -59,7 +59,7 @@ Route::get('/blog', [BlogPostController::class, 'frontendBlogPosts'])->name('blo
 Route::get('/financing', [financeController::class, 'index'])->name('financing');
 Route::get('/contact-us', [contactController::class, 'index'])->name('contact-us');
 Route::get('/calculator', [calculatorController::class, 'index'])->name('calculator');
-Route::get('/packages', [packagesController::class, 'index'])->name('packages');
+// Route::get('/packages', [packagesController::class, 'index'])->name('packages');
 Route::get('/net-metering', [nmController::class, 'index'])->name('net-metering');
 Route::get('/emi', [emiController::class, 'index'])->name('emi');
 Route::get('/invest', [investController::class, 'index'])->name('invest');
@@ -118,12 +118,20 @@ Route::put('/listings/update/{id}', [ListingController::class, 'update'])->name(
 Route::delete('listings/delete/{id}', [ListingController::class, 'destroy'])->name('listings.destroy');
 
 
-Route::get('bookings', [BookingController::class, 'index'])->name('bookings.index');
-Route::get('bookings/create', [BookingController::class, 'create'])->name('bookings.create');
-Route::post('/bookings/store', [BookingController::class, 'store'])->name('bookings.store');
-Route::get('bookings/edit/{id}', [BookingController::class, 'edit'])->name('bookings.edit');
-Route::put('/bookings/update/{id}', [BookingController::class, 'update'])->name('bookings.update');
-Route::delete('bookings/delete/{id}', [BookingController::class, 'destroy'])->name('bookings.destroy');
+// Route::get('bookings', [BookingController::class, 'index'])->name('bookings.index');
+// Route::get('bookings/create', [BookingController::class, 'create'])->name('bookings.create');
+// Route::post('/bookings/store', [BookingController::class, 'store'])->name('bookings.store');
+// Route::get('bookings/edit/{id}', [BookingController::class, 'edit'])->name('bookings.edit');
+// Route::put('/bookings/update/{id}', [BookingController::class, 'update'])->name('bookings.update');
+// Route::delete('bookings/delete/{id}', [BookingController::class, 'destroy'])->name('bookings.destroy');
+Route::get('/bookings', [BookingController::class, 'adminIndex'])->name('admin.bookings.index');
+Route::get('/bookings/data', [BookingController::class, 'getData'])->name('admin.bookings.data');
+Route::post('/bookings/store', [BookingController::class, 'store'])->name('admin.bookings.store');
+Route::post('/bookings/{id}/update-date', [BookingController::class, 'updateBookingDate'])->name('admin.bookings.updateDate');
+
+Route::post('/bookings/{id}/update-status', [BookingController::class, 'updateStatus'])->name('admin.bookings.updateStatus');
+
+
 
 Route::get('projects', [ProjectController::class, 'index'])->name('projects.index');
 Route::get('projects/create', [ProjectController::class, 'create'])->name('projects.create');
@@ -162,8 +170,16 @@ Route::get('/listings', [ListingController::class, 'showUserListings'])->name('f
 Route::get('/listings-data', [ListingController::class, 'getUserListings'])->name('frontend.listings.data');
 Route::get('/product/{id}', [ListingController::class, 'show'])->name('product.show');
 
+
 // Frontend route to display projects to users
 Route::get('/projects', [ProjectController::class, 'frontendProjects'])->name('frontend.projects');
+Route::get('/packages', [PackageController::class, 'frontendpackages'])->name('packages');
+
+
+Route::get('/bookings/create', [BookingController::class, 'create'])->name('bookings.create');
+Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
+// Routes/web.php
+Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
 
 
 Route::middleware('auth')->group(function () {

@@ -9,15 +9,15 @@
         <div class="header-content">
             {{-- <h2 class="lg-heading">SOLAR BATTERIES</h2> --}}
             <p>Storing The Sun's Power For A Sustainable Future.</p>
-        </div> 
-    </header>   
+        </div>
+    </header>
     <section class="section1">
         <div class="text-box">
         <h2> SOLAR BATTERIES</h2>
         <p>
             During the day, solar panels do an excellent job of supplying energy. But for a system that works really well on its own, especially at night or during power outages, you need a backup. That’s where solar batteries come in – they’re like the superheroes of storage. Solar batteries store the energy produced by the panels for use at night or during power outages. And if you’ve incorporated net metering, excess electricity can be sold back to the grid, maximizing the benefits from the solar system<br></p>
 
-           <p> At Sun Source  Solutions, we go above and beyond. We use top-notch, super-efficient and reliable batteries in every installation. Because when it comes to saving your solar power, we only believe in the best.<br></p> 
+           <p> At Sun Source  Solutions, we go above and beyond. We use top-notch, super-efficient and reliable batteries in every installation. Because when it comes to saving your solar power, we only believe in the best.<br></p>
        </div>
         <div class="box">
             <hr>
@@ -25,7 +25,7 @@
         <p>Not sure what’s best for you? Get a free consultation from our experts.</p>
         <p>Contact: 1234-567890<br>
             Email: sales@sunsourcesolutions.com.pk</p>
-        <button>REQUEST A CALL</button>    
+        <button><a href="{{ route('contact-us') }}"> REQUEST A CALL</a></button>
         </div>
         <div class="text-box">
             <h2>SUN SOURCE SOLUTION’S TRUSTED SOLAR BATTERIES BRAND</h2>
@@ -46,7 +46,7 @@
                 </ul>
                 </div>
             </div>
-    
+
             <div class="imgwrapper">
                 <img class="img2" src="{{ asset('images/pylontech_battery.png') }}">
                 <div class="text2">
@@ -57,7 +57,7 @@
                 <li>Pylon Tech</li>
             </ul>
                 </div>
-            </div> 
+            </div>
         </section>
 
         <section class="features">
@@ -115,7 +115,7 @@
         </div>
     </div>
 </section>
- 
+
 @endsection
 @section('js')
 @include('js.faq_js')

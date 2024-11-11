@@ -111,4 +111,112 @@ header {
 .row5 p + p {
     margin-left: 1rem;
 }
+
+
+
+
+
+
+
+
+
+
+
+/* Responsive Styling */
+
+/* Adjust Header and Showcase for Smaller Screens */
+@media (max-width: 1200px) {
+    header {
+        height: 60vh;
+    }
+    .header-content h2 {
+        font-size: 40px;
+    }
+    .showcase {
+        padding: 8rem 0 2rem 0;
+    }
+    .row {
+        font-size: 18px;
+    }
+    .img-box, .text-box {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 992px) {
+    header {
+        height: 50vh;
+    }
+    .header-content h2 {
+        font-size: 36px;
+    }
+    .showcase {
+        padding: 6rem 0 2rem 0;
+    }
+    .row {
+        font-size: 16px;
+    }
+    .img-box, .text-box {
+        padding: 1.5rem;
+    }
+    .row5 {
+        flex-direction: column;
+    }
+    .row5 p {
+        margin-bottom: 0.5rem;
+        text-align: center;
+    }
+    #payButton img {
+        height: 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content h2 {
+        font-size: 30px;
+    }
+    .row {
+        flex-direction: column;
+    }
+    .img-box, .text-box {
+        width: 100%;
+        padding: 1rem;
+    }
+    .row1, .row2, .row3, .row4 {
+        margin-bottom: 2rem;
+    }
+    .row5 {
+        padding: 1rem;
+        height: auto;
+        text-align: center;
+    }
+    #payButton img {
+        height: 50px;
+    }
+}
+
+@media (max-width: 576px) {
+    header {
+        height: 40vh;
+    }
+    .header-content h2 {
+        font-size: 26px;
+    }
+    .showcase {
+        padding: 4rem 0 1rem 0;
+    }
+    .row {
+        font-size: 14px;
+    }
+    .img-box, .text-box {
+        padding: 0.5rem;
+    }
+    .row5 p {
+        font-size: 14px;
+    }
+    #payButton img {
+        height: 40px;
+    }
+}
+
 </style>
