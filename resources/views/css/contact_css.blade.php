@@ -16,7 +16,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
- 
+
 .container{
     max-width: 1200px;
     width: 90%;
@@ -30,52 +30,28 @@
 .text-light{
     color:#f4f4f4;
 }
-
 .btn{
     display: inline-block;
-    padding: 0.5em 1.5rem;
+    text-align: center;
+    padding: 12px;
     font-weight:500;
     text-transform: uppercase;
     margin: 0.5em 0;
 }
-.btn-primary{
-    background-color: transparent;
-    border-radius: 100px;    /*10em*/
-    color: white;
-    border: 2px solid white;
-}
-.btn-primary:hover{
-    background-color: #ddd;
-    color: #333;
-}
-.btn-secondary{
-    background-color:black;
-    border-radius:50px;
-    color: #fff;
-    position: relative;
-    left: 43%;
-    margin-top: 20px;
-    padding: 10px 25px;
-} 
-.btn-secondary:hover{
-    background-color: #fcf3f2;
-    color: #263226;
-    border: 2px solid black;
-}
 .contact-box{
-    display: flex; 
+    display: flex;
     justify-content: center;
     font-size: 2.5rem;
-    color: #333; 
+    color: #333;
     background-color: #f3f0f0;
     text-align: center;
     padding-top: 10px;
  }
 .contact-box i{
     width: 60px; /* Adjust the size of the icon as needed */
-    height: auto; 
+    height: auto;
     margin-right: 40px;
-}  
+}
 h2{
     text-align: center;
     margin-bottom: 10px;
@@ -88,7 +64,7 @@ p{
 section{
     background-color: #f3f0f0;
     padding-bottom: 5px;
-} 
+}
 form {
     display: grid;
     grid-template-columns: 1fr 1fr;

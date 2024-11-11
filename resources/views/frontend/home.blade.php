@@ -4,7 +4,7 @@
   @include('css.home_css')
 @endsection
  @section('content')
-     
+
   <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -51,7 +51,7 @@
   <!-- Floating buttons -->
   <div class="floating-buttons">
     <a href="{{ route('calculator') }}" class="floating-button">Calculator</a>
-    <a href="{{ route('contact-us') }}"class="floating-button">Contact Us</a>
+    <a href="{{ route('contact') }}"class="floating-button">Contact</a>
 </div>
 
   <!-- ---------About Section ------------>
@@ -87,17 +87,17 @@
     <div class="services-card">
       <!-- <i class="fab fa-facebook fa-2x"></i> -->
       <h2>Net Metering</h2>
-      <p>The excess electricity produced by your solar system isn’t wasted but it is fed into the grid.</p> 
+      <p>The excess electricity produced by your solar system isn’t wasted but it is fed into the grid.</p>
     </div>
     <div class="services-card">
       <!-- <i class="fab fa-instagram fa-2x"></i> -->
       <h2>Skillful Team</h2>
-      <p>Highly experienced and qualified personnel are employed in our team. From engineers to sales team our employees are the best in the field.</p> 
+      <p>Highly experienced and qualified personnel are employed in our team. From engineers to sales team our employees are the best in the field.</p>
     </div>
     <div class="services-card">
       <!-- <i class="fab fa-twitter fa-2x"></i> -->
       <h2>Solar Panel Installation</h2>
-      <p>Seamless solar panel installation that integrates cutting-edge technology with superior craftsmanship, delivering clean energy with minimal disruption.</p> 
+      <p>Seamless solar panel installation that integrates cutting-edge technology with superior craftsmanship, delivering clean energy with minimal disruption.</p>
     </div>
   </div>
 </div>
@@ -126,7 +126,7 @@
       <p>Customer Quoted</p>
   </div>
 </div>
-</div> 
+</div>
 </div>
 <!-------- Contact-us Section -------->
 <div class="contact">
@@ -137,7 +137,7 @@
       Solar power has been adopted globally for multiple reasons, including grid independence, adoption of clean energy, net-metering, and lower electricity bills. For countries in the developing world with un-stable grids, such as Pakistan, India, Bangladesh, Nigeria & various countries in Africa, the main purpose of Solar Solutions is to provide continuous electricity amidst frequent power outages. Sun Source Solutions solves the problem of load-shedding along with the benefits of solar solutions that homes and businesses enjoy in the West.
     </p>
   <div class="button">
-    <a href="{{ route('contact-us') }}">Contact Us</a>
+    <a href="{{ route('contact') }}">Contact</a>
  </div>
   </div>
 </div>
@@ -161,7 +161,7 @@
           </p>
           <a href="{{ route('emi') }}" class="card-button">Apply Here</a>
       </div>
-</div> 
+</div>
 <!-- Net Metering -->
 <div class="row">
               <!-- <div class="row">--->
@@ -242,5 +242,5 @@
 
 @endsection
 @section('js')
-  @include('js.home_js');  
+  @include('js.home_js');
 @endsection

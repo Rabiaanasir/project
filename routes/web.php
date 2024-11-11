@@ -20,12 +20,15 @@ use App\Http\Controllers\investController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\InstallController;
-use App\Http\Controllers\profileController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\ListingController;
 use App\Http\Controllers\admin\BrandController;
-use App\Http\Controllers\admin\BookingController;
 use App\Http\Controllers\admin\ProjectController;
+use App\Http\Controllers\admin\ContactsController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -53,7 +56,8 @@ Route::get('/commercial', [commercialController::class, 'index'])->name('commerc
 Route::get('/blog', [blogController::class, 'index'])->name('blog');
 // Route::get('/projects', [projectsController::class, 'index'])->name('projects');
 Route::get('/financing', [financeController::class, 'index'])->name('financing');
-Route::get('/contact-us', [contactController::class, 'index'])->name('contact-us');
+Route::get('/contact', [contactController::class, 'index'])->name('contact');
+Route::post('/contact', [contactController::class, 'store'])->name('contact.store');
 Route::get('/calculator', [calculatorController::class, 'index'])->name('calculator');
 Route::get('/packages', [packagesController::class, 'index'])->name('packages');
 Route::get('/net-metering', [nmController::class, 'index'])->name('net-metering');
@@ -94,7 +98,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     })->name('admin.dashboard');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/show/{id}', [UserController::class, 'show'])->name('users.show');
-
     // Route::resource('brands', BrandController::class);
 
     Route::any('/brands', [BrandController::class, 'index'])->name('brands.index');
@@ -113,20 +116,22 @@ Route::put('/listings/update/{id}', [ListingController::class, 'update'])->name(
 Route::delete('listings/delete/{id}', [ListingController::class, 'destroy'])->name('listings.destroy');
 
 
-Route::get('bookings', [BookingController::class, 'index'])->name('bookings.index');
-Route::get('bookings/create', [BookingController::class, 'create'])->name('bookings.create');
-Route::post('/bookings/store', [BookingController::class, 'store'])->name('bookings.store');
-Route::get('bookings/edit/{id}', [BookingController::class, 'edit'])->name('bookings.edit');
-Route::put('/bookings/update/{id}', [BookingController::class, 'update'])->name('bookings.update');
-Route::delete('bookings/delete/{id}', [BookingController::class, 'destroy'])->name('bookings.destroy');
-
 Route::get('projects', [ProjectController::class, 'index'])->name('projects.index');
 Route::get('projects/create', [ProjectController::class, 'create'])->name('projects.create');
 Route::post('projects/store', [ProjectController::class, 'store'])->name('projects.store'); // Store uses POST
 Route::get('projects/edit/{id}', [ProjectController::class, 'edit'])->name('projects.edit');
 Route::put('projects/update/{id}', [ProjectController::class, 'update'])->name('projects.update');
 Route::delete('projects/delete/{id}', [ProjectController::class, 'destroy'])->name('projects.destroy');
+//contact crud
+Route::get('/contact/index', [ContactsController::class, 'index'])->name('contact.index');
+Route::get('/admin/contact', [ContactsController::class, 'index'])->name('admin.contact');
+// routes/web.php
+// routes/web.php or routes/api.php
+Route::delete('/admin/contact/{id}', [ContactsController::class, 'destroy'])->name('admin.contact.destroy');
+
 });
+
+
 
 // USER/PUBLIC ROUTES (for everyone to access)
 Route::get('/listings', [ListingController::class, 'showUserListings'])->name('frontend.listings');
