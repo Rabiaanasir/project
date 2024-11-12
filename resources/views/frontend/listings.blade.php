@@ -89,7 +89,7 @@ $(document).ready(function() {
                 <h5 class="card-title">${listing.title}</h5>
                 <p class="card-text">${listing.description.substring(0, 80)}...</p>
                 <p class="text-muted">Brand: ${listing.brand.name}</p>
-                <p class="fw-bold">$${listing.price}</p>
+                <p class="fw-bold">Rs ${listing.price}</p>
             </div>
         </div>
     </a>

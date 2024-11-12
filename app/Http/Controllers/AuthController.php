@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Booking;
+use App\Models\Appliance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -88,11 +90,20 @@ public function login(Request $request)
 
 
     // Show the user profile page
-    public function showProfile()
-    {
-        $user = Auth::user();  // Get the authenticated user
-        return view('frontend.userProfile', compact('user'));
-    }
+    // public function showProfile()
+    // {
+    //     $user = Auth::user();  // Get the authenticated user
+    //     return view('frontend.userProfile', compact('user'));
+    // }
+    // In AuthController
+
+public function showProfile()
+{
+    $user = Auth::user();  // Get the authenticated user
+    $latestBooking = $user->bookings()->latest()->first();  // Get the latest booking
+
+    return view('frontend.userProfile', compact('user', 'latestBooking'));
+}
 
     // Update the user profile
     public function updateProfile(Request $request)

@@ -26,7 +26,7 @@
                       {{-- @if(Auth::check()) --}}
         <li class="nav-item">
             <!-- If logged in, go directly to install system -->
-            <a href="{{ route('installSystem') }}">Install a System</a>
+            <a href="{{ route('appliances.index') }}">Install a System</a>
         </li>
     {{-- @else
         <li class="nav-item">
@@ -37,7 +37,7 @@
  {{-- {{dd(Auth::user()->role)}} --}}
     @if (Auth::check())
     <li class="nav-item">
-        <a href="#">{{ Auth::user()->role }}</a>
+        <a href="#">{{ Auth::user()->username }}</a>
         <ul class="dropdown">
 
             @if (auth()->user()->role == 'admin')

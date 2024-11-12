@@ -10,7 +10,7 @@
     max-width: 1200px;
     width: 90%;
     margin: 0 auto;
-} 
+}
 
 .carousel-caption{
     bottom: 220px;
@@ -87,7 +87,7 @@
 .floating-button {
     background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); /*Gradient background */
     /* background: linear-gradient(135deg, rgb(223, 205, 161) 0%, #141a46 100%); Gradient background */
-    color: white; 
+    color: white;
     padding: 15px 30px; /* Button padding */
     margin: 5px 0; /* Space between buttons */
     text-align: center; /* Center text */
@@ -278,7 +278,7 @@
     left: 20%;
     height: 400px;
     width: 700px;
-} 
+}
 
 /*---------- Counter-------- */
 .counter-container {
@@ -470,7 +470,7 @@
     line-height: 25px;
 }
 .text p{
-   
+
     margin-left: 30px;
     font-size: 21px;
     line-height: 25px;
@@ -545,7 +545,7 @@
 }
 .container2 .slide-container .slide .user .user-info .stars i{
     color: #333;
-    font-size: 18px;   
+    font-size: 18px;
 }
 .container2 .slide-container .slide .text{
     color: #333;
@@ -585,4 +585,65 @@
     background: #333;
     color: #fff;
 }
+
+.container2 {
+    max-width: 1500px;
+    /* margin: 0 auto; */
+    padding: 60px;
+    font-family: 'Montserrat', sans-serif;
+}
+.container2 h2{
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 400;
+    padding-bottom: 20px;
+    color: navy;
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.feedback-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.badge {
+    font-size: 12px;
+    color: #fff;
+    background-color: #007bff;
+    padding: 5px 10px;
+    border-radius: 12px;
+    display: inline-block;
+    /* margin-left: 5px; */
+}
+
+.card-body p {
+    color: #555;
+    font-size: 14px;
+    margin: 8px 0;
+    line-height: 1.6;
+}
+
 </style>

@@ -7,16 +7,16 @@
     <header>
         <div class="header-content">
             <h2 class="lg-heading">SOLAR WATER HEATERS</h2>
-            <p>Capturing the sun's warmth for an eco-friendly future.</p> 
-        </div> 
-    </header>  
+            <p>Capturing the sun's warmth for an eco-friendly future.</p>
+        </div>
+    </header>
     <section class="section1">
         <div class="text-box">
         <h2> SOLAR WATER HEATERS IN PAKISTAN</h2>
         <p>
             Solar water heater looks like regular solar-panels but with an extra insulated water tank. Solar geyser consists of solar collectors – a series of pipes- that capture sunlight and convert it into heat to warm the water. A solar water heater, also called a home solar water heating system, is the best and most affordable way to generate hot water for your home. The cool thing about solar water heaters is that they work well in every season, using sunlight as their fuel.<br></p>
 
-           <p> The water tank that often comes with a solar water heater is equipped with features that enhance its performance and safety. The tanks are insulated to prevent heat loss. Additionally, the tank also comes with anti-freeze features, a pressure relief valve, and a thermostat that helps control the water temperature. These features are the reasons why the water in the tank remains warm and cozy, even on cold nights.<br></p> 
+           <p> The water tank that often comes with a solar water heater is equipped with features that enhance its performance and safety. The tanks are insulated to prevent heat loss. Additionally, the tank also comes with anti-freeze features, a pressure relief valve, and a thermostat that helps control the water temperature. These features are the reasons why the water in the tank remains warm and cozy, even on cold nights.<br></p>
 
            <p>You have the option to choose a solar water heater that runs solely on solar energy or opt for the hybrid option, which uses grid electricity to warm the water when there isn’t enough sunlight.
            </p>
@@ -37,7 +37,7 @@
         <p>Not sure what’s best for you? Get a free consultation from our experts.</p>
         <p>Contact: 1234-567890<br>
             Email: sales@sunsourcesolutions.com.pk</p>
-        <button>REQUEST A CALL</button>    
+        <button><a href= "{{ route('contact-us') }}">REQUEST A CALL</a></button>
         </div>
         <div class="text-box2">
             <h2>COMPONENTS OF SOLAR WATER HEATER/ SOLAR WATER GEYSERS</h2>
@@ -64,15 +64,15 @@
                 <p>Flat Plate solar water heaters are the most common type of solar water heater in Pakistan. They are made up of a series of flat, absorber plates that are covered with a transparent cover, typically glass. The plates absorb sunlight and heat the water that flows through them. Flat plate collectors are relatively inexpensive and can be installed on roofs or on the ground. They are also relatively efficient, especially in sunny climates like Pakistan.</p>
                 </div>
             </div>
-    
+
             <div class="imgwrapper">
                 <img class="img2" src="{{ asset('images/gm-9953768c-b926-4da2-a9d9-3a093c4ee30b-evacuated-solar-tube-system-446476.jpg') }}">
                 <div class="text2">
                     <h2>EVACUATED TUBE SOLAR WATER HEATERS IN PAKISTAN</h2>
                 <p>These are a type of solar water heater that uses evacuated tubes to capture and transfer heat. The tubes are made of two layers of glass that are sealed together, creating a vacuum. This vacuum helps to insulate the water and prevent heat loss. Evacuated tube collectors are more efficient than flat plate collectors, but they are also more expensive. They are a good choice for areas with cold winters, as they can provide hot water even when the sun is not shining.</p>
                 </div>
-            </div> 
-        </div> 
+            </div>
+        </div>
 </section>
 <section class="key-diff">
     <h2>Here Is a Table Summarizing the Key Differences Between the Two Types of Solar Water Heaters/ Solar geysers:</h2>
@@ -115,5 +115,5 @@
 
     <p>For any information or queries related to solar water heaters, solar geysers, solar panels, solar inverters, etc., feel free to contact us at the provided number or leave us a message by filling out the quotation form. Our representatives will be in touch with you as soon as possible.</p>
 </section>
-   
+
 @endsection

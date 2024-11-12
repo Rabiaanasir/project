@@ -1,22 +1,22 @@
-@extends('frontend.app')
+{{-- @extends('frontend.app')
 @section('css')
 @include('css.common_css')
   @include('css.blog_css')
-@endsection 
+@endsection
 @section('content')
 <header>
     <div class="header-content">
         <h1 >From the Blog</h1>
         <h2>Get Sun Source Solutions & never lose power day and night</h2>
        </div>
-   
 
-</header> 
+
+</header>
 <br>
 <br>
 <section>
     <div class="blog-heading">
-        {{-- <h1>My Recent Post</h1> --}}
+        {{-- <h1>My Recent Post</h1> --}
         <h3>BLOGS</h3>
       </div>
       </section>
@@ -53,8 +53,8 @@
     <h2>Environmental Benefits:</h2>
     One of the primary reasons for the growing preference for solar panels is their positive impact on the climate. Unlike fossil energies, which release harmful greenhouse gases into the atmosphere, solar energy production is clean and produces no air or water pollution.
     <h2>Cost Savings:</h2>
-    While the initial investment in solar panel installation may seem high, but the long-term cost savings are substantial. Solar panels can significantly reduce or even exclude electricity bills, as they generate power independently from the grid. 
-    
+    While the initial investment in solar panel installation may seem high, but the long-term cost savings are substantial. Solar panels can significantly reduce or even exclude electricity bills, as they generate power independently from the grid.
+
 </div>
 </div>
 </section>
@@ -71,7 +71,7 @@
     Once the site assessment is complete, the next step is designing the solar system. This involves determining the number of solar panels needed, their placement on the roof or ground, and the electrical configuration.
     <h2>Step 3: Intalling Mounting Structure:</h2>
     The solar panels are then supported by mounting structures like racks or frames that are installed in the roof or the ground. These structures are intended to safely hold the panels in place while guaranteeing legitimate ventilation to prevent overheating.
- 
+
 </div>
 </div>
 
@@ -84,11 +84,11 @@
 <h1>A Positive Impact on The Environment Through Solar Energy</h1>
 Here are some points:
 <h2>1. Reducing Greenhouse Gas Emissions:</h2>
-One of the main natural advantages of solar power is its job in moderating environmental change. Unlike to conventional petroleum fuels, which discharge harmful gases like carbon dioxide into the air, solar energy creation is basically outflows free. 
+One of the main natural advantages of solar power is its job in moderating environmental change. Unlike to conventional petroleum fuels, which discharge harmful gases like carbon dioxide into the air, solar energy creation is basically outflows free.
 <h2>2. Energy Independence and Security:</h2>
-Solar power adds to energy freedom by broadening the energy blend and decreasing dependence on imported petroleum products. This upgrades public safety as well as balances out energy costs. 
+Solar power adds to energy freedom by broadening the energy blend and decreasing dependence on imported petroleum products. This upgrades public safety as well as balances out energy costs.
 <h2>3. Clean and Renewable Energy Source:</h2>
-Solar power is a clean and sustainable energy source since it doesn’t harm ecosystems or deplete finite resources. Unlike fossil fuels, which need to be mined, transported, and burned, solar power is produced by converting sunlight into electrical energy. 
+Solar power is a clean and sustainable energy source since it doesn’t harm ecosystems or deplete finite resources. Unlike fossil fuels, which need to be mined, transported, and burned, solar power is produced by converting sunlight into electrical energy.
 
 
  </div>
@@ -110,9 +110,123 @@ Solar power is a clean and sustainable energy source since it doesn’t harm eco
     <video width="900px" controls
     poster="{{ asset('images/sys.png') }}" class="video-player">
         <source src="{{ asset('videos/Solar panel system components explain.mp4') }}" type="video/mp4">
-    </video> 
+    </video>
   </section>
 @endsection
 @section('js')
 @include('js.blog_js')
+@endsection --}}
+
+
+
+@extends('frontend.app')
+
+@section('css')
+    @include('css.common_css')
+    @include('css.blog_css')
+    <style>
+        h1{
+            color:navy;
+            font-weight: 600;
+            font-size: 50px;
+        }
+        /* Main Blog Layout Styling */
+        .blog-post {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            transition: transform 0.2s ease-in-out;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px); /* Slight lift on hover */
+        }
+
+        .blog-image {
+            flex: 1;
+            max-width: 300px;
+            height: auto;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .blog-content {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .blog-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .blog-description {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .blog-post {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .blog-image {
+                max-width: 100%;
+                margin: 0 auto 15px;
+            }
+        }
+    </style>
+@endsection
+
+@section('content')
+<header>
+    <div class="header-content">
+        <h1>From the Blog</h1>
+        <h2>Get Sun Source Solutions & never lose power day and night</h2>
+    </div>
+</header>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Blog Posts</h1>
+    <div>
+        <section class="row">
+            <div class="imgewrapper">
+        @foreach($blogPosts as $post)
+            <div class="blog-post">
+                <div class="blog-image">
+                    @if($post->image)
+                        <img src="{{ asset('storage/images/' . $post->image) }}" alt="{{ $post->title }}">
+                    @else
+                        <img src="{{ asset('images/placeholder.png') }}" alt="Placeholder">
+                    @endif
+                </div>
+                <div class="blog-content">
+                    <h2 class="blog-title">{{ $post->title }}</h2>
+                    <p class="blog-description">{{($post->description) }}</p> <!-- Limits text to 150 characters -->
+                </div>
+            </div>
+        @endforeach
+    </div>
+</div>
+</div>
+</section>
 @endsection

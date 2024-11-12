@@ -28,15 +28,39 @@
        position: relative;
        display: flex;
     }
-    #menu{
-        /* background-color: #141a46; */
+    /* #menu{
+        /* background-color: #141a46; *
         background: #111827;
         width: 300px;
-        height: 100%;
+        height: auto;
         position: fixed;
         top: 0;
         left: 0;
-    }
+    } */
+    #menu {
+    background: #111827;
+    width: 300px;
+    height: 100vh; /* Set the sidebar to take the full viewport height */
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto; /* Enables vertical scrolling */
+}
+
+/* Optional: Customize the scrollbar (for webkit browsers like Chrome, Edge, Safari) */
+#menu::-webkit-scrollbar {
+    width: 8px;
+}
+
+#menu::-webkit-scrollbar-thumb {
+    background-color: #4b5563; /* Customize scrollbar color */
+    border-radius: 4px;
+}
+
+#menu::-webkit-scrollbar-track {
+    background-color: #1f2937; /* Customize scrollbar track color */
+}
+
     #menu .logo{
         display: flex;
         align-items: center;
@@ -54,13 +78,11 @@
         list-style: none;
         padding: 15px 0;
         transition: 0.3s ease;
+        border-left: 4px solid #fff;
     }
     #menu .items li:hover{
         background: #253047;
         cursor: pointer;
-    }
-    #menu .items li:nth-child(1){
-        border-left: 4px solid #fff;
     }
     #menu .items li i{
         color: rgb(134,141,151);
