@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Contact;
 class contactController extends Controller
 {
     /**
@@ -11,7 +11,7 @@ class contactController extends Controller
      */
     public function index()
     {
-        return view('frontend.contact-us');
+        return view('frontend.contact');
     }
 
     /**
@@ -21,14 +21,18 @@ class contactController extends Controller
     {
         //
     }
-
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created contact in storage.
      */
     public function store(Request $request)
     {
-        //
+        // Validate form data
+        $data=$request->all();
+        Contact::create($data);
+
+        return redirect()->back()->with('success', 'Your contact request has been submitted successfully!');
     }
+
 
     /**
      * Display the specified resource.
@@ -62,3 +66,4 @@ class contactController extends Controller
         //
     }
 }
+

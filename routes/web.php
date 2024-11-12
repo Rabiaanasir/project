@@ -57,7 +57,8 @@ Route::get('/commercial', [commercialController::class, 'index'])->name('commerc
 Route::get('/blog', [BlogPostController::class, 'frontendBlogPosts'])->name('blog');
 // Route::get('/projects', [projectsController::class, 'index'])->name('projects');
 Route::get('/financing', [financeController::class, 'index'])->name('financing');
-Route::get('/contact-us', [contactController::class, 'index'])->name('contact-us');
+Route::get('/contact', [contactController::class, 'index'])->name('contact');
+Route::post('/contact', [contactController::class, 'store'])->name('contact.store');
 Route::get('/calculator', [calculatorController::class, 'index'])->name('calculator');
 // Route::get('/packages', [packagesController::class, 'index'])->name('packages');
 Route::get('/net-metering', [nmController::class, 'index'])->name('net-metering');

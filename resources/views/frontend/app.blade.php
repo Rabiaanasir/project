@@ -61,7 +61,7 @@
         <footer>
     <div class="left-section">
         <ul>
-          <li><a href="{{ route('contact-us') }}">ContactUs</a></li>
+          <li><a href="{{ route('contact') }}">Contact</a></li>
           <li><a href="{{ route('invest') }}">Invest</a></li>
           <li><a href="#">Terms and Conditions</a></li>
           <li><a href="#">Privacy Policy</a></li>
