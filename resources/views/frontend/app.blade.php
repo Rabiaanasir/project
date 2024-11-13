@@ -26,7 +26,7 @@
                       {{-- @if(Auth::check()) --}}
         <li class="nav-item">
             <!-- If logged in, go directly to install system -->
-            <a href="{{ route('appliances.index') }}">Install a System</a>
+            <a href="{{ route('packages') }}">Solar Packages</a>
         </li>
     {{-- @else
         <li class="nav-item">
@@ -79,5 +79,6 @@
 </footer>
         {{-- @include('frontend.js') --}}
         @yield('js')
+
     </body>
 </html>
