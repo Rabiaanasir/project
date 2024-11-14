@@ -29,6 +29,7 @@ use App\Http\Controllers\ApplianceController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\BlogPostController;
 use App\Http\Controllers\admin\PackageController;
+use App\Http\Controllers\admin\ContactsController;
 use App\Http\Controllers\admin\FeedbackController;
 
 /*
@@ -159,6 +160,10 @@ Route::post('packages/store', [PackageController::class, 'store'])->name('packag
 Route::get('packages/edit/{id}', [PackageController::class, 'edit'])->name('packages.edit');
 Route::put('packages/update/{id}', [PackageController::class, 'update'])->name('packages.update');
 Route::delete('packages/delete/{id}', [PackageController::class, 'destroy'])->name('packages.destroy');
+
+Route::get('/contact/index', [ContactsController::class, 'index'])->name('contact.index');
+Route::get('/admin/contact', [ContactsController::class, 'index'])->name('admin.contact');
+Route::delete('/admin/contact/{id}', [ContactsController::class, 'destroy'])->name('admin.contact.destroy');
 
 Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
 Route::get('/feedback/data', [FeedbackController::class, 'getData'])->name('feedback.data');

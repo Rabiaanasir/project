@@ -10,8 +10,8 @@
             <h1 >Net Metering In Pakistan</h1>
            </div>
         </header>
-        
-        
+
+
             <div class="net">
                  <h1>Net Metering</h1>
                  <p>Who doesn’t want to make the most of their solar panels and enjoy all the benefits they offer? Well, one great way to do that is by adding net metering to your existing solar system. Sun Source Solutions is expert at it by providing high quality and yet affordable net metering rates in Pakistan. Here’s how it works: during the day, when your solar panels produce more electricity than you need, you can sell the extra power back to the national grid. In return, you earn credits. Later, when your solar panels aren’t producing energy at night, you can use those credits to cover your electricity needs. It’s a smart process that not only boosts your profits but also cuts down on your electricity bills.</p>
@@ -22,7 +22,8 @@
                 <p>Not sure what’s best for you? Get a free consultation from our experts.</p>
                 <p>Contact: 1234-567890<br>
                     Email: sales@sunsourcesolutions.com.pk</p>
-                <button>REQUEST A CALL</button>    
+                    <a href="{{ route('contact') }}">
+                <button>Contact</button>
                 </div>
                   <section class="row">
                     <!-- <div class="row">--->
@@ -38,9 +39,9 @@
                             <h1> COMPENSATION METHODS</h1>
                               <div id="container">
                               <div><h1> NET BILLING</h1>
-                                      <p>This is the most common method. At the end of each billing cycle, your electricity meter readings are compared. You are only charged for the net difference between the electricity you consumed from the grid and the surplus you fed back.</p></div>      
+                                      <p>This is the most common method. At the end of each billing cycle, your electricity meter readings are compared. You are only charged for the net difference between the electricity you consumed from the grid and the surplus you fed back.</p></div>
                                          <div> <h1>FEED-IN TARIFF</h1>
-                                            <p>In most cases, you will receive a fixed rate per unit of electricity exported to the grid.</p><br></div>  
+                                            <p>In most cases, you will receive a fixed rate per unit of electricity exported to the grid.</p><br></div>
                        </div>
                         </div>
                                             <div class="net1">
@@ -50,14 +51,14 @@
                         </div>
                         <div class="content">
                             <h1> BENEFITS OF INSTALLING NET METERING IN PAKISTAN</h1>
-                      
+
                           {{-- </div> --}}
                               <div id="container">
                               <div><h1> Less Cost, Most Benefits</h1>
-                                      <p>The upfront cost for getting net metering installed might seem a bit high, but it’s actually a pretty smart investment when you think about the long-term benefits. The good news is, Alpha Solar, a company with years of experience and certified by AEDB in Pakistan, offers reasonable net metering rates in Pakistan. So, even though there’s a cost at the start, the benefits in the long run make it a wise and affordable choice.</p></div>      
+                                      <p>The upfront cost for getting net metering installed might seem a bit high, but it’s actually a pretty smart investment when you think about the long-term benefits. The good news is, Alpha Solar, a company with years of experience and certified by AEDB in Pakistan, offers reasonable net metering rates in Pakistan. So, even though there’s a cost at the start, the benefits in the long run make it a wise and affordable choice.</p></div>
                                          <div> <h1>
                                             Sell and Earn</h1>
-                                            <p>With the help of a net meter, you can sell the extra generated electricity back to the grid. This results in earning credits, which can be used at night or during power outages, further reducing your electricity bill and potentially making you a zero-bill person.</p><br></div>  
+                                            <p>With the help of a net meter, you can sell the extra generated electricity back to the grid. This results in earning credits, which can be used at night or during power outages, further reducing your electricity bill and potentially making you a zero-bill person.</p><br></div>
                                 <div> <h1> 20-40 ration of utilization</h1>
                              <p>Solar panels installed at your home mostly produce 20-40 percent more electricity than your actual needs, which goes to waste if you haven’t installed net meters. After installing a net meter, you can sell that extra 20-40 percent of generated energy to grid to earn more units from the grid to further reduce your energy bills.</p>
                           </div>
@@ -87,10 +88,10 @@
             <p>Sun Source Solutions, with years of experience in the solar industry, has the expertise to install a net meter in your existing system, ranging from 5 kW to 1 MW. All of this is offered at affordable net metering rates in Pakistan.</p>
         </div>
     </div>
-    
+
 </section>
 
-@endsection 
+@endsection
 @section('js')
 @include('js.faq_js')
 @endsection

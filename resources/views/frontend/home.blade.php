@@ -51,7 +51,7 @@
   <!-- Floating buttons -->
   <div class="floating-buttons">
     <a href="{{ route('calculator') }}" class="floating-button">Calculator</a>
-    <a href="{{ route('contact-us') }}"class="floating-button">Contact Us</a>
+    <a href="{{ route('contact') }}"class="floating-button">Contact</a>
 </div>
 
   <!-- ---------About Section ------------>
@@ -140,7 +140,7 @@
       Solar power has been adopted globally for multiple reasons, including grid independence, adoption of clean energy, net-metering, and lower electricity bills. For countries in the developing world with un-stable grids, such as Pakistan, India, Bangladesh, Nigeria & various countries in Africa, the main purpose of Solar Solutions is to provide continuous electricity amidst frequent power outages. Sun Source Solutions solves the problem of load-shedding along with the benefits of solar solutions that homes and businesses enjoy in the West.
     </p>
   <div class="button">
-    <a href="{{ route('contact-us') }}">Contact Us</a>
+    <a href="{{ route('contact') }}">Contact</a>
  </div>
   </div>
 </div>
@@ -164,7 +164,7 @@
           </p>
           <a href="{{ route('emi') }}" class="card-button">Apply Here</a>
       </div>
-</div> --}}
+</div>
 <!-- Net Metering -->
 <div class="row">
               <!-- <div class="row">--->

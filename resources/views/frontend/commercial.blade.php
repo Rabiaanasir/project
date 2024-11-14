@@ -9,7 +9,7 @@
             <h1 >Smart Solar Solution for commercial <br>& Industrial Sectors</h1>
            </div>
         </header>
-    
+
         <section>
            <div class="commercial">
                 <h1>COMMERCIAL SOLAR SOLUTIONS</h1>
@@ -57,14 +57,14 @@
     </div>
         <div id="container">
         <div><h1> Site Assessment and Designing</h1>
-                <p>Our workflow starts with a face-to-face consultation with the client, followed by a site assessment to determine whether your property is suitable for solar panel installation. Then, our team provides you with a detailed CAD drawing of your system. Our expert designer creates a design with your location and weather conditions in mind. The design is then approved by the client before the actual installation process begins.</p></div>      
+                <p>Our workflow starts with a face-to-face consultation with the client, followed by a site assessment to determine whether your property is suitable for solar panel installation. Then, our team provides you with a detailed CAD drawing of your system. Our expert designer creates a design with your location and weather conditions in mind. The design is then approved by the client before the actual installation process begins.</p></div>
                    <div> <h1>System Installation</h1>
                       <p>Every installation, regardless of the system size, big or small, is carried out by our certified and professional installers. Our solar system installation occurs in four separate stages:<br>
 
            1. Fasten structure to the roof<br>
            2. Secure panels to the structure<br>
            3. Complete external wiring to connect panels to the inverter<br>
-           4. Wire the inverter to the home’s power supply</p><br></div>  
+           4. Wire the inverter to the home’s power supply</p><br></div>
           <div> <h1>After Sales Services</h1>
        <p>After we’ve set up your system, we don’t just leave you hanging. Our installation services include a 2-year after-sales package. This covers online system monitoring and maintenance in case you encounter any issues. It’s all part of our commitment to keeping you satisfied and making sure your solar system keeps performing well for the long haul.</p>
     </div>
@@ -76,9 +76,10 @@
             <p>Not sure what’s best for you? Get a free consultation from our experts.</p>
             <p>Contact: 1234-567890<br>
                 Email: sales@sunsourcesolutions.com.pk</p>
-            <button>REQUEST A CALL</button>    
+                <a href="{{ route('contact') }}">
+                    <button>Contact</button>
             </div>
           </section>
-          
+
 
 @endsection
