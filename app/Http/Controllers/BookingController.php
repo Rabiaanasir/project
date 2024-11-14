@@ -111,7 +111,12 @@ public function getData(Request $request)
             ->addColumn('actions', function ($booking) {
                 // return '<a href="' . route('admin.bookings.show', $booking->id) . '" class="btn btn-sm btn-primary">View</a> ' .
                 //        '<a href="' . route('admin.bookings.edit', $booking->id) . '" class="btn btn-sm btn-warning">Edit</a> ' .
-                //        '<button data-id="' . $booking->id . '" class="btn btn-sm btn-danger delete-booking">Delete</button>';
+                    //    '<button data-id="' . $booking->id . '" class="btn btn-sm btn-danger deletebooking">Delete</button>';
+                    // Delete button
+//                 $deleteBtn = '<button data-id="' . $booking->id . '"
+//                 class="btn btn-sm btn-danger deletebooking">Delete</button>';
+
+// return $deleteBtn;
             })
             ->rawColumns(['booking_date', 'actions'])
             ->make(true);
@@ -370,5 +375,13 @@ public function updateStatus(Request $request, $id)
     return response()->json(['success' => true]);
 }
 
+public function destroy($id)
+{
+    $booking = Booking::findOrFail($id);
+
+    $booking->delete();  //Delete the project
+
+    return response()->json(['success' => 'Booking deleted successfully.']);
+}
 
 }

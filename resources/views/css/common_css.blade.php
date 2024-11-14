@@ -109,50 +109,94 @@ nav img{
     color: #004d00;             /* Darker green text color on hover */
 }
 
-  /* Footer Styles */
+/* Footer Styles */
 
 footer {
     background-color: #141a46;
     color: #f4f4f4;
-    padding:30px 90px 50px 90px;
+    padding: 30px 90px 50px 90px;
     font-family: Arial, Helvetica, sans-serif;
-  }
-  .left-section{
+}
+
+.left-section {
     float: left;
     font-size: 16px;
-  }
-  .right-section{
-    float: right;
-  }
+}
 
-  footer ul {
+.right-section {
+    float: right;
+}
+
+footer ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
-  }
+}
 
-  footer ul li {
+footer ul li {
     display: inline;
     margin-right: 25px; /* Adjust spacing between list items as needed */
     letter-spacing: normal;
-  }
+}
 
-  footer ul li a {
+footer ul li a {
     color: #f4f4f4;
     text-decoration: none;
-  }
-  footer ul li a:hover{
+}
+
+footer ul li a:hover {
     text-decoration: underline;
     color: darkgoldenrod;
-  }
-  footer ul li:last-child{
+}
+
+footer ul li:last-child {
     margin-left: 3px;
-  }
-  footer .fab{
+}
+
+footer .fab {
     color: #f4f4f4;
     margin-right: 8px;
-  }
+}
 
+/* Responsive Design */
+@media (max-width: 768px) {
+    footer {
+        padding: 20px 30px;
+        display: block; /* Stack the content vertically */
+        text-align: center;
+    }
+
+    .left-section, .right-section {
+        float: none; /* Reset float for stacking */
+        width: 100%; /* Ensure they take full width */
+        text-align: center;
+        margin-bottom: 20px; /* Add space between sections */
+    }
+
+    footer ul li {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    footer .fab {
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    footer {
+        padding: 15px 20px;
+    }
+
+    footer ul li {
+        margin-bottom: 8px;
+    }
+
+    footer .fab {
+        margin-right: 12px;
+    }
+}
 
   /*---------- FAQ styling-------- */
 

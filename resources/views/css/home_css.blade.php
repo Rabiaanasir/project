@@ -486,7 +486,7 @@
     margin-left: 30px;
     font-size: 20px;
 }
-.container2{
+/* .container2{
     position: relative;
     perspective: 1000px;
 }
@@ -584,7 +584,8 @@
 .container2 #prev:hover{
     background: #333;
     color: #fff;
-}
+}*/
+
 
 .container2 {
     max-width: 1500px;
@@ -592,7 +593,8 @@
     padding: 60px;
     font-family: 'Montserrat', sans-serif;
 }
-.container2 h2{
+
+.container2 h2 {
     display: flex;
     justify-content: center;
     font-size: 40px;
@@ -646,4 +648,67 @@ h3 {
     line-height: 1.6;
 }
 
+/* Responsive Styles */
+@media only screen and (max-width: 1200px) {
+    .container2 {
+        padding: 40px;
+    }
+
+    .container2 h2 {
+        font-size: 35px;
+    }
+
+    .feedback-grid {
+        grid-template-columns: repeat(2, 1fr); /* Two columns for medium screens */
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .container2 {
+        padding: 20px;
+    }
+
+    .container2 h2 {
+        font-size: 30px;
+    }
+
+    .feedback-grid {
+        grid-template-columns: 1fr; /* One column for small screens */
+    }
+
+    .card {
+        padding: 15px; /* Reduce padding for small screens */
+    }
+
+    .card-header {
+        font-size: 16px; /* Reduce font size */
+    }
+
+    .card-body p {
+        font-size: 12px; /* Smaller text for mobile */
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .container2 h2 {
+        font-size: 24px;
+    }
+
+    .feedback-grid {
+        grid-template-columns: 1fr; /* Stack all cards vertically */
+    }
+
+    .card {
+        padding: 10px; /* Reduce padding further */
+    }
+
+    .card-header {
+        font-size: 14px; /* Smaller font for mobile */
+    }
+
+    .card-body p {
+        font-size: 10px; /* Smaller text for very small screens */
+    }
+}
 </style>
+
