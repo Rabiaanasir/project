@@ -31,7 +31,7 @@ header{
 }
 /*------- Image Section Styling-------*/
 .row{
-    min-height: 75vh;
+    min-height: 85vh;
     margin: 5rem 0;
     background-color: rgb(245, 246, 247);
 }
@@ -39,7 +39,7 @@ header{
     position: relative;
     width: 85%;
     left: 8%;
-    top: 10%; 
+    top: 10%;
     padding-bottom: 135px;
 }
 .img{
@@ -59,9 +59,15 @@ header{
     line-height: 28px;
 }
 .text p{
-    padding-left: 30px;
+    /* padding-left: 30px;
     margin-left: 30px;
     padding: 0px;
+    font-size: 18px;
+    line-height: 25px; */
+    padding: 10px; /* Adds space inside the text block */
+    margin: 0 auto; /* Centers the block */
+    width: 100%; /* Ensures full use of the container width */
+    box-sizing: border-box; /* Includes padding in the element's total width */
     font-size: 18px;
     line-height: 25px;
 }
@@ -122,7 +128,7 @@ h2{
     justify-content: center;
     text-align: center;
     color: navy;
-    margin-top: 20px; 
+    margin-top: 20px;
     }
 p{
     color: black;

@@ -37,7 +37,8 @@
         <p>Not sure what’s best for you? Get a free consultation from our experts.</p>
         <p>Contact: 1234-567890<br>
             Email: sales@sunsourcesolutions.com.pk</p>
-        <button><a href= "{{ route('contact-us') }}">REQUEST A CALL</a></button>
+            <a href="{{ route('contact') }}">
+                <button>Contact</button>
         </div>
         <div class="text-box2">
             <h2>COMPONENTS OF SOLAR WATER HEATER/ SOLAR WATER GEYSERS</h2>

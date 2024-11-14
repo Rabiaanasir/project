@@ -45,7 +45,7 @@ h2{
         justify-content: center;
         text-align: center;
         color: navy;
-        margin-top: 20px; 
+        margin-top: 20px;
     }
 p{
     color: black;
@@ -168,5 +168,45 @@ p{
      margin: 60px;
      font-size: 16px;
 
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        height: 50vh;
+    }
+
+    .header-content h1 {
+        font-size: 2rem;
+    }
+
+    .net h1 {
+        font-size: 2rem;
+    }
+
+    .net p {
+        font-size: 1rem;
+    }
+
+    .box {
+        width: 95%;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .net h1 {
+        font-size: 1.5rem;
+    }
+
+    .net p {
+        font-size: 0.9rem;
+    }
+
+    .img {
+        max-width: 100%;
+    }
 }
     </style>

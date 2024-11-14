@@ -8,7 +8,7 @@
         <div class="header-content">
             <h1>AGRICULTURE SOLAR SOLUTION</h1>
            </div>
-        </header> 
+        </header>
         <br>
         <br>
         <section>
@@ -16,7 +16,7 @@
                 <h1>AGRICULTURE SOLAR SOLUTION</h1>
                 <p>The agriculture sector in Pakistan contributes about 23% to the country’s GDP. This sector heavily depends on major crops like wheat, rice, cotton, and also on farms. Almost half of the people in Pakistan are directly or indirectly financially connected to the agriculture sector. However, this sector is still vulnerable, especially when it comes to the availability of power for farmers to irrigate their crops and power their farms for better production.
                     Top of Form
-                    
+
                     At Sun Source Solutions, we understand the unique challenges that farmers in Pakistan face. Electricity is still unavailable in some areas, and farmers have to rely on alternative sources like generators or diesel engines. Even where electricity is available, the high prices pose a challenge.</p>
             </div>
             <section class="row">
@@ -47,14 +47,14 @@
     </div>
         <div id="container">
         <div><h1> Site Assessment and Designing</h1>
-                <p>Our workflow starts with a face-to-face consultation with the client, followed by a site assessment to determine whether your property is suitable for solar panel installation. Then, our team provides you with a detailed CAD drawing of your system. Our expert designer creates a design with your location and weather conditions in mind. The design is then approved by the client before the actual installation process begins.</p></div>      
+                <p>Our workflow starts with a face-to-face consultation with the client, followed by a site assessment to determine whether your property is suitable for solar panel installation. Then, our team provides you with a detailed CAD drawing of your system. Our expert designer creates a design with your location and weather conditions in mind. The design is then approved by the client before the actual installation process begins.</p></div>
                    <div> <h1>System Installation</h1>
                       <p>Every installation, regardless of the system size, big or small, is carried out by our certified and professional installers. Our solar system installation occurs in four separate stages:<br>
 
            1. Fasten structure to the roof<br>
            2. Secure panels to the structure<br>
            3. Complete external wiring to connect panels to the inverter<br>
-           4. Wire the inverter to the home’s power supply</p><br></div>  
+           4. Wire the inverter to the home’s power supply</p><br></div>
           <div> <h1>After Sales Services</h1>
        <p>After we’ve set up your system, we don’t just leave you hanging. Our installation services include a 2-year after-sales package. This covers online system monitoring and maintenance in case you encounter any issues. It’s all part of our commitment to keeping you satisfied and making sure your solar system keeps performing well for the long haul.</p>
     </div>
@@ -66,7 +66,8 @@
             <p>Not sure what’s best for you? Get a free consultation from our experts.</p>
             <p>Contact: 1234-567890<br>
                 Email: sales@sunsourcesolutions.com.pk</p>
-            <button>REQUEST A CALL</button>    
+                <a href="{{ route('contact') }}">
+                    <button>Contact</button>
             </div>
           </section>
 

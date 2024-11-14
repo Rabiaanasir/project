@@ -9,7 +9,7 @@
 body{
     width: 100%;
    background: #e5e7eb;
-   position: relative; 
+   position: relative;
    display: flex;
 }
 #menu{
@@ -28,7 +28,7 @@ body{
     padding: 30px 0 0 30px;
 }
 #menu .logo img{
-    width: 40px;
+    width: 60px;
     margin-right: 15px;
 }
 #menu .items{

@@ -32,7 +32,7 @@ header{
 }
 /*------- Image Section Styling-------*/
 .row{
-    min-height: 70vh;
+    min-height: 90vh;
     margin: 5rem 0;
     background-color: rgb(245, 246, 247);
 }
@@ -59,6 +59,7 @@ header{
     font-size: 25px;
     line-height: 28px;
 }
+
 .text p{
     padding-left: 30px;
     margin-left: 30px;
@@ -123,7 +124,7 @@ h2{
     justify-content: center;
     text-align: center;
     color: navy;
-    margin-top: 20px; 
+    margin-top: 20px;
 }
 p{
     color: black;
