@@ -168,9 +168,11 @@
   </form>
 </div> --}}
 <div class="container my-5">
+    @if (!Auth::check())
     <div class="alert alert-warning text-center mt-3" role="alert">
         Please <a href="{{ route('login') }}" class="alert-link">log in</a> to submit your appliance selection.
     </div>
+    @endif
     <h1 class="text-center mb-4">Select Appliances for Solar Panel System</h1>
 
     <!-- Check if the user is logged in -->
@@ -187,13 +189,14 @@
                                type="checkbox"
                                value="{{ $appliance }}"
                                name="appliance[]"
-                               {{ auth()->check() ? '' : 'disabled' }}>
+                               {{ auth()->check() ? '' : 'disabled' }}
+                               onchange="toggleWattInput(event)">
                         <label class="me-3">{{ $appliance }}</label>
                         <input type="number" class="form-control appliance-watt-input"
                                name="{{ strtolower($appliance) }}_watt"
                                placeholder="Enter Wattage (W)"
                                min="1"
-                               {{ auth()->check() ? '' : 'disabled' }}>
+                               disabled>
                     </div>
                 @endforeach
             </div>
@@ -211,7 +214,7 @@
                        name="custom_wattage[]"
                        placeholder="Enter Wattage (W)"
                        min="1"
-                       {{ auth()->check() ? '' : 'disabled' }}>
+                       disabled>
                 <button type="button" class="btn btn-danger btn-remove"
                         onclick="removeCustomRow(this)"
                         {{ auth()->check() ? '' : 'disabled' }}>Remove</button>
@@ -220,7 +223,8 @@
 
         <button type="button" id="add-custom-appliance-btn"
                 class="btn btn-primary mb-3"
-                {{ auth()->check() ? '' : 'disabled' }}>Add Another Custom Appliance</button>
+                {{ auth()->check() ? '' : 'disabled' }}
+                onclick="addCustomRow()">Add Another Custom Appliance</button>
 
         <div id="total-wattage" class="alert alert-info">Total Wattage: 0 W</div>
 
@@ -231,9 +235,6 @@
             <button type="button" class="btn btn-secondary mt-3 w-100 mb-5" disabled>
                 Log in to Calculate System Requirements
             </button>
-            {{-- <div class="alert alert-warning text-center mt-3" role="alert">
-                Please <a href="{{ route('login') }}" class="alert-link">log in</a> to submit your appliance selection.
-            </div> --}}
         @endif
     </form>
 </div>
@@ -248,23 +249,24 @@
 
   function toggleWattInput(event) {
     const input = event.target.parentElement.querySelector('.appliance-watt-input');
+    // Enable or disable the watt input based on the checkbox state
     input.disabled = !event.target.checked;
-    if (!event.target.checked) input.value = '';
+    if (!event.target.checked) input.value = ''; // Clear value when unchecked
     calculateTotalWattage();
   }
 
-  document.getElementById('add-custom-appliance-btn').addEventListener('click', function () {
+  function addCustomRow() {
     const container = document.getElementById('custom-appliance-container');
     const newRow = document.createElement('div');
     newRow.className = 'custom-appliance-row d-flex mb-3';
     newRow.innerHTML = `
       <input type="text" class="form-control me-2" name="custom_appliance[]" placeholder="Custom Appliance Name" required>
-      <input type="number" class="form-control me-2 custom-watt-input" name="custom_wattage[]" placeholder="Enter Wattage (W)" min="1" required>
+      <input type="number" class="form-control me-2 custom-watt-input" name="custom_wattage[]" placeholder="Enter Wattage (W)" min="1" required disabled>
       <button type="button" class="btn btn-danger btn-remove" onclick="removeCustomRow(this)">Remove</button>
     `;
     container.appendChild(newRow);
     newRow.querySelector('.custom-watt-input').addEventListener('input', calculateTotalWattage);
-  });
+  }
 
   function removeCustomRow(button) {
     button.parentElement.remove();
@@ -274,18 +276,22 @@
   function calculateTotalWattage() {
     let totalWattage = 0;
 
+    // Calculate total wattage from checked appliances
     document.querySelectorAll('.appliance-checkbox:checked').forEach(checkbox => {
       const input = checkbox.parentElement.querySelector('.appliance-watt-input');
       totalWattage += parseInt(input.value) || 0;
     });
 
+    // Add wattage from custom appliances
     document.querySelectorAll('.custom-watt-input').forEach(input => {
       totalWattage += parseInt(input.value) || 0;
     });
 
+    // Display total wattage
     document.getElementById('total-wattage').textContent = `Total Wattage: ${totalWattage} W`;
   }
 
+  // Event listeners for watt input fields
   document.querySelectorAll('.appliance-watt-input').forEach(input => {
     input.addEventListener('input', calculateTotalWattage);
   });

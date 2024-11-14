@@ -117,20 +117,15 @@ Route::get('listings/edit/{id}', [ListingController::class, 'edit'])->name('list
 Route::put('/listings/update/{id}', [ListingController::class, 'update'])->name('listings.update');
 Route::delete('listings/delete/{id}', [ListingController::class, 'destroy'])->name('listings.destroy');
 
-
-// Route::get('bookings', [BookingController::class, 'index'])->name('bookings.index');
-// Route::get('bookings/create', [BookingController::class, 'create'])->name('bookings.create');
-// Route::post('/bookings/store', [BookingController::class, 'store'])->name('bookings.store');
-// Route::get('bookings/edit/{id}', [BookingController::class, 'edit'])->name('bookings.edit');
-// Route::put('/bookings/update/{id}', [BookingController::class, 'update'])->name('bookings.update');
-// Route::delete('bookings/delete/{id}', [BookingController::class, 'destroy'])->name('bookings.destroy');
 Route::get('/bookings', [BookingController::class, 'adminIndex'])->name('admin.bookings.index');
 Route::get('/bookings/data', [BookingController::class, 'getData'])->name('admin.bookings.data');
 Route::post('/bookings/store', [BookingController::class, 'store'])->name('admin.bookings.store');
 Route::post('/bookings/{id}/update-date', [BookingController::class, 'updateBookingDate'])->name('admin.bookings.updateDate');
 
 Route::post('/bookings/{id}/update-status', [BookingController::class, 'updateStatus'])->name('admin.bookings.updateStatus');
+// routes/web.php
 
+Route::delete('/bookings/delete/{id}', [BookingController::class, 'destroy'])->name('bookings.destroy');
 
 
 Route::get('projects', [ProjectController::class, 'index'])->name('projects.index');
@@ -142,6 +137,8 @@ Route::delete('projects/delete/{id}', [ProjectController::class, 'destroy'])->na
 
 Route::get('/appliances', [ApplianceController::class, 'show'])->name('admin.appliances');
 Route::get('/appliances/data', [ApplianceController::class, 'getAppliancesData'])->name('appliances.data');
+Route::delete('appliances/delete/{id}', [ApplianceController::class, 'destroy'])->name('appliances.destroy');
+
 
 Route::get('posts', [BlogPostController::class, 'index'])->name('posts.index');
 Route::get('posts/view/{id}', [BlogPostController::class, 'view'])->name('posts.view');
@@ -179,7 +176,7 @@ Route::get('/packages', [PackageController::class, 'frontendpackages'])->name('p
 Route::get('/bookings/create', [BookingController::class, 'create'])->name('bookings.create');
 Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
 // Routes/web.php
-Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
+Route::get('/bookings/index', [BookingController::class, 'index'])->name('bookings.index');
 
 
 Route::middleware('auth')->group(function () {

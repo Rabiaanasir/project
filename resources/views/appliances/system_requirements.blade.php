@@ -295,5 +295,6 @@
 
     <!-- Button inside container -->
     <a href="{{ route('appliances.index') }}" class="btn btn-primary btn-back">Back to Appliance Selection</a>
+    <a href="{{ route('bookings.create') }}" class="btn btn-primary btn-back">Book Now</a>
 </div>
 @endsection

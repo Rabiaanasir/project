@@ -123,8 +123,9 @@ a:hover{
         background: #fff;
         padding: 15px 30px;
         border-bottom: 3px solid #594ef7;
-        position: fixed;
-        width: calc(100% - 300px);
+        /* position: fixed; */
+        /* width: calc(100% - 300px); */
+        width: auto;
     }
     #interface .navigation .search{
         display: flex;
@@ -175,7 +176,7 @@ a:hover{
         padding: 30px 30px 0 30px;
         font-size: 24px;
         font-weight: 700;
-        margin-top: 70px;
+        margin-top: 20px;
     }
     .values{
         padding: 30px 30px 0 30px;

@@ -99,6 +99,15 @@ return view('admin.appliances.index', compact('appliances'));
                 ->editColumn('created_at', function ($row) {
                     return $row->created_at->format('d M Y, H:i A'); // Format the created_at date
                 })
+                ->addColumn('action', function ($row) {
+
+                    // Delete button
+                    $deleteBtn = '<button data-id="' . $row->id . '"
+                                    class="btn btn-sm btn-danger deleterequest">Delete</button>';
+
+                    return $deleteBtn;
+                })
+                ->rawColumns(['action'])
                 ->make(true);
         }
 
@@ -311,4 +320,14 @@ private function getRecommendedSolarCapacity($totalWattage)
 
     return 'No recommendation available.';
 }
+
+public function destroy($id)
+    {
+        $appliances = Appliance::findOrFail($id);
+
+        $appliances->delete();  //Delete the project
+
+        return response()->json(['success' => 'Appliance deleted successfully.']);
+    }
+
 }

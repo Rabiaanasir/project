@@ -50,8 +50,8 @@
 
   <!-- Floating buttons -->
   <div class="floating-buttons">
-    <a href="{{ route('calculator') }}" class="floating-button">Calculator</a>
-    <a href="{{ route('contact-us') }}"class="floating-button">Contact Us</a>
+    <a href="{{ route('appliances.index') }}" class="floating-button">install A System</a>
+    <a href="{{ route('contact-us') }}"class="floating-button">Get A Quote</a>
 </div>
 
   <!-- ---------About Section ------------>

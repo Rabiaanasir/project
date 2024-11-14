@@ -291,45 +291,96 @@ button a{
 
     /*------------- Image Section Styling -------------*/
 
+    /* Styling for the Image Section */
+.row {
+    min-height: 70vh;
+    margin: 3rem 0;
+    padding-top: 5rem;
+    background-color: aliceblue;
+}
+
+.row .imgwrapper {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 80px;
+}
+
+.img {
+    flex: 1;
+    height: 300px;
+    margin: 0 1rem;
+}
+
+.img2 {
+    flex: 1;
+    height: 250px; /* Reduced height */
+    max-width: 450px; /* Limit the width of the Lithium Ion battery image */
+    margin: 0 1rem; /* Add margin for spacing */
+}
+
+.text, .text2 {
+    flex: 1;
+    padding: 0 1rem;
+}
+
+.text h2, .text2 h2 {
+    display: flex;
+    justify-content: start;
+    text-align: start;
+}
+
+.text h3, .text2 h3 {
+    font-size: 1.2rem;
+    color: navy;
+}
+
+.text ul li, .text2 ul li {
+    font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .img2 {
+        max-width: 400px; /* Limit image width for medium-sized screens */
+    }
+}
+
+@media (max-width: 768px) {
     .row {
-        min-height: 70vh;
-        margin: 3rem 0;
-        padding-top: 5rem;
-        background-color: aliceblue;
+        padding: 1rem;
     }
 
-    .row .imgwrapper {
-        display: flex;
-        width: 80%;
+    .img2 {
+        max-width: 90%; /* Make the image take up more space on smaller screens */
+        height: auto;  /* Allow height to adjust proportionally */
+    }
+
+    .features h2 {
+        font-size: 1.6rem;
+    }
+
+    .box-wrapper .benefits {
+        width: 45%;
         margin: 0 auto;
-        padding-bottom: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .img2 {
+        max-width: 100%; /* Ensure it fits the full width on very small screens */
+        height: auto;  /* Adjust height automatically */
     }
 
-    .img, .img2 {
-        flex: 1;
-        height: 300px;
-        margin: 0 1rem;
-    }
-
-    .text, .text2 {
-        flex: 1;
-        padding: 0 1rem;
-    }
-
-    .text h2, .text2 h2 {
-        display: flex;
-        justify-content: start;
-        text-align: start;
-    }
-
-    .text h3, .text2 h3 {
+    .features h2 {
         font-size: 1.2rem;
-        color: navy;
     }
 
-    .text ul li, .text2 ul li {
-        font-size: 1rem;
+    .box-wrapper .benefits {
+        width: 100%;
+        margin: 1rem 0;
     }
+}
 
     /*------------- Feature Section Styling -------------*/
     .container {
