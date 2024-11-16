@@ -243,12 +243,13 @@ $(document).ready(function() {
                 searchable: false,
                 render: function(data, type, row) {
                     return `
-                        <button class="btn btn-sm btn-primary update-status" data-id="${row.id}">
-                            Update Status
-                        </button>
+
                         <button class="btn btn-sm btn-danger deletebooking" data-id="${row.id}">
                             Delete
                         </button>
+                         <button class="btn btn-sm btn-info send-email" data-id="${row.id}">
+                Send Email
+            </button>
                     `;
                 }
             }
@@ -331,48 +332,6 @@ $(document).on('change', '.update-booking-date', function () {
     });
 
 });
-//    // Delete button logic
-//     $(document).on('click', '.deletebooking', function (e) {
-//         e.preventDefault(); // Prevent default action
-//         let bookingId = $(this).data('id'); // Get the booking ID from button data-id attribute
-
-//         Swal.fire({
-//             title: 'Are you sure?',
-//             text: "You won't be able to revert this!",
-//             icon: 'warning',
-//             showCancelButton: true,
-//             confirmButtonColor: '#3085d6',
-//             cancelButtonColor: '#d33',
-//             confirmButtonText: 'Yes, delete it!'
-//         }).then((result) => {
-//             if (result.isConfirmed) {
-//                 // AJAX request for deletion
-//                 $.ajax({
-//                     url: `/admin/bookings/delete/${bookingId}`,
-//                     method: 'DELETE',
-//                     headers: {
-//                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//                     },
-//                     success: function (response) {
-//                         Swal.fire(
-//                             'Deleted!',
-//                             response.success || 'The booking was deleted successfully.',
-//                             'success'
-//                         );
-//                         table.ajax.reload(); // Reload DataTable to reflect changes
-//                     },
-//                     error: function (xhr) {
-//                         console.error(xhr); // Log error for debugging
-//                         Swal.fire(
-//                             'Error!',
-//                             'Failed to delete booking. Please try again later.',
-//                             'error'
-//                         );
-//                     }
-//                 });
-//             }
-//         });
-//     });
 
 // Handle Delete Button Click
 $(document).on('click', '.deletebooking', function (e) {
@@ -416,6 +375,45 @@ $(document).on('click', '.deletebooking', function (e) {
                 }
             });
         });
+
+// Send Email
+        $(document).on('click', '.send-email', function() {
+    const bookingId = $(this).data('id');
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Send an email notification to the user?",
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, send it!',
+        cancelButtonText: 'Cancel',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: `/admin/bookings/${bookingId}/send-email`,
+                method: 'POST',
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    Swal.fire(
+                        'Sent!',
+                        response.success || 'The email notification has been sent successfully.',
+                        'success'
+                    );
+                },
+                error: function(xhr) {
+                    Swal.fire(
+                        'Error!',
+                        'Failed to send the email notification. Please try again.',
+                        'error'
+                    );
+                }
+            });
+        }
+    });
+});
+
 </script>
 @endsection
 

@@ -57,7 +57,6 @@
 
 @section('css')
 @include('css.common_css')
-@include('css.about_css')
 @endsection
 
 @section('content')
