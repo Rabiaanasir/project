@@ -58,8 +58,8 @@ Route::get('/commercial', [commercialController::class, 'index'])->name('commerc
 Route::get('/blog', [BlogPostController::class, 'frontendBlogPosts'])->name('blog');
 // Route::get('/projects', [projectsController::class, 'index'])->name('projects');
 Route::get('/financing', [financeController::class, 'index'])->name('financing');
-Route::get('/contact', [contactController::class, 'index'])->name('contact');
-Route::post('/contact', [contactController::class, 'store'])->name('contact.store');
+Route::get('/contact', [ContactsController::class, 'index'])->name('contact');
+Route::post('/contact', [ContactsController::class, 'store'])->name('contact.store');
 Route::get('/calculator', [calculatorController::class, 'index'])->name('calculator');
 // Route::get('/packages', [packagesController::class, 'index'])->name('packages');
 Route::get('/net-metering', [nmController::class, 'index'])->name('net-metering');
@@ -125,9 +125,9 @@ Route::post('/bookings/store', [BookingController::class, 'store'])->name('admin
 Route::post('/bookings/{id}/update-date', [BookingController::class, 'updateBookingDate'])->name('admin.bookings.updateDate');
 
 Route::post('/bookings/{id}/update-status', [BookingController::class, 'updateStatus'])->name('admin.bookings.updateStatus');
-// routes/web.php
-
 Route::delete('/bookings/delete/{id}', [BookingController::class, 'destroy'])->name('bookings.destroy');
+Route::post('/bookings/{id}/send-email', [BookingController::class, 'sendEmail'])->name('admin.bookings.sendEmail');
+
 
 
 Route::get('projects', [ProjectController::class, 'index'])->name('projects.index');
@@ -158,9 +158,9 @@ Route::get('packages/edit/{id}', [PackageController::class, 'edit'])->name('pack
 Route::put('packages/update/{id}', [PackageController::class, 'update'])->name('packages.update');
 Route::delete('packages/delete/{id}', [PackageController::class, 'destroy'])->name('packages.destroy');
 
-Route::get('/contact/index', [ContactsController::class, 'index'])->name('contact.index');
+Route::get('/contact/index', [ContactsController::class, 'AdminIndex'])->name('contact.index');
 Route::get('/admin/contact', [ContactsController::class, 'index'])->name('admin.contact');
-Route::delete('/admin/contact/{id}', [ContactsController::class, 'destroy'])->name('admin.contact.destroy');
+Route::delete('/contact/{id}', [ContactsController::class, 'destroy'])->name('admin.contact.destroy');
 
 Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
 Route::get('/feedback/data', [FeedbackController::class, 'getData'])->name('feedback.data');
@@ -183,6 +183,9 @@ Route::get('/bookings/create', [BookingController::class, 'create'])->name('book
 Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
 // Routes/web.php
 Route::get('/bookings/index', [BookingController::class, 'index'])->name('bookings.index');
+
+Route::get('/send-test-email', [ContactsController::class, 'sendTestEmail']);
+Route::get('/send-emails-to-all-users', [ContactsController::class, 'sendEmailsToAllUsers']);
 
 
 Route::middleware('auth')->group(function () {
