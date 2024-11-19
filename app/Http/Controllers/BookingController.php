@@ -7,7 +7,8 @@ use App\Models\User;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-
+use App\Mail\BookingStatusMail;
+use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
 {
@@ -382,6 +383,16 @@ public function destroy($id)
     $booking->delete();  //Delete the project
 
     return response()->json(['success' => 'Booking deleted successfully.']);
+}
+
+public function sendEmail($id)
+{
+    $booking = Booking::with('user')->findOrFail($id);
+
+    // Send email
+    Mail::to($booking->user->email)->send(new BookingStatusMail($booking));
+
+    return response()->json(['success' => 'Email sent successfully.']);
 }
 
 }

@@ -10,12 +10,18 @@ use Yajra\DataTables\DataTables; // For DataTables functionality
 
 use App\Models\User;
 use App\Models\Contact; // Import the Contact model
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
+use Log;
 
 
 class ContactsController extends Controller
 {
 
-  public function index(Request $request)
+    public function index(Request $request){
+        return view('frontend.contact');
+    }
+  public function AdminIndex(Request $request)
   {
       if ($request->ajax()) {
         $contacts = Contact::select(['id', 'first_name', 'last_name', 'email', 'contact_number', 'city', 'address']);
@@ -23,9 +29,15 @@ class ContactsController extends Controller
           ->addColumn('action', function ($row) {
 //             $deleteBtn = '<button data-href="' . route('admin.contact.destroy', $row->id) . '"
 // data-id="' . $row->id . '" class="btn btn-sm btn-danger deleteContact">Delete</button>';
-$deleteBtn = '<button data-href="' . route('admin.contact.destroy', $row->id) . '"
-data-id="' . $row->id . '" class="btn btn-danger btn-sm deleteContact d-inline-block">Delete</button>';
-return $deleteBtn;
+// $deleteBtn = '<button data-href="' . route('admin.contact.destroy', $row->id) . '"
+// data-id="' . $row->id . '" class="btn btn-danger btn-sm deleteContact d-inline-block">Delete</button>';
+// return $deleteBtn;
+if ($row->id) {
+    return '<button data-href="' . route('admin.contact.destroy', $row->id) . '"
+             data-id="' . $row->id . '" class="btn btn-danger btn-sm deleteContact d-inline-block">Delete</button>';
+}
+return '';
+
             // $deleteBtn = '<button data-id="' . $row->id . '"
             // class="btn btn-sm btn-danger deleteContact">Delete</button>';
             // return $deleteBtn;
@@ -36,6 +48,43 @@ return $deleteBtn;
 
       return view('admin.contact.index');
   }
+
+//   public function store(Request $request)
+//     {
+//         // Validate form data
+//         $data=$request->all();
+//         Contact::create($data);
+
+//         return redirect()->back()->with('success', 'Your contact request has been submitted successfully!');
+//     }
+public function store(Request $request)
+    {
+        // Validate form input
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|email|unique:contacts,email', // Ensure unique email
+            'contact_number' => 'nullable|string',
+            'city' => 'nullable|string',
+            'address' => 'nullable|string',
+        ]);
+
+        // Create new contact in the database
+        $contact = Contact::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'contact_number' => $request->contact_number,
+            'city' => $request->city,
+            'address' => $request->address,
+        ]);
+
+        // Send email to the new contact
+        Mail::to($contact->email)->send(new SendMail($contact->first_name));
+
+        // Optionally, return a response or redirect with a success message
+        return redirect()->back()->with('success', 'Thank you for contacting us! We have sent you a confirmation email.');
+    }
   public function destroy($id)
   {
       $contact = Contact::findOrFail($id);
@@ -43,5 +92,48 @@ return $deleteBtn;
 
       return response()->json(['success' => 'Contact deleted successfully.']);
   }
+
+//   public function sendTestEmail()
+//     {
+//         Mail::to('test@example.com')->send(new SendMail());
+//         return 'Test email sent!';
+//     }
+// public function sendTestEmail()
+// {
+//     try {
+//         Mail::to('test@example.com')->send(new SendMail());
+//         return 'Test email sent!';
+//     } catch (\Exception $e) {
+//         return 'Error: ' . $e->getMessage();  // This will help in debugging
+//     }
+// }
+public function sendTestEmail()
+{
+    try {
+        Log::info('Attempting to send test email...');
+        Mail::to('test@example.com')->send(new SendMail());
+        return 'Test email sent!';
+    } catch (\Exception $e) {
+        Log::error('Error sending email: ' . $e->getMessage());
+        return 'Error: ' . $e->getMessage();
+    }
+}
+public function sendEmailsToAllUsers()
+    {
+        try {
+            $contacts = Contact::all(); // Retrieve all contacts
+
+            foreach ($contacts as $contact) {
+                // Send an email to each contact with their name
+                Mail::to($contact->email)->send(new SendMail($contact->first_name));
+                Log::info("Email sent to: " . $contact->email);
+            }
+
+            return 'Emails sent to all users successfully!';
+        } catch (\Exception $e) {
+            Log::error('Error sending emails: ' . $e->getMessage());
+            return 'Error: ' . $e->getMessage();
+        }
+    }
 
 }

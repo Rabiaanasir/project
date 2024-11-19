@@ -51,7 +51,8 @@
   <!-- Floating buttons -->
   <div class="floating-buttons">
     <a href="{{ route('appliances.index') }}" class="floating-button">install A System</a>
-    <a href="{{ route('contact') }}"class="floating-button">Contact</a>
+    <a href="{{ route('contact') }}"class="floating-button">Get A Quote</a>
+
 
 </div>
 
@@ -136,12 +137,12 @@
 <div class="contact">
 <div class="contact-section">
   <div class="inner-container">
-    <h1>A Solar Solution for All Markets Across The Globe</h1>
+    <h1>Bank Financing</h1>
     <p class="text">
-      Solar power has been adopted globally for multiple reasons, including grid independence, adoption of clean energy, net-metering, and lower electricity bills. For countries in the developing world with un-stable grids, such as Pakistan, India, Bangladesh, Nigeria & various countries in Africa, the main purpose of Solar Solutions is to provide continuous electricity amidst frequent power outages. Sun Source Solutions solves the problem of load-shedding along with the benefits of solar solutions that homes and businesses enjoy in the West.
+        This means that regardless of your bank affiliation for solar financing, Sun Source Solution will be at your doorstep for solar panel installation. We install solar panel systems in accordance with the policies and financing schemes of your chosen bank. The system could be installed from 5 KW for homes to 100 KW for businesses. The panels we use for installation under the Allied Bank financing scheme are durable and highly efficient and can last for more than 25 years.
     </p>
   <div class="button">
-    <a href="{{ route('contact') }}">Contact</a>
+    <a href="{{ route('financing') }}">More Details</a>
  </div>
   </div>
 </div>
@@ -166,6 +167,7 @@
           <a href="{{ route('emi') }}" class="card-button">Apply Here</a>
       </div>
 </div>
+--}}
 <!-- Net Metering -->
 <div class="row">
               <!-- <div class="row">--->
@@ -180,90 +182,6 @@
     </div>
 </div>
 <!-- Testimonials -->
-{{-- <div class="container2">
-  <h2>What Our Customers Say...</h2>
-  <div class="slide-container active">
-    <div class="slide">
-    <i class="fas fa-quote-right icon"></i>
-        <div class="user">
-        <img src="{{ asset('images/client2.jpg') }}" alt="">
-          <div class="user-info">
-          <h3>Ahmed</h3>
-            <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i>
-            </div>
-          </div>
-        </div>
-        <p class="text">I reached out to Sun Source Solutions through their social media platform just for information, but their professional behavior, guidance of their skills and experience in dealing with customers was phenomenal. It made me not look anywhere else for my solar panel installation. The system they installed is working perfectly and producing the exact amount they promised it would.</p>
-      </div>
-    </div>
-    <div class="slide-container">
-      <div class="slide">
-      <i class="fas fa-quote-right icon"></i>
-        <div class="user">
-        <img src="{{ asset('images/client2.jpg') }}" alt="">
-          <div class="user-info">
-          <h3>Sara</h3>
-            <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i>
-            </div>
-          </div>
-        </div>
-        <p class="text">Sun Source Solutions answered all my questions about solar panel installation, product brands. They provided detailed guidance on how the system works and its benefits. Their knowledgeable, and educated team did a great job with my installation. Sun Source Solutions offers prices for their products, and the system has helped me save on my monthly bills.</p>
-      </div>
-    </div>
-    <div class="slide-container">
-      <div class="slide">
-      <i class="fas fa-quote-right icon"></i>
-        <div class="user">
-        <img src="{{ asset('images/client2.jpg') }}" alt="">
-          <div class="user-info">
-          <h3>Ali</h3>
-            <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i>
-            </div>
-          </div>
-        </div>
-        <p class="text">I had a great experience working with Sun Source Solutions. They’re a very professional and honest team. They gave me really good advice right from the beginning, which made the whole process really easy. They also paid attention. I’m really happy with everything they did  and I would definitely recommend them to anyone.</p>
-      </div>
-    </div>
-    <div id="next" class="fas fa-chevron-right" onclick="next()"></div>
-      <div id="prev" class="fas fa-chevron-left" onclick="prev()"></div>
-  </div>
-</div> --}}
-
-
- {{-- <div class="container">
-     <h3 class="text-center my-4">User Feedback</h3>
-     <div class="feedback-grid">
-         @foreach ($feedbacks as $feedback)
-             <div class="card">
-                 <div class="card-header">
-                     {{ $feedback->name }}
-                     <!-- Check if the feedback is from a registered user -->
-                     <span class="badge">{{ $feedback->user ? 'Verified' : 'Guest' }}</span>
-                 </div>
-                 <div class="card-body">
-                     <p><strong>Email:</strong> {{ $feedback->user ? $feedback->user->email : 'N/A' }}</p>
-                     <p><strong>Message:</strong> {{ Str::limit($feedback->message, 100) }}</p>
-                     <a href="{{ route('feedback.show', $feedback->id) }}" class="view-details">View Details</a>
-                 </div>
-             </div>
-         @endforeach
-     </div>
- </div> --}}
  <div class="container2">
     <h2 class="text-center">What Our Customers Say...</h2>
     {{-- <h3  my-4">User Feedback</h3> --}}
