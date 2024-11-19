@@ -383,7 +383,7 @@
                     <p>{{ $package->battery}}</p>
                 </div>
                 <div class="order">
-                    <a href="{{ route('contact-us') }}">Get A Quote</a>
+                    <a href="{{ route('contact') }}">Contact</a>
                 </div>
             </div>
         </div>

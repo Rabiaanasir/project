@@ -186,4 +186,35 @@ p{
      font-size: 16px;
 
 }
+/* Ensure the contact box has its own responsive styling */
+.contact-box {
+    width: 60%; /* Default width */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+    .contact-box {
+        width: 80%;
+        padding: 15px;
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .contact-box {
+        width: 90%;
+        padding: 10px;
+    }
+}
+
+/* Small screens adjustments */
+@media (max-width: 480px) {
+    .contact-box {
+        width: 100%;
+        padding: 5px;
+    }
+}
+
     </style>

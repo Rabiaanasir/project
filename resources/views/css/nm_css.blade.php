@@ -169,44 +169,19 @@ p{
      font-size: 16px;
 
 }
-/* Responsive Design */
 @media (max-width: 768px) {
-    header {
-        height: 50vh;
-    }
-
-    .header-content h1 {
-        font-size: 2rem;
-    }
-
-    .net h1 {
-        font-size: 2rem;
-    }
-
-    .net p {
-        font-size: 1rem;
-    }
-
-    .box {
-        width: 95%;
-    }
-}
-
-@media (max-width: 480px) {
-    .header-content h1 {
-        font-size: 1.5rem;
-    }
-
-    .net h1 {
-        font-size: 1.5rem;
-    }
-
-    .net p {
-        font-size: 0.9rem;
-    }
-
-    .img {
-        max-width: 100%;
-    }
-}
+            .header-content h1 {
+                font-size: 30px;
+            }
+            .box {
+                margin: 2rem 1rem;
+            }
+            .row {
+                flex-direction: column;
+            }
+            .text {
+                margin-left: 0;
+                text-align: center;
+            }
+        }
     </style>
