@@ -53,6 +53,7 @@
     <a href="{{ route('appliances.index') }}" class="floating-button">install A System</a>
     <a href="{{ route('contact') }}"class="floating-button">Get A Quote</a>
 
+
 </div>
 
   <!-- ---------About Section ------------>
