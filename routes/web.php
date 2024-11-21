@@ -98,6 +98,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
+    Route::get('/admin-profile', [AuthController::class, 'index'])->name('admin.profile');
     Route::get('/dashboard',[AdminController::class,'index'])->name('admin.dashboard');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/show/{id}', [UserController::class, 'show'])->name('users.show');

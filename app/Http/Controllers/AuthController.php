@@ -131,4 +131,13 @@ public function showProfile()
 return redirect()->route('home')->with('success', 'Profile updated successfully!');
 
 }
+
+public function index()
+    {
+        // Get the authenticated user
+        $user = Auth::user();
+
+        // Pass the user to the view
+        return view('admin.profile', compact('user'));
+    }
 }
