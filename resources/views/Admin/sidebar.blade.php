@@ -1,7 +1,7 @@
 <section id="menu">
     <div class="logo">
-        <img src="{{ asset('images/logo.jpeg') }}" alt="">
-        <h2>Sun Source Solutions</h2>
+        <img src="{{ asset('images/removebg-preview.png') }}" alt="">
+        {{-- <h2>Sun Source Solutions</h2> --}}
     </div>
 
     <div class="items">

@@ -26,7 +26,7 @@
         <p>To order now or for more Information,<br>Please contact us at</p>
         <div class="contact-info">
             <a href="tel:+1234567890">Call us at +1 (234) 567-890</a>
-            <a href="mailto:info@example.com">Email us at info@example.com</a>
+            <a href="mailto:sunsourcesolutions@gmail.com">Email us at sunsourcesolutions@gmail.com</a>
         </div>
         </div>
      </div>
@@ -61,7 +61,7 @@
                     <label for="address">Address:</label>
                     <input type="text" id="address" name="address" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary submit">Submit</button>
             </form>
             <!-- Success Message -->
 <div id="successMessage" style="display:none; color: green;">

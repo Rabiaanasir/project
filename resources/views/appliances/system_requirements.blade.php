@@ -288,8 +288,8 @@
         <div class="system-card">
             <h2>On-Grid System</h2>
             <p><strong>Inverter Size:</strong> {{ $requiredSystemSize['onGridInverterSize'] }}</p>
-            <p><strong>Number of Panels:</strong> {{ $requiredSystemSize['onGridPanels'] }} (585W each)</p>
-            <p><strong>Estimated Annual Generation:</strong> {{ $requiredSystemSize['onGridAnnualGeneration'] }} kWh</p>
+            <p><strong>Number of Panels:</strong> {{ $requiredSystemSize['onGridPanels'] }} </p>
+            <p><strong>Estimated Annual Generation:</strong> {{ $requiredSystemSize['onGridAnnualGeneration'] }}</p>
         </div>
     </div>
 

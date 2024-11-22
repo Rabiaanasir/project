@@ -136,18 +136,18 @@
 <div class="contact">
 <div class="contact-section">
   <div class="inner-container">
-    <h1>Bank Financing</h1>
+    <h1>A Solar Solution for All Markets Across The Globe</h1>
     <p class="text">
-        This means that regardless of your bank affiliation for solar financing, Sun Source Solution will be at your doorstep for solar panel installation. We install solar panel systems in accordance with the policies and financing schemes of your chosen bank. The system could be installed from 5 KW for homes to 100 KW for businesses. The panels we use for installation under the Allied Bank financing scheme are durable and highly efficient and can last for more than 25 years.
+        Solar power has been adopted globally for multiple reasons, including grid independence, adoption of clean energy, net-metering, and lower electricity bills. For countries in the developing world with un-stable grids, such as Pakistan, India, Bangladesh, Nigeria & various countries in Africa, the main purpose of Solar Solutions is to provide continuous electricity amidst frequent power outages. Sun Source Solutions solves the problem of load-shedding along with the benefits of solar solutions that homes and businesses enjoy in the West.
     </p>
   <div class="button">
-    <a href="{{ route('financing') }}">More Details</a>
+    <a href="{{ route('contact') }}">Contact Us</a>
  </div>
   </div>
 </div>
 </div>
 <!-- Financing Section -->
-{{-- <div class="card-container">
+<div class="card-container">
   <div class="card">
       <img src=".{{ asset('images/fina.jpg') }}">
       <div class="card-content">
@@ -166,7 +166,7 @@
           <a href="{{ route('emi') }}" class="card-button">Apply Here</a>
       </div>
 </div>
---}}
+</div>
 <!-- Net Metering -->
 <div class="row">
               <!-- <div class="row">--->

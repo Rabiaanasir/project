@@ -17,7 +17,7 @@
     </div>
 </div>
 
-<script>
+{{-- <script>
     function uploadPreview(input) {
         const preview = document.getElementById('image-preview');
         preview.innerHTML = ''; // Clear previous previews
@@ -34,4 +34,4 @@
             reader.readAsDataURL(file);
         }
     }
-</script>
+</script> --}}

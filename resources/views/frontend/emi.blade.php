@@ -30,7 +30,7 @@
             <p>Use our easy EMI calculator to determine your monthly payments based on the loan amount, interest rate, and repayment period.</p>
 
             <form id="emiForm" class="emi-form">
-                <label for="loanAmount">Loan Amount (USD)</label>
+                <label for="loanAmount">Loan Amount (RS)</label>
                 <input type="number" id="loanAmount" name="loanAmount" placeholder="Enter loan amount" required>
 
                 <label for="interestRate">Interest Rate (%)</label>
@@ -44,7 +44,7 @@
 
             <div id="emiResult" class="emi-result">
                 <h3>Your Monthly EMI:</h3>
-                <p id="emiAmount">$0.00</p>
+                <p id="emiAmount">Rs0.00</p>
             </div>
         </div>
     </section>
@@ -64,7 +64,7 @@
 
             if (loanAmount && interestRate && tenure) {
                 let emiAmount = calculateEMI(loanAmount, interestRate, tenure);
-                document.getElementById('emiAmount').innerText = '$' + emiAmount;
+                document.getElementById('emiAmount').innerText = 'Rs' + emiAmount;
             } else {
                 alert('Please fill all the fields with valid values');
             }
@@ -74,5 +74,5 @@
 
 @endsection
 @section('js')
-  @include('js.install_js')
+
 @endsection

@@ -27,7 +27,7 @@
         $('#contacts').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('admin.contact') }}",
+            ajax: "{{ route('contact.index') }}",
             columns: [
                 { data: 'first_name', name: 'first_name' },
                 { data: 'last_name', name: 'last_name' },

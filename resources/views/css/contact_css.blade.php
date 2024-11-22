@@ -38,6 +38,19 @@
     text-transform: uppercase;
     margin: 0.5em 0;
 }
+.btn-primary{
+    background-color: none;
+    border-radius: 100px;    /*10em*/
+    color: white;
+    border: 2px solid white;
+}
+.header-content a{
+    background: transparent;
+}
+.header-content a:hover{
+    background: white;
+    color: black;
+}
 .contact-box{
     display: flex;
     justify-content: center;
@@ -95,5 +108,14 @@ select{
 }
 .contact-info a:hover {
     color: orangered
+}
+.submit{
+    color: white;
+    background: #333;
+}
+.submit:hover{
+    background-color: white;
+    color: #333;
+    border: 2px solid #333;
 }
     </style>

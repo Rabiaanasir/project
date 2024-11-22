@@ -1,107 +1,4 @@
-{{--
 
-@extends('Admin.master')
-
-@section('css')
-<!-- Add any custom CSS specific to this page if needed -->
-@endsection
-
-@section('content')
-<div class="container mt-5">
-    <h3 class="mb-4">Booking Management</h3>
-
-    <div>
-        <label for="booking_date">Booking Date:</label>
-        <input type="date" name="booking_date" required>
-    </div>
-
-    <!-- Bookings Table -->
-    <div class="table-responsive">
-        <table id="bookings-table" class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Username</th>
-                    <th>Address</th>
-                    <th>Phone Number</th>
-                    <th>User Email</th>
-                    <th>Backup Power</th>
-                    <th>Backup Hour</th>
-                    <th>Consumption Watts</th>
-                    <th>Status</th>
-                    <th>Booking Date</th>
-                    <th>Booking Code</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-        </table>
-    </div>
-</div>
-@endsection
-
-@section('script')
-<script>
-    $(document).ready(function() {
-        // Initialize DataTable for bookings
-        $('#bookings-table').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: '{{ route('admin.bookings.data') }}',
-            columns: [
-                { data: 'id', name: 'id' },
-                { data: 'username', name: 'username' },
-                { data: 'address', name: 'address' },
-                { data: 'phone_number', name: 'phone_number' },
-                { data: 'user_email', name: 'user.email' },
-                { data: 'backup_power', name: 'backup_power', render: function(data) { return data ? 'Yes' : 'No'; } },
-                { data: 'backup_hour', name: 'backup_hour' },
-                { data: 'consumption_watts', name: 'consumption_watts' },
-                { data: 'status', name: 'status' },
-                { data: 'booking_date', name: 'booking_date' },
-                { data: 'booking_code', name: 'booking_code' },
-                {
-                    data: 'actions',
-                    name: 'actions',
-                    orderable: false,
-                    searchable: false,
-                    render: function(data, type, row) {
-                        return `
-                            <button class="btn btn-primary btn-sm modal_edit" data-href="/admin/bookings/${row.id}/edit" data-container_edit=".edit_modal">
-                                Edit
-                            </button>
-                            <button class="btn btn-danger btn-sm delete-booking" data-id="${row.id}">
-                                Delete
-                            </button>
-                        `;
-                    }
-                }
-            ]
-        });
-
-        // Delete button handling
-        $(document).on('click', '.delete-booking', function() {
-            const bookingId = $(this).data('id');
-            if (confirm('Are you sure you want to delete this booking?')) {
-                $.ajax({
-                    url: `/admin/bookings/${bookingId}`,
-                    type: 'DELETE',
-                    data: {
-                        _token: $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: function(response) {
-                        $('#bookings-table').DataTable().ajax.reload();
-                        toastr.success('Booking deleted successfully');
-                    },
-                    error: function() {
-                        toastr.error('Failed to delete booking');
-                    }
-                });
-            }
-        });
-    });
-</script>
-@endsection
- --}}
 
  @extends('Admin.master')
 
@@ -141,76 +38,6 @@
 @endsection
 @section('script')
 <script>
-// $(document).ready(function () {
-//     // Initialize DataTable for bookings
-//     var table = $('#bookings-table').DataTable({
-//         processing: true,
-//         serverSide: true,
-//         ajax: '{{ route('admin.bookings.data') }}',
-//         columns: [
-//             // Your other columns...
-//             {
-//                 data: 'actions',
-//                 name: 'actions',
-//                 orderable: false,
-//                 searchable: false,
-//                 render: function (data, type, row) {
-//                     return `
-//                         <button class="btn btn-sm btn-primary update-status" data-id="${row.id}">
-//                             Update Status
-//                         </button>
-//                         <button class="btn btn-danger btn-sm deletebooking" data-id="${row.id}">
-//                             Delete
-//                         </button>
-//                     `;
-//                 }
-//             }
-//         ]
-//     });
-
-//     // Delete button logic
-//     $(document).on('click', '.deletebooking', function (e) {
-//         e.preventDefault(); // Prevent default action
-//         let bookingId = $(this).data('id'); // Get the booking ID from button data-id attribute
-
-//         Swal.fire({
-//             title: 'Are you sure?',
-//             text: "You won't be able to revert this!",
-//             icon: 'warning',
-//             showCancelButton: true,
-//             confirmButtonColor: '#3085d6',
-//             cancelButtonColor: '#d33',
-//             confirmButtonText: 'Yes, delete it!'
-//         }).then((result) => {
-//             if (result.isConfirmed) {
-//                 // AJAX request for deletion
-//                 $.ajax({
-//                     url: `/admin/bookings/delete/${bookingId}`,
-//                     method: 'DELETE',
-//                     headers: {
-//                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//                     },
-//                     success: function (response) {
-//                         Swal.fire(
-//                             'Deleted!',
-//                             response.success || 'The booking was deleted successfully.',
-//                             'success'
-//                         );
-//                         table.ajax.reload(); // Reload DataTable to reflect changes
-//                     },
-//                     error: function (xhr) {
-//                         console.error(xhr); // Log error for debugging
-//                         Swal.fire(
-//                             'Error!',
-//                             'Failed to delete booking. Please try again later.',
-//                             'error'
-//                         );
-//                     }
-//                 });
-//             }
-//         });
-//     });
-// });
 $(document).ready(function() {
     var table = $('#bookings-table').DataTable({
         processing: true,
@@ -241,9 +68,9 @@ $(document).ready(function() {
                 name: 'actions',
                 orderable: false,
                 searchable: false,
-                render: function(data, type, row) {
+                render: function(data, type, row)
+                 {
                     return `
-
                         <button class="btn btn-sm btn-danger deletebooking" data-id="${row.id}">
                             Delete
                         </button>

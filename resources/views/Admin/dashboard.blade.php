@@ -1,10 +1,6 @@
 
 @extends('Admin.master')
 
-@section('css')
-    <!-- Add any CSS you need for styling -->
-@endsection
-
 @section('content')
     <h3 class="i-name">Dashboard</h3>
 
@@ -42,8 +38,3 @@
         </div>
     </div>
 @endsection
-
-@section('script')
-    <!-- Add any JavaScript needed -->
-@endsection
-

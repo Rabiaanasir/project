@@ -64,12 +64,12 @@
     #menu .logo{
         display: flex;
         align-items: center;
-        color: #fff;
-        padding: 30px 0 0 30px;
+        /* background-color: #fff; */
+        /* padding: 30px 0 0 30px; */
     }
     #menu .logo img{
-        width: 40px;
-        margin-right: 15px;
+        width: 290px;
+        /* margin-right: 15px; */
     }
     #menu .items{
         margin-top: 40px;

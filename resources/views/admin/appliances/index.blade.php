@@ -51,8 +51,8 @@
            // Handle Delete Button Click
            $(document).on('click', '.deleterequest', function (e) {
             e.preventDefault(); // Prevent default anchor behavior
-            let projectId = $(this).data('id'); // Get the listing ID from the button
-            let deleteUrl = `/admin/appliances/delete/${projectId}`;
+            let applianceId = $(this).data('id'); // Get the listing ID from the button
+            let deleteUrl = `/admin/appliances/delete/${applianceId}`;
             // Confirm with SweetAlert
             Swal.fire({
                 title: 'Are you sure?',
