@@ -130,9 +130,9 @@ $(document).ready(function () {
                 window.location.reload(); // Reload the page
                 toastr.success('Brand updated successfully!'); // Display a success message
 
-                // Update the brand name in the table
-                let row = $('#brandsTable').find(`button[data-id="${response.id}"]`).closest('tr');
-                row.find('td:eq(1)').text(response.name); // Update the brand name in the table
+                //Update the brand name in the table
+                //let row = $('#brandsTable').find(`button[data-id="${response.id}"]`).closest('tr');
+                //row.find('td:eq(1)').text(response.name); // Update the brand name in the table
             },
             error: function (xhr) {
                 toastr.error('Failed to update brand.'); // Display error message

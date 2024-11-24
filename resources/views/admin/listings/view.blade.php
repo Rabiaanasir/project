@@ -13,13 +13,13 @@
             <p><strong>Watts:</strong> {{ $listing->watts }}W</p>
             <p><strong>Description:</strong> {{ $listing->description }}</p>
 
-            @if($listing->image)
-                <img src="{{ asset('storage/images/' . $listing->image) }}"
-                     alt="{{ $listing->title }}" width="200" height="150" />
+            <img src="{{ asset('storage/images/' . $listing->image) }}"
+                 alt="{{ $listing->title }}" width="200" height="150" />
+            {{-- @if($listing->image)
             @else
                 <img src="{{ asset('images/default.png') }}"
                      alt="Default Image" width="200" height="150" />
-            @endif
+            @endif --}}
         </div>
     </div>
 

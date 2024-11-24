@@ -344,7 +344,7 @@
     background-color:#ddd;
 }
 .contact-section{
-    background: url('/images/fina.jpg') no-repeat left;
+    background: url('/images/contact-sec.jpg') no-repeat left;
     background-size: 55%;
     /* background-color: #fdfdfd; */
     overflow: hidden;

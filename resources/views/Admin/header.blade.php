@@ -11,7 +11,7 @@
         </div>
         <div class="profile">
     <i class="far fa-bell"></i>
-    <img src="{{ asset('images/client.png') }}" alt="">
+    <a href="{{ route('admin.profile') }}"><img src="{{ asset('images/client.png') }}" alt="My Profile"></a>
 
     <!-- Logout Button -->
     <form method="POST" action="{{ route('logout') }}" style="display:inline;">

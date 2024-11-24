@@ -15,21 +15,3 @@
     </div>
 </div>
 </div>
-<script>
-    function uploadPreview(input) {
-        const preview = document.getElementById('image-preview');
-        preview.innerHTML = '';
-
-        for (const file of input.files) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                img.style.maxWidth = '100px';
-                preview.appendChild(img);
-            };
-            reader.readAsDataURL(file);
-        }
-
-    }
-</script>

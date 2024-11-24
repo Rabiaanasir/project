@@ -8,7 +8,7 @@
         <nav class="navbar">
             <div class="container">
               <a href="{{ route('home') }}">
-            <img src="{{ asset('images/logo.jpeg') }}">
+                <img src="{{ asset('images/removebg-preview.png') }}" alt="logo">
     </a>
                 <ul class="nav-items">
                     <!-- <li class="nav-item"><a href="{{ route('home') }}">Home</a></li> -->

@@ -140,65 +140,6 @@ private function calculateSystemSize($totalWattage)
     ];
 }
 
-// private function getInverterSize($type, $totalKW)
-// {
-//     $inverterSize = 'Unknown size';
-//     $inverterSizeKw = 0;
-
-//     if ($type === 'hybrid') {
-//         if ($totalKW <= 1.2) {
-//             $inverterSizeKw = 1.2;
-//         } elseif ($totalKW <= 2.5) {
-//             $inverterSizeKw = 2.5;
-//         } elseif ($totalKW <= 3.2) {
-//             $inverterSizeKw = 3.2;
-//         } elseif ($totalKW <= 3.6) {
-//             $inverterSizeKw = 3.6;
-//         } elseif ($totalKW <= 5.6) {
-//             $inverterSizeKw = 5.6;
-//         } elseif ($totalKW <= 6.6) {
-//             $inverterSizeKw = 6.6;
-//         } elseif ($totalKW <= 8) {
-//             $inverterSizeKw = 8;
-//         } elseif ($totalKW <= 12) {
-//             $inverterSizeKw = 12;
-//         }
-//     } elseif ($type === 'on-grid') {
-//         if ($totalKW <= 5) {
-//             $inverterSizeKw = 5;
-//         } elseif ($totalKW <= 10) {
-//             $inverterSizeKw = 10;
-//         } elseif ($totalKW <= 15) {
-//             $inverterSizeKw = 15;
-//         } elseif ($totalKW <= 20) {
-//             $inverterSizeKw = 20;
-//         } elseif ($totalKW <= 25) {
-//             $inverterSizeKw = 25;
-//         } elseif ($totalKW <= 30) {
-//             $inverterSizeKw = 30;
-//         } elseif ($totalKW <= 35) {
-//             $inverterSizeKw = 35;
-//         } elseif ($totalKW <= 40) {
-//             $inverterSizeKw = 40;
-//         } elseif ($totalKW <= 45) {
-//             $inverterSizeKw = 45;
-//         } elseif ($totalKW <= 50) {
-//             $inverterSizeKw = 50;
-//         }
-//     }
-
-//     // Calculate number of panels based on inverter size and 585W panel capacity
-//     $numberOfPanels = ceil(($inverterSizeKw * 1000) / 585);
-//     // Calculate annual energy generation based on 1 kW generating 1440 kWh annually
-//     $annualGeneration = $inverterSizeKw * 1440;
-
-//     return [
-//         'size' => "{$inverterSizeKw} kW",
-//         'numberOfPanels' => $numberOfPanels,
-//         'annualGeneration' => $annualGeneration,
-//     ];
-// }
-
 private function getInverterSize($type, $totalKW)
 {
     $inverterSizeKw = 0;
@@ -258,48 +199,6 @@ private function getInverterSize($type, $totalKW)
         'numberOfPanels' => $numberOfPanels,
         'annualGeneration' => $annualGeneration,
     ];
-}
-
-public function calculateSystemRequirements(Request $request)
-{
-    // Validate appliance wattages
-    $request->validate([
-        'appliance' => 'array',
-        'appliance.*' => 'string',
-        'fan_watt' => 'nullable|integer|min:1',
-        'television_watt' => 'nullable|integer|min:1',
-        'refrigerator_watt' => 'nullable|integer|min:1',
-        'air_conditioner_watt' => 'nullable|integer|min:1',
-        'washing_machine_watt' => 'nullable|integer|min:1',
-        'custom_wattage' => 'array',
-        'custom_wattage.*' => 'integer|min:1',
-    ]);
-
-    // Sum up the wattages for selected appliances
-    $totalWattage = 0;
-
-    // Add wattages for standard appliances if they're selected
-    foreach (['fan', 'television', 'refrigerator', 'air_conditioner', 'washing_machine'] as $appliance) {
-        $wattField = "{$appliance}_watt";
-        $totalWattage += $request->$wattField ? intval($request->$wattField) : 0;
-    }
-
-    // Add custom appliances' wattage
-    $customWattages = $request->input('custom_wattage', []);
-    foreach ($customWattages as $customWatt) {
-        $totalWattage += intval($customWatt);
-    }
-
-    // Calculate system requirements based on total wattage
-    $requiredSystemSize = $this->calculateSystemSize($totalWattage);
-    $recommendedSolarCapacity = $this->getRecommendedSolarCapacity($totalWattage);
-
-    // Pass the calculation result to the view
-    return view('appliances.system_requirements', [
-        'totalWattage' => $totalWattage,
-        'requiredSystemSize' => $requiredSystemSize,
-        'recommendedSolarCapacity' => $recommendedSolarCapacity,
-    ]);
 }
 
 private function getRecommendedSolarCapacity($totalWattage)
