@@ -56,7 +56,7 @@
                        name="custom_wattage[]"
                        placeholder="Enter Wattage (W)"
                        min="1"
-                       disabled>
+                       {{ auth()->check() ? '' : 'disabled' }}>
                 <button type="button" class="btn btn-danger btn-remove"
                         onclick="removeCustomRow(this)"
                         {{ auth()->check() ? '' : 'disabled' }}>Remove</button>

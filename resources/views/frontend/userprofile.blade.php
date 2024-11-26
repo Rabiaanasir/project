@@ -103,9 +103,9 @@
         <p><strong>Username:</strong> {{ $user->username }}</p>
         <p><strong>Email:</strong> {{ $user->email }}</p>
 
-        <h3>Your Latest Booking</h3>
 
         @if($latestBooking)
+        <h3>Your Latest Booking</h3>
             <div class="booking-details">
                 <div class="booking-item">
                     <strong>Booking Date:</strong>
@@ -121,10 +121,12 @@
                 </div>
             </div>
         @else
-            <p>You have no bookings at the moment.</p>
+            {{-- <p>You have no bookings at the moment.</p> --}}
         @endif
 
         <button id="edit-profile" class="btn btn-primary">Edit Profile</button>
+        <a href="{{ route('home') }}" id="" class="btn btn-secondary">Cancel</a>
+
     </div>
 
     <!-- Edit Profile Form (hidden initially) -->

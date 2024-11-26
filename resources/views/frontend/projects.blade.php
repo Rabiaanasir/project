@@ -3,6 +3,14 @@
 @section('css')
 @include('css.common_css')
 @include('css.projects_css')
+<style>
+    .project-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+</style>
 @endsection
 
 @section('content')

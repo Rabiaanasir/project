@@ -17,8 +17,9 @@ class ListingController extends Controller
             return Datatables::of($data)
                 ->addColumn('image', function ($row) {
                     // Handle image rendering with default fallback
-                    $imageUrl = $row->image ? asset('storage/images/' . $row->image) : asset('images/default.png');
-                    return '<img src="' . $imageUrl . '" class="listing-image" width="70" height="50" alt="Listing Image" />';
+                    return '<img src="' . asset('storage/images/' . $row->image) . '" width="70" height="50" />';
+                    // $imageUrl = $row->image ? asset('storage/images/' . $row->image) : '';
+                    // return '<img src="' . $imageUrl . '" class="listing-image" width="70" height="50" alt="Listing Image" />';
                 })
                 ->addColumn('action', function ($row) {
                     // View button

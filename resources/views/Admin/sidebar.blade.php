@@ -18,6 +18,6 @@
         <a href="{{ route('contact.index') }}"><li><i class="fas fa-th-large"></i>Contact</li></a>
         <a href="{{ route('packages.index') }}"><li><i class="fas fa-hamburger"></i>Packages</li></a>
         <a href="{{ route('feedback.index') }}"><li><i class="fas fa-chart-line"></i>Feedback</li></a>
-        <li><i class="fas fa-chart-line"></i><a href="#">Blank</a></li>
+        {{-- <li><i class="fas fa-chart-line"></i><a href="#">Blank</a></li> --}}
     </div>
 </section>

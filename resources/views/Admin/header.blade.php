@@ -4,13 +4,13 @@
             <div>
                 <i id="menu-btn" class="fas fa-bars"></i>
             </div>
-            <div class="search">
+            {{-- <div class="search">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="text" placeholder="Search">
-            </div>
+            </div> --}}
         </div>
         <div class="profile">
-    <i class="far fa-bell"></i>
+    {{-- <i class="far fa-bell"></i> --}}
     <a href="{{ route('admin.profile') }}"><img src="{{ asset('images/client.png') }}" alt="My Profile"></a>
 
     <!-- Logout Button -->
