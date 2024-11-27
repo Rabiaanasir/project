@@ -12,15 +12,15 @@ use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
 {
-    public function index()
-{
-    // Retrieve only the latest booking for the authenticated user
-    $latestBooking = Booking::where('user_id', auth()->id())
-                    ->latest('created_at') // Order by latest updated record
-                    ->first(); // Retrieve only the latest record
+//     public function index()
+// {
+//     // Retrieve only the latest booking for the authenticated user
+//     $latestBooking = Booking::where('user_id', auth()->id())
+//                     ->latest('created_at') // Order by latest updated record
+//                     ->first(); // Retrieve only the latest record
 
-    return view('frontend.bookingsOverview', compact('latestBooking'));
-}
+//     return view('frontend.bookingsOverview', compact('latestBooking'));
+// }
 
 
     // Method to show the booking form
@@ -45,7 +45,13 @@ public function getData(Request $request)
                 return $booking->user ? $booking->user->email : 'N/A';
             })
             ->editColumn('status', function ($booking) {
-                return ucfirst($booking->status);
+                $selectedStatus = ucfirst($booking->status); // Capitalize the first letter
+                return '
+                    <select class="form-control status-dropdown" data-id="' . $booking->id . '">
+                        <option value="pending" ' . ($booking->status === 'pending' ? 'selected' : '') . '>Pending</option>
+                        <option value="accepted" ' . ($booking->status === 'accepted' ? 'selected' : '') . '>Accepted</option>
+                        <option value="declined" ' . ($booking->status === 'declined' ? 'selected' : '') . '>Declined</option>
+                    </select>';
             })
             ->editColumn('booking_date', function ($booking) {
                 // Display the booking date with an editable field for admins
@@ -54,7 +60,7 @@ public function getData(Request $request)
                         '" data-id="' . $booking->id . '">';
             })
 
-            ->rawColumns(['booking_date'])
+            ->rawColumns(['status','booking_date'])
             ->make(true);
     }
 

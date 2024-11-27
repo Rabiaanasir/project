@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
     <title>Registeration</title>
     <style>
          @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Poppins:ital,wght@0,200;1,300&display=swap');
@@ -149,11 +152,25 @@
             display: block;
             text-align: center;
         }
-
+        .cancel-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: #000;
+        }
+        .cancel-btn i {
+            font-size: 24px;
+            color: #333;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+
         <div class="orange">
             <div class="box login">
                 <h2>Already Have An Account?</h2>
@@ -166,8 +183,11 @@
         </div>
 
            <div class="form-box">
-            <!--Login Form -->
-            <div class="form loginform">
+               <!--Login Form -->
+               <div class="form loginform">
+                <button class="cancel-btn" onclick="goHome()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
                 <form action="{{ route('login.submit') }}" method="POST">
                     @csrf
                     <h3>Log In</h3>
@@ -179,11 +199,16 @@
                 <input type="checkbox" id="showPassword"> Show Password
             </label>
             <input type="submit" value="Log In">
+            <!-- Display server-side error message -->
+            <div class="error-message" id="loginError"></div>
                 </form>
             </div>
 
             <!-- Registration Form -->
             <div class="form registerform">
+                <button class="cancel-btn" onclick="goHome()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
                 <form id="registerForm" action="{{ route('registeration') }}" method="POST" onsubmit="return validateRegisterForm()">
                     @csrf
                     <h3>Register</h3>
@@ -204,6 +229,12 @@
     </div>
 
     <script>
+
+ // If server-side error exists, display it in the error div
+ const loginError = `{{ $errors->first('login') ?? '' }}`;
+    if (loginError) {
+        document.getElementById('loginError').textContent = loginError;
+    }
         const loginbtn = document.querySelector('.loginbtn');
         const registerbtn = document.querySelector('.registerbtn');
         const formbox = document.querySelector('.form-box');
@@ -218,6 +249,11 @@
             formbox.classList.remove('active');
             body.classList.remove('active');
         };
+
+        // Navigation to home page
+        function goHome() {
+            window.location.href = '/'; // Update with your home page URL
+        }
         // login password visibility
         document.getElementById('showPassword').addEventListener('change', function() {
     const passwordField = document.querySelector('[name="password"]');
@@ -236,9 +272,6 @@ document.getElementById('showRegisterPassword').addEventListener('change', funct
         confirmPasswordField.type = 'password';
     }
 });
-
-
-
         // Validation function for registration form
         function validateRegisterForm() {
             // Clear any previous error messages

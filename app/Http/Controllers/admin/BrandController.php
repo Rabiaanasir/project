@@ -38,8 +38,6 @@ class BrandController extends Controller
 
     public function edit($id)
 {
-    // $brand = Brand::findOrFail($id); // Fetch the brand by ID
-    // return view('admin.brands.edit-modal', compact('$brand')); // Pass $brand to the modal view
     $brand = Brand::find($id);
     return response()->json($brand);
 }

@@ -52,15 +52,7 @@ $(document).ready(function() {
             { data: 'backup_power', name: 'backup_power', render: function(data) { return data ? 'Yes' : 'No'; } },
             { data: 'backup_hour', name: 'backup_hour' },
             { data: 'consumption_watts', name: 'consumption_watts' },
-            { data: 'status', name: 'status', render: function(data, type, row) {
-                return `
-                    <select class="form-control status-dropdown" data-id="${row.id}" data-original-status="${data}">
-                        <option value="pending" ${data === 'pending' ? 'selected' : ''}>Pending</option>
-                        <option value="accepted" ${data === 'accepted' ? 'selected' : ''}>Accepted</option>
-                        <option value="declined" ${data === 'declined' ? 'selected' : ''}>Declined</option>
-                    </select>
-                `;
-            }},
+            { data: 'status', name: 'status'},
             { data: 'booking_date', name: 'booking_date' },
             { data: 'booking_code', name: 'booking_code' },
             {
