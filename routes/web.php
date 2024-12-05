@@ -162,6 +162,7 @@ Route::delete('packages/delete/{id}', [PackageController::class, 'destroy'])->na
 Route::get('/contact/index', [ContactsController::class, 'AdminIndex'])->name('contact.index');
 Route::get('/admin/contact', [ContactsController::class, 'index'])->name('admin.contact');
 Route::delete('/contact/{id}', [ContactsController::class, 'destroy'])->name('admin.contact.destroy');
+Route::get('/admin/contact/{id}', [ContactsController::class, 'show'])->name('admin.contact.show');
 
 Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
 Route::get('/feedback/data', [FeedbackController::class, 'getData'])->name('feedback.data');

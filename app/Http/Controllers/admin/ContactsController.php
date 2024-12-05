@@ -30,14 +30,19 @@ class ContactsController extends Controller
 //             $deleteBtn = '<button data-href="' . route('admin.contact.destroy', $row->id) . '"
 // data-id="' . $row->id . '" class="btn btn-sm btn-danger deleteContact">Delete</button>';
 // $deleteBtn = '<button data-href="' . route('admin.contact.destroy', $row->id) . '"
-// data-id="' . $row->id . '" class="btn btn-danger btn-sm deleteContact d-inline-block">Delete</button>';
-// return $deleteBtn;
-if ($row->id) {
-    return '<button data-href="' . route('admin.contact.destroy', $row->id) . '"
-             data-id="' . $row->id . '" class="btn btn-danger btn-sm deleteContact d-inline-block">Delete</button>';
-}
-return '';
+// // data-id="' . $row->id . '" class="btn btn-danger btn-sm deleteContact d-inline-block">Delete</button>';
+// // return $deleteBtn;
+// if ($row->id) {
+//     return '<button data-href="' . route('admin.contact.destroy', $row->id) . '"
+//              data-id="' . $row->id . '" class="btn btn-danger btn-sm deleteContact d-inline-block">Delete</button>';
+// }
+// return '';
+$viewButton = '<a href="' . route('admin.contact.show', $row->id) . '" class="btn btn-sm btn-success">View</a>';
 
+    // $viewButton = '<button class="btn btn-primary btn-sm viewContact" data-id="' . $row->id . '">View</button>';
+    $deleteButton = '<button data-href="' . route('admin.contact.destroy', $row->id) . '" data-id="' . $row->id . '" class="btn btn-danger btn-sm deleteContact d-inline-block">Delete</button>';
+    // return $viewButton . ' ' . $deleteButton;
+    return '<div class="d-flex justify-content-start gap-2">' . $viewButton . $deleteButton . '</div>';
             // $deleteBtn = '<button data-id="' . $row->id . '"
             // class="btn btn-sm btn-danger deleteContact">Delete</button>';
             // return $deleteBtn;
@@ -49,14 +54,7 @@ return '';
       return view('admin.contact.index');
   }
 
-//   public function store(Request $request)
-//     {
-//         // Validate form data
-//         $data=$request->all();
-//         Contact::create($data);
 
-//         return redirect()->back()->with('success', 'Your contact request has been submitted successfully!');
-//     }
 public function store(Request $request)
     {
         // Validate form input
@@ -85,6 +83,15 @@ public function store(Request $request)
         // Optionally, return a response or redirect with a success message
         return redirect()->back()->with('success', 'Thank you for contacting us! We have sent you a confirmation email.');
     }
+    public function show($id)
+{
+    // Retrieve the contact by ID or fail if not found
+    $contact = Contact::findOrFail($id);
+
+    // Return the view to display the contact details
+    return view('admin.contact.show', compact('contact'));
+}
+
   public function destroy($id)
   {
       $contact = Contact::findOrFail($id);
@@ -93,20 +100,6 @@ public function store(Request $request)
       return response()->json(['success' => 'Contact deleted successfully.']);
   }
 
-//   public function sendTestEmail()
-//     {
-//         Mail::to('test@example.com')->send(new SendMail());
-//         return 'Test email sent!';
-//     }
-// public function sendTestEmail()
-// {
-//     try {
-//         Mail::to('test@example.com')->send(new SendMail());
-//         return 'Test email sent!';
-//     } catch (\Exception $e) {
-//         return 'Error: ' . $e->getMessage();  // This will help in debugging
-//     }
-// }
 public function sendTestEmail()
 {
     try {
