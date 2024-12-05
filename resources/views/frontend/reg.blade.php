@@ -26,7 +26,7 @@
         }
         body.active{
             background: #141a46;
-            /* background: #03a9f4; */
+
         }
         .container{
             position: relative;
@@ -165,6 +165,26 @@
         .cancel-btn i {
             font-size: 24px;
             color: #333;
+        }
+
+         @media (max-width: 790px) {
+            .container {
+                margin: 0 10px;
+            }
+            .orange {
+                padding: 10px;
+            }
+        }
+        @media (max-width: 480px) {
+            .orange h2 {
+                font-size: 1em;
+            }
+            .orange button {
+                font-size: 14px;
+            }
+            .form-box form input {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
