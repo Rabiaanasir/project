@@ -59,7 +59,6 @@
             ]
         });
 
-        // Handle Add Project Form Submission
         $(document).on('submit', '#projectsForm', function (e) {
             e.preventDefault();
             var formData = new FormData(this);
@@ -70,13 +69,13 @@
                 contentType: false,
                 processData: false,
                 headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF token
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function (response) {
-                    $('#projectsForm').trigger("reset"); // Reset form
-                    toastr.success('Project added successfully!'); // Success toast
-                    $('.view_modal').modal('hide'); // Close modal
-                    table.ajax.reload(); // Reload DataTable
+                    $('#projectsForm').trigger("reset");
+                    toastr.success('Project added successfully!');
+                    $('.view_modal').modal('hide');
+                    table.ajax.reload();
                 },
                 error: function (error) {
                     console.error('Error:', error);
@@ -85,28 +84,26 @@
             });
         });
 
-        // Handle Edit Form Submission
         $(document).on('submit', '#projectsFormEdit', function (e) {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
 
-    var formData = new FormData(this); // Handle file uploads
+    var formData = new FormData(this);
 
     $.ajax({
-        url: $(this).attr('action'), // Form action URL
-        method: $(this).attr('method'), // Form method (PUT)
+        url: $(this).attr('action'),
+        method: $(this).attr('method'),
         data: formData,
         contentType: false,
         processData: false,
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF token
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (response) {
             console.log(response)
-            // toastr.success(response.message);
             toastr.success('Project updated successfully!');
-            $('.edit_modal').modal('hide'); // Close the modal
+            $('.edit_modal').modal('hide');
 
-            $('#projects').DataTable().ajax.reload(); // Reload DataTable
+            $('#projects').DataTable().ajax.reload();
         },
         error: function (xhr, status, error) {
             console.error('Error:', error);
@@ -115,12 +112,10 @@
     });
 });
 
-        // Handle Delete Button Click
         $(document).on('click', '.deleteprojects', function (e) {
-            e.preventDefault(); // Prevent default anchor behavior
-            let projectId = $(this).data('id'); // Get the listing ID from the button
+            e.preventDefault();
+            let projectId = $(this).data('id');
             let deleteUrl = `/admin/projects/delete/${projectId}`;
-            // Confirm with SweetAlert
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -131,7 +126,6 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Proceed with AJAX request if confirmed
                     $.ajax({
                         url: deleteUrl,
                         method: 'DELETE',
@@ -144,7 +138,7 @@
                                 response.success || 'The project was deleted successfully.',
                                 'success'
                             );
-                            table.ajax.reload(); // Reload DataTable
+                            table.ajax.reload();
                         },
                         error: function (xhr) {
                             let errorMessage = 'An error occurred. Please try again.';

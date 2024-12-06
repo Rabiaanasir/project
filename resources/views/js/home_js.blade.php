@@ -1,4 +1,3 @@
-{{-- <script src="{{ asset('js/script.js') }}"></script> --}}
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js">
   </script>
 
@@ -17,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const updateCount = () => {
             const target = +counter.getAttribute('data-target');
             const count = +counter.innerText;
-            const speed = 200; // The lower the slower
+            const speed = 200;
 
             const inc = target / speed;
 

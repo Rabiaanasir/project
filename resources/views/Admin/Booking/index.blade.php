@@ -6,7 +6,6 @@
 
  <div class="board">
 
-    <!-- Bookings Table -->
     <div class="table-responsive">
         <table id="bookings-table" class="table table-bordered table-striped">
             <thead>
@@ -69,12 +68,10 @@ $(document).ready(function() {
         ]
     });
 
-    // Handle the status change in the dropdown
     $(document).on('change', '.status-dropdown', function() {
         const bookingId = $(this).data('id');
         const newStatus = $(this).val();
 
-        // Show confirmation using SweetAlert
         Swal.fire({
             title: 'Are you sure?',
             text: `Do you want to change the status to "${newStatus.charAt(0).toUpperCase() + newStatus.slice(1)}"?`,
@@ -84,7 +81,6 @@ $(document).ready(function() {
             cancelButtonText: 'No, keep it',
         }).then((result) => {
             if (result.isConfirmed) {
-                // Send the AJAX request to update the status
                 $.ajax({
                     url: `/admin/bookings/${bookingId}/update-status`,
                     method: 'POST',
@@ -99,12 +95,11 @@ $(document).ready(function() {
                             'success'
                         );
 
-                        // Manually update the status in the DataTable row
                         var row = table.row($(`.status-dropdown[data-id="${bookingId}"]`).closest('tr'));
-                        row.data().status = newStatus; // Update status in the row data
-                        row.child().find('.status-dropdown').val(newStatus); // Update dropdown value in the row
+                        row.data().status = newStatus;
+                        row.child().find('.status-dropdown').val(newStatus);
 
-                        table.draw(); // Redraw the table to apply the changes
+                        table.draw();
                     },
                     error: function() {
                         Swal.fire(
@@ -115,7 +110,6 @@ $(document).ready(function() {
                     }
                 });
             } else {
-                // Revert the dropdown to the original value if the user cancels
                 const originalStatus = $(this).data('original-status');
                 $(this).val(originalStatus);
             }
@@ -136,7 +130,7 @@ $(document).on('change', '.update-booking-date', function () {
         success: function (response) {
             if (response.success) {
                 alert('Booking date updated successfully.');
-                $('#bookingsTable').DataTable().ajax.reload(null, false); // Reload DataTable without resetting pagination
+                $('#bookingsTable').DataTable().ajax.reload(null, false);
             }
         },
         error: function (xhr) {
@@ -146,12 +140,10 @@ $(document).on('change', '.update-booking-date', function () {
 
 });
 
-// Handle Delete Button Click
 $(document).on('click', '.deletebooking', function (e) {
-            e.preventDefault(); // Prevent default anchor behavior
-            let bookingId = $(this).data('id'); // Get the listing ID from the button
+            e.preventDefault();
+            let bookingId = $(this).data('id');
             let deleteUrl = `/admin/bookings/delete/${bookingId}`;
-            // Confirm with SweetAlert
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -162,7 +154,6 @@ $(document).on('click', '.deletebooking', function (e) {
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Proceed with AJAX request if confirmed
                     $.ajax({
                         url: deleteUrl,
                         method: 'DELETE',
@@ -175,7 +166,7 @@ $(document).on('click', '.deletebooking', function (e) {
                                 response.success || 'The booking was deleted successfully.',
                                 'success'
                             );
-                            $('#bookings-table').DataTable().ajax.reload(); // Reload DataTable
+                            $('#bookings-table').DataTable().ajax.reload();
                         },
                         error: function (xhr) {
                             let errorMessage = 'An error occurred. Please try again.';

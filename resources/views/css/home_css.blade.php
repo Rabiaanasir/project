@@ -72,36 +72,33 @@
     }
 }
 
-/*---- Basic styling for the buttons ---*/
-
 .floating-buttons {
     position: fixed;
-    top: 70%; /* Center vertically */
-    right: 10px; /* Distance from the right edge */
-    transform: translateY(-50%); /* Center alignment adjustment */
+    top: 70%;
+    right: 10px;
+    transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    z-index: 1000; /* Ensure it stays above other content */
+    z-index: 1000;
 }
 
 .floating-button {
-    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); /*Gradient background */
-    /* background: linear-gradient(135deg, rgb(223, 205, 161) 0%, #141a46 100%); Gradient background */
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
     color: white;
-    padding: 15px 30px; /* Button padding */
-    margin: 5px 0; /* Space between buttons */
-    text-align: center; /* Center text */
-    text-decoration: none; /* Remove underline */
-    border-radius: 20px; /* Rounded corners */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Button shadow */
-    transition: all 0.3s ease; /* Smooth transition */
-    font-family: 'Arial', sans-serif; /* Button font */
-    font-size: 16px; /* Font size */
+    padding: 15px 30px;
+    margin: 5px 0;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
 }
 .floating-button:hover {
-    background: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%); /* Gradient background on hover */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Increased shadow on hover */
-    transform: scale(1.05); /* Slightly enlarge the button */
+    background: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
     color: #fdfdfd;
 }
 .floating-button i{
@@ -486,110 +483,9 @@
     margin-left: 30px;
     font-size: 20px;
 }
-/* .container2{
-    position: relative;
-    perspective: 1000px;
-}
-.container2 h2{
-    display: flex;
-    justify-content: center;
-    font-size: 40px;
-    font-weight: 400;
-    padding-bottom: 20px;
-    color: navy;
-}
-.container2 .slide-container .slide{
-    border-radius: 5px;
-    background: #fff;
-    box-shadow: 0 5px 10px rgba(21, 21, 21, 0.467);
-    width: 390px;
-    padding: 10px;
-    margin: 10px;
-    position: relative;
-    transform-style: preserve-3d;
-    animation: slide .4s linear;
-}
-@keyframes slide{
-    0%{
-        transform: rotateX(180deg);
-    }
-}
-.container2 .slide-container .slide > *{
-    animation: slideContent .2s linear .4s backwards;
-}
-@keyframes slideContent{
-    0%{
-        opacity: 0;
-        transform: scale(.5);
-    }
-}
-.container2 .slide-container .slide .icon{
-    position: absolute;
-    top: 20px; right: 30px;
-    font-size: 50px;
-    color: #3498db;
-}
-.container2 .slide-container .slide .user{
-    align-items: center;
-}
-.container2 .slide-container .slide img{
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 10px;
-}
-.container2 .slide-container .slide .user .user-info h3{
-    color: #333;
-    font-size: 20px;
-}
-.container2 .slide-container .slide .user .user-info .stars i{
-    color: #333;
-    font-size: 18px;
-}
-.container2 .slide-container .slide .text{
-    color: #333;
-    font-size: 18px;
-    padding-top: 15px;
-}
-.container2 .slide-container{
-    display: none;
-}
-.container2 .slide-container.active{
-    display: block;
-}
-.container2 #next,
-.container2 #prev{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 50px;
-    width: 45px;
-    line-height: 50px;
-    text-align: center;
-    font-size: 39px;
-    background: #fff;
-    color: #333;
-    cursor: pointer;
-    border-radius: 50%;
-    box-shadow: 0 5px 10px#3337;
-}
-.container2 #next{
-    right: -70px;
-}
-.container2 #prev{
-    left: -70px;
-}
-.container2 #next:hover,
-.container2 #prev:hover{
-    background: #333;
-    color: #fff;
-}*/
-
 
 .container2 {
     max-width: 1500px;
-    /* margin: 0 auto; */
     padding: 60px;
     font-family: 'Montserrat', sans-serif;
 }
@@ -638,7 +534,6 @@ h3 {
     padding: 5px 10px;
     border-radius: 12px;
     display: inline-block;
-    /* margin-left: 5px; */
 }
 
 .card-body p {
@@ -659,7 +554,7 @@ h3 {
     }
 
     .feedback-grid {
-        grid-template-columns: repeat(2, 1fr); /* Two columns for medium screens */
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -673,19 +568,19 @@ h3 {
     }
 
     .feedback-grid {
-        grid-template-columns: 1fr; /* One column for small screens */
+        grid-template-columns: 1fr;
     }
 
     .card {
-        padding: 15px; /* Reduce padding for small screens */
+        padding: 15px;
     }
 
     .card-header {
-        font-size: 16px; /* Reduce font size */
+        font-size: 16px;
     }
 
     .card-body p {
-        font-size: 12px; /* Smaller text for mobile */
+        font-size: 12px;
     }
 }
 
@@ -695,19 +590,19 @@ h3 {
     }
 
     .feedback-grid {
-        grid-template-columns: 1fr; /* Stack all cards vertically */
+        grid-template-columns: 1fr;
     }
 
     .card {
-        padding: 10px; /* Reduce padding further */
+        padding: 10px;
     }
 
     .card-header {
-        font-size: 14px; /* Smaller font for mobile */
+        font-size: 14px;
     }
 
     .card-body p {
-        font-size: 10px; /* Smaller text for very small screens */
+        font-size: 10px;
     }
 }
 </style>

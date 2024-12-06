@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
     use HasFactory;
-    // Define the fillable attributes for mass assignment
     protected $fillable = [
         'first_name',
         'last_name',

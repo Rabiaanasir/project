@@ -12,44 +12,32 @@ use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
-    // Show the login form
     public function showRegForm()
     {
         return view('frontend.reg');
     }
 
-   // Handle login
 public function login(Request $request)
 {
-    // Validate the login (either username or email) and password
     $request->validate([
-        'login' => 'required|string|max:255', // No spaces allowed
+        'login' => 'required|string|max:255',
         'password' => 'required|string|min:6|regex:/^\S+$/', // No spaces allowed
     ]);
 
 
-    // Get the login input (either email or username)
     $loginInput = $request->input('login');
 
-    // Determine if the login input is an email or a username
     $loginField = filter_var($loginInput, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-
-    // Prepare the credentials for authentication (either email or username + password)
     $credentials = [
-        $loginField => $loginInput,   // use either 'email' or 'username' as the key
+        $loginField => $loginInput,
         'password' => $request->input('password'),
     ];
 
-    // Attempt to authenticate the user
     if (Auth::attempt($credentials)) {
-        // Authentication successful
 
-        // Check if the authenticated user is an admin using a role check
         if (Auth::user()->isAdmin()) {
-            // If the user is an admin, redirect to the admin dashboard
             return redirect()->route('admin.dashboard');
         } else {
-            // Otherwise, redirect regular users to the homepage
             return redirect()->route('home');
         }
     }
@@ -60,7 +48,6 @@ public function login(Request $request)
     ]);
 }
 
-    // Handle registration
     public function register(Request $request)
     {
         $request->validate([
@@ -81,43 +68,30 @@ public function login(Request $request)
         return redirect()->intended('/');
     }
 
-    // Handle logout
     public function logout()
     {
         Auth::logout();
         return redirect('/');
     }
 
-
-    // Show the user profile page
-    // public function showProfile()
-    // {
-    //     $user = Auth::user();  // Get the authenticated user
-    //     return view('frontend.userProfile', compact('user'));
-    // }
-    // In AuthController
-
 public function showProfile()
 {
-    $user = Auth::user();  // Get the authenticated user
-    $latestBooking = $user->bookings()->latest()->first();  // Get the latest booking
+    $user = Auth::user();
+    $latestBooking = $user->bookings()->latest()->first();
 
     return view('frontend.userProfile', compact('user', 'latestBooking'));
 }
 
-    // Update the user profile
     public function updateProfile(Request $request)
     {
         $request->validate([
-            'username' => 'required|string|regex:/^[a-zA-Z0-9 ]+$/|max:255', // Alphanumeric only, no spaces
+            'username' => 'required|string|regex:/^[a-zA-Z0-9 ]+$/|max:255',
     'email' => 'required|string|email|max:255|unique:users,email,' . Auth::id()
         ]);
 
         $user = Auth::user();
         $user->username = $request->input('username');
         $user->email = $request->input('email');
-
-        // Only update password if it's provided
         if ($request->input('password')) {
             $request->validate([
                 'password' => 'nullable|string|min:8|regex:/^[a-zA-Z0-9]+$/|confirmed',
@@ -127,17 +101,14 @@ public function showProfile()
 
         $user->save();
 
-        // Redirect to the named home page route
 return redirect()->route('home')->with('success', 'Profile updated successfully!');
 
 }
 
 public function index()
     {
-        // Get the authenticated user
         $user = Auth::user();
 
-        // Pass the user to the view
         return view('admin.profile', compact('user'));
     }
 }

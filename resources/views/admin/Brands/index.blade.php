@@ -100,42 +100,35 @@
 
 <script>
 $(document).ready(function () {
-    $('#brandsTable').DataTable(); // Initialize DataTables
+    $('#brandsTable').DataTable();
 
-    // Handle Edit button click
     $('.editBrandBtn').on('click', function () {
         var id = $(this).data('id');
         var name = $(this).data('name');
 
-        // Set the form action and input values
         $('#editBrandForm').attr('action', '/admin/brands/update/' + id);
         $('#editBrandName').val(name);
 
-        // Show the Edit modal
         $('#editBrandModal').modal('show');
     });
 
-    // Handle form submission via AJAX
     $('#editBrandForm').on('submit', function (e) {
-        e.preventDefault(); // Prevent the default form submission
+        e.preventDefault();
 
-        var formData = $(this).serialize(); // Serialize form data
+        var formData = $(this).serialize();
         console.log($(this).attr('action'));
         $.ajax({
-            url: $(this).attr('action'), // Use the form's action URL
-            method: 'PUT', // Set the method to PUT
+            url: $(this).attr('action'),
+            method: 'PUT',
             data: formData,
             success: function (response) {
-                $('#editBrandModal').modal('hide'); // Hide the modal
-                window.location.reload(); // Reload the page
-                toastr.success('Brand updated successfully!'); // Display a success message
+                $('#editBrandModal').modal('hide');
+                window.location.reload();
+                toastr.success('Brand updated successfully!');
 
-                //Update the brand name in the table
-                //let row = $('#brandsTable').find(`button[data-id="${response.id}"]`).closest('tr');
-                //row.find('td:eq(1)').text(response.name); // Update the brand name in the table
             },
             error: function (xhr) {
-                toastr.error('Failed to update brand.'); // Display error message
+                toastr.error('Failed to update brand.');
             }
         });
     });

@@ -6,9 +6,7 @@ header{
 .font{
         font-family: 'Montserrat', sans-serif;
       }
-/*Hero Section */
 #hero {
-    /* background: url('/images/Start Investing for the First Time 1200x600.jpg') no-repeat center center/cover; */
     color: #333;
     height: 200px;
     display: flex;
@@ -104,7 +102,6 @@ header{
     font-size: 1.3rem;
     display: flex;
     justify-content: center;
-    /* color: navy; */
 }
 .investment-form {
     background-color: #fff;

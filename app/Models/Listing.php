@@ -13,8 +13,8 @@ class Listing extends Model
         'description',
         'price',
         'watts',
-        'brand_id',    // Use brand_id as a foreign key
-        'image'        // Include image for mass assignment
+        'brand_id',
+        'image'
     ];
 
     public function brand()

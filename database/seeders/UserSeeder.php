@@ -11,11 +11,10 @@ class UserSeeder extends Seeder
 {
     public function run()
     {
-        // Update the user if it exists, or create it if it doesn't
         User::updateOrCreate(
-            ['username' => 'admin'], // Find the user with this username
+            ['username' => 'admin'],
             [
-                'email' => 'admin07@gmail.com', // Change the email
+                'email' => 'admin07@gmail.com',
                 'password' => Hash::make('123456'),
                 'role' => 'admin',
             ]

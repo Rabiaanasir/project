@@ -14,27 +14,11 @@
                     <!-- <li class="nav-item"><a href="{{ route('home') }}">Home</a></li> -->
                     <li class="nav-item"><a href="{{ route('about') }}">About</a></li>
                     <li class="nav-item"><a href="{{ route('frontend.listings') }}">Solar Accessories</a></li>
-                        {{-- <ul class="dropdown">
-                          <li><a href="{{ route('panels') }}">Solar Panels</a></li>
-                            <li><a href="{{ route('inverters') }}">Solar Inverters</a></li>
-                            <li><a href="{{ route('batteries') }}">Solar Batteries</a></li>
-                            <li><a href="{{ route('heaters') }}">Solar Water Heaters</a></li>
-                        </ul>
-                       </li> --}}
                        <li class="nav-item"><a href="{{ route('frontend.projects') }}">Projects</a></li>
                     <li class="nav-item"><a href="{{ route('blog') }}">Blog</a></li>
-                      {{-- @if(Auth::check()) --}}
         <li class="nav-item">
-            <!-- If logged in, go directly to install system -->
             <a href="{{ route('packages') }}">Solar Packages</a>
         </li>
-    {{-- @else
-        <li class="nav-item">
-            <!-- If not logged in, go to registration -->
-            <a href="{{ route('registeration') }}">Install a System</a>
-        </li>
-    @endif --}}
- {{-- {{dd(Auth::user()->role)}} --}}
     @if (Auth::check())
     <li class="nav-item">
         <a href="#">{{ Auth::user()->username }}</a>
@@ -77,7 +61,6 @@
         </ul>
       </div>
 </footer>
-        {{-- @include('frontend.js') --}}
         @yield('js')
 
     </body>

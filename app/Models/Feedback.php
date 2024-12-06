@@ -9,10 +9,8 @@ class Feedback extends Model
 {
     use HasFactory;
 
-    // Define the table associated with the model
     protected $table = 'feedback';
 
-    // Define the fillable columns (attributes that can be mass assigned)
     protected $fillable = [
         'user_id',
         'username',

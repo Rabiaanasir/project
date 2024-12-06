@@ -9,9 +9,7 @@ use Yajra\DataTables\DataTables;
 
 class BlogPostController extends Controller
 {
-  /**
-     * Display a listing of blog posts with AJAX for DataTables.
-     */
+
     public function index(Request $request)
     {
         if ($request->ajax()) {
@@ -19,8 +17,6 @@ class BlogPostController extends Controller
 
             return DataTables::of($data)
                 ->addColumn('image', function ($row) {
-                    // return '<img src="' . asset('storage/images/' . $row->image) . '" width="70" height="50" />';
-                    // Check if the image exists; if it does, return the image tag, else return an empty string
                 return $row->image ? '<img src="' . asset('storage/images/' . $row->image) . '" width="70" height="50" />' : '';
 
                 })
@@ -29,23 +25,20 @@ class BlogPostController extends Controller
                     data-href="' . route('posts.view', $row->id) . '"
                     data-container_view=".view_modal"
                     class="btn btn-sm btn-success modal_view">View</a>';
-                    // Edit button with modal support
                     $editBtn = '<a href="' . route('posts.edit', $row->id) . '"
                                     data-href="' . route('posts.edit', $row->id) . '"data-container_edit=".edit_modal" class="btn btn-sm btn-primary modal_edit">Edit</a>';
 
-                    // Delete button
                     $deleteBtn = '<button data-id="' . $row->id . '"
                                     class="btn btn-sm btn-danger deleteposts">Delete</button>';
 
                     return $viewBtn . ' ' . $editBtn . ' ' . $deleteBtn;
                 })
                 ->addColumn('description', function ($row) {
-                    // Truncate description to 50 characters and append '...' if it's too long
                     $truncatedDescription = strlen($row->description) > 50
                         ? substr($row->description, 0, 35) . '...'
                         : $row->description;
 
-                    return $truncatedDescription; // Return truncated description
+                    return $truncatedDescription;
                 })
                 ->rawColumns(['image', 'action'])
                 ->make(true);
@@ -57,24 +50,17 @@ class BlogPostController extends Controller
 
     public function view($id)
     {
-        // Fetch the listing with the specified ID along with its related brand
         $post = BlogPost::findOrFail($id);
 
-        // Return the view with the listing data
         return view('admin.BlogPosts.view', compact('post'));
     }
-    /**
-     * Show the form for creating a new blog post.
-     */
 
     public function create()
     {
         return view('admin.blogposts.create');
     }
 
-    /**
-     * Store a newly created blog post in storage.
-     */
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -135,21 +121,15 @@ class BlogPostController extends Controller
         return response()->json(['success' => 'Blog post updated successfully.']);
     }
 
-    /**
-     * Remove the specified blog post from storage.
-     */
     public function destroy($id)
     {
         $post = BlogPost::findOrFail($id);
 
-        $post->delete();  //Delete the project
+        $post->delete();
 
         return response()->json(['success' => 'Post deleted successfully.']);
     }
 
-    /**
-     * Display all blog posts on the frontend.
-     */
     public function frontendBlogPosts()
     {
         $blogPosts = BlogPost::all();

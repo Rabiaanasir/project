@@ -12,11 +12,6 @@
 
             <img src="{{ asset('storage/images/' . $post->image) }}"
                  alt="{{ $post->title }}" width="200" height="150" />
-            {{-- @if($post->image)
-            @else
-                <img src="{{ asset('images/default.png') }}"
-                     alt="Default Image" width="200" height="150" />
-            @endif --}}
         </div>
     </div>
 

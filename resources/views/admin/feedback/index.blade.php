@@ -23,11 +23,10 @@
 @section('script')
 <script type="text/javascript">
     $(document).ready(function () {
-        // Initialize DataTable
         var table = $('#feedback-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('feedback.data') }}", // Route for fetching data
+            ajax: "{{ route('feedback.data') }}",
             columns: [
                 { data: 'id', name: 'id' },
                 { data: 'username', name: 'username' },
@@ -37,13 +36,11 @@
             ]
         });
 
-        // Handle Delete Button Click
         $(document).on('click', '.deletefeedback', function (e) {
-            e.preventDefault(); // Prevent default anchor behavior
-            let feedbackId = $(this).data('id'); // Get the feedback ID from the button
+            e.preventDefault();
+            let feedbackId = $(this).data('id');
             let deleteUrl = `/admin/feedback/delete/${feedbackId}`;
 
-            // Confirm with SweetAlert
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -54,7 +51,6 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Proceed with AJAX request if confirmed
                     $.ajax({
                         url: deleteUrl,
                         method: 'DELETE',
@@ -67,7 +63,7 @@
                                 response.success || 'The feedback was deleted successfully.',
                                 'success'
                             );
-                            table.ajax.reload(); // Reload DataTable
+                            table.ajax.reload();
                         },
                         error: function (xhr) {
                             let errorMessage = 'An error occurred. Please try again.';

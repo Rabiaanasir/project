@@ -34,9 +34,8 @@
                     <td>{{ $latestBooking->backup_power ? 'Yes' : 'No' }}</td>
                     <td>{{ $latestBooking->consumption_watts }}</td>
                     <td>
-                        <!-- Actions like view or cancel -->
-                        {{-- <a href="{{ route('bookings.view', $latestBooking->id) }}" class="btn btn-primary btn-sm">View</a> --}}
-                        <a href="#" class="btn btn-danger btn-sm">Cancel</a> {{-- Example button --}}
+
+                        <a href="#" class="btn btn-danger btn-sm">Cancel</a>
                     </td>
                 </tr>
             </tbody>

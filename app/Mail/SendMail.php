@@ -31,7 +31,7 @@ class SendMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'email.send', // The view should exist at resources/views/email/send.blade.php
+            view: 'email.send',
         );
     }
 

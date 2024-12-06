@@ -15,11 +15,6 @@
 
             <img src="{{ asset('storage/images/' . $listing->image) }}"
                  alt="{{ $listing->title }}" width="200" height="150" />
-            {{-- @if($listing->image)
-            @else
-                <img src="{{ asset('images/default.png') }}"
-                     alt="Default Image" width="200" height="150" />
-            @endif --}}
         </div>
     </div>
 

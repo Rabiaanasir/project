@@ -9,22 +9,13 @@ use Illuminate\Support\Facades\Auth;
 
 class ApplianceController extends Controller
 {
-    /**
-     * Show the appliance selection form.
-     */
     public function index()
     {
         return view('appliances.create');
     }
 
-    /**
-     * Store the appliance data along with the total wattage.
-     */
-
-
     public function store(Request $request)
 {
-    // Validate appliance wattages
     $request->validate([
         'appliance' => 'array',
         'appliance.*' => 'string',
@@ -37,33 +28,27 @@ class ApplianceController extends Controller
         'custom_wattage.*' => 'integer|min:1',
     ]);
 
-    // Calculate total wattage from the inputs
     $totalWattage = 0;
 
-    // Sum up wattage from predefined appliances
     foreach (['fan', 'television', 'refrigerator', 'air_conditioner', 'washing_machine'] as $appliance) {
         $wattField = "{$appliance}_watt";
         $totalWattage += $request->$wattField ? intval($request->$wattField) : 0;
     }
 
-    // Sum up wattage from custom appliances
     if ($request->has('custom_wattage')) {
         foreach ($request->input('custom_wattage', []) as $customWatt) {
             $totalWattage += (int) $customWatt;
         }
     }
 
-    // Store the total wattage along with the user ID in the appliances table
     Appliance::create([
         'user_id' => Auth::id(),
         'total_wattage' => $totalWattage,
     ]);
 
-    // Calculate system requirements based on total wattage
     $requiredSystemSize = $this->calculateSystemSize($totalWattage);
     $recommendedSolarCapacity = $this->getRecommendedSolarCapacity($totalWattage);
 
-    // Pass the calculation result to the view
     return view('appliances.system_requirements', [
         'totalWattage' => $totalWattage,
         'requiredSystemSize' => $requiredSystemSize,
@@ -74,8 +59,6 @@ class ApplianceController extends Controller
 
     public function show()
 {
-    // Fetch all appliances along with user information (using Eloquent relationship)
-
         $appliances = Appliance::with('user')->get();
 return view('admin.appliances.index', compact('appliances'));
 
@@ -85,19 +68,18 @@ return view('admin.appliances.index', compact('appliances'));
     public function getAppliancesData(Request $request)
     {
         if ($request->ajax()) {
-            // Fetching appliances along with user information
             $data = Appliance::with('user')->select('appliances.*');
 
             return DataTables::of($data)
-                ->addIndexColumn() // Adds an index column
+                ->addIndexColumn()
                 ->addColumn('user_name', function ($row) {
-                    return $row->user ? $row->user->username : 'N/A'; // Get the username from the User model
+                    return $row->user ? $row->user->username : 'N/A';
                 })
                 ->addColumn('email', function ($row) {
-                    return $row->user ? $row->user->email : 'N/A'; // Get the email from the User model
+                    return $row->user ? $row->user->email : 'N/A';
                 })
                 ->editColumn('created_at', function ($row) {
-                    return $row->created_at->format('d M Y, H:i A'); // Format the created_at date
+                    return $row->created_at->format('d M Y, H:i A');
                 })
                 ->addColumn('action', function ($row) {
 
@@ -111,22 +93,19 @@ return view('admin.appliances.index', compact('appliances'));
                 ->make(true);
         }
 
-        return response()->json(['error' => 'Unauthorized'], 401); // Handle unauthorized access
+        return response()->json(['error' => 'Unauthorized'], 401);
     }
 
-    // Other methods (create, store, show, edit, update, destroy) can go here...
 
 
 private function calculateSystemSize($totalWattage)
 {
-    // Convert wattage to kilowatts
     $totalKW = $totalWattage / 1000;
 
-    // Calculate system size in kW, inverter size, and panel requirements for both hybrid and on-grid types
+
     $hybridInverter = $this->getInverterSize('hybrid', $totalKW);
     $onGridInverter = $this->getInverterSize('on-grid', $totalKW);
 
-    // Include a "System Required" field to indicate the total system size needed
     return [
         'systemType' => $totalKW > 12 ? 'On-Grid' : 'Hybrid or Off-Grid',
         'systemRequired' => number_format($totalKW, 2) . ' kW',
@@ -162,8 +141,8 @@ private function getInverterSize($type, $totalKW)
         } elseif ($totalKW <= 12) {
             $inverterSizeKw = 12;
         } else {
-            // Return null or empty array if the hybrid system is not suitable
-            return null; // or return [];
+
+            return null;
         }
     } elseif ($type === 'on-grid') {
         if ($totalKW <= 5) {
@@ -189,9 +168,7 @@ private function getInverterSize($type, $totalKW)
         }
     }
 
-    // Calculate number of panels based on inverter size and 585W panel capacity
     $numberOfPanels = ceil(($inverterSizeKw * 1000) / 585);
-    // Calculate annual energy generation based on 1 kW generating 1440 kWh annually
     $annualGeneration = $inverterSizeKw * 1440;
 
     return [
@@ -224,7 +201,7 @@ public function destroy($id)
     {
         $appliances = Appliance::findOrFail($id);
 
-        $appliances->delete();  //Delete the project
+        $appliances->delete();
 
         return response()->json(['success' => 'Appliance deleted successfully.']);
     }

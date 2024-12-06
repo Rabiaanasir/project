@@ -3,8 +3,6 @@
 
 @section('content')
 
-    {{-- <h1 class="text-center my-4">Appliances List</h1> --}}
-
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
@@ -34,26 +32,25 @@
         $('#appliance-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('appliances.data') }}", // AJAX route for fetching data
+            ajax: "{{ route('appliances.data') }}",
             columns: [
-                { data: 'DT_RowIndex', orderable: false, searchable: false }, // Auto index
-                { data: 'user_name' }, // User name
-                { data: 'email' }, // User email
-                { data: 'total_wattage' }, // Total wattage
-                { data: 'created_at' }, // Creation date
-                { data: 'action' }, // Creation date
+                { data: 'DT_RowIndex', orderable: false, searchable: false },
+                { data: 'user_name' },
+                { data: 'email' },
+                { data: 'total_wattage' },
+                { data: 'created_at' },
+                { data: 'action' },
             ],
-            order: [[4, 'desc']], // Sort by created_at descending
+            order: [[4, 'desc']],
         });
 
     });
 
-           // Handle Delete Button Click
            $(document).on('click', '.deleterequest', function (e) {
-            e.preventDefault(); // Prevent default anchor behavior
-            let applianceId = $(this).data('id'); // Get the listing ID from the button
+            e.preventDefault();
+            let applianceId = $(this).data('id');
             let deleteUrl = `/admin/appliances/delete/${applianceId}`;
-            // Confirm with SweetAlert
+
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -64,7 +61,6 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Proceed with AJAX request if confirmed
                     $.ajax({
                         url: deleteUrl,
                         method: 'DELETE',
@@ -77,7 +73,7 @@
                                 response.success || 'The request was deleted successfully.',
                                 'success'
                             );
-                            $('#appliance-table').DataTable().ajax.reload(); // Reload DataTable
+                            $('#appliance-table').DataTable().ajax.reload();
                         },
                         error: function (xhr) {
                             let errorMessage = 'An error occurred. Please try again.';

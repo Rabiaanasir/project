@@ -32,9 +32,6 @@
             <form id="emiForm" class="emi-form">
                 <label for="loanAmount">Loan Amount (RS)</label>
                 <input type="number" id="loanAmount" name="loanAmount" placeholder="Enter loan amount" required>
-{{--
-                <label for="interestRate">Interest Rate (%)</label>
-                <input type="number" id="interestRate" name="interestRate" placeholder="Enter interest rate" required> --}}
 
                 <label for="tenure">Loan Tenure (months)</label>
                 <input type="number" id="tenure" name="tenure" placeholder="Enter tenure in months" required>
@@ -50,35 +47,13 @@
             </div>
         </div>
     </section>
-
-
-    {{-- <script>
-        function calculateEMI(loanAmount, interestRate, tenure) {
-            let monthlyInterestRate = interestRate / (12 * 100); // Converting annual interest rate to monthly interest rate
-            let emi = loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, tenure) / (Math.pow(1 + monthlyInterestRate, tenure) - 1);
-            return emi.toFixed(2); // Returning the EMI rounded to two decimal places
-        }
-
-        document.getElementById('calculateEmi').addEventListener('click', function() {
-            let loanAmount = parseFloat(document.getElementById('loanAmount').value);
-            let interestRate = parseFloat(document.getElementById('interestRate').value);
-            let tenure = parseInt(document.getElementById('tenure').value);
-
-            if (loanAmount && interestRate && tenure) {
-                let emiAmount = calculateEMI(loanAmount, interestRate, tenure);
-                document.getElementById('emiAmount').innerText = 'Rs' + emiAmount;
-            } else {
-                alert('Please fill all the fields with valid values');
-            }
-        });
-    </script> --}}<script>
+<script>
     function calculateEMI(loanAmount, tenure) {
         const fixedInterestRate = 22; // Fixed interest rate at 22%
-        const monthlyInterestRate = fixedInterestRate / 12 / 100; // Monthly interest rate
+        const monthlyInterestRate = fixedInterestRate / 12 / 100;
 
-        // Modified logic to make EMI increase with tenure
-        let emi = loanAmount * monthlyInterestRate * tenure / 10; // Non-standard formula
-        return emi.toFixed(2); // Round to two decimal places
+        let emi = loanAmount * monthlyInterestRate * tenure / 10;
+        return emi.toFixed(2);
     }
 
     document.getElementById('calculateEmi').addEventListener('click', function () {

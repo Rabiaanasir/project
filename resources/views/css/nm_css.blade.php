@@ -31,10 +31,6 @@
     width :90%;
     font-size: 17px;
 }
-/****sections stylings*****/
-/* section{
-    height:40vh;
-} */
 .text-box{
     margin: 0 7 rem;
 }
@@ -60,9 +56,9 @@ p{
         padding: 1rem 3rem;
     }
     hr {
-        border: 1px solid rgb(7, 255, 255); /* Change the color and thickness */
-        width: 50%; /* Change the width */
-        margin: 10px 2px; /* Center the line with margin */
+        border: 1px solid rgb(7, 255, 255);
+        width: 50%;
+        margin: 10px 2px;
     }
     h3{
         font-weight: 700;
@@ -86,7 +82,6 @@ p{
         background-color:#fff;
         color: #000;
       }
-/** Image Section Styling**/
 .row{
     min-height: 70vh;
     margin: 5rem 0;

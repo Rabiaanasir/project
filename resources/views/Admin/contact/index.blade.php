@@ -39,13 +39,11 @@
             ]
         });
     });
-// Handle Delete Button Click
 $(document).on('click', '.deleteContact', function (e) {
-    e.preventDefault(); // Prevent default anchor behavior
+    e.preventDefault();
 
-    let deleteUrl = $(this).data('href'); // Get the delete URL
+    let deleteUrl = $(this).data('href');
 
-    // Confirm with SweetAlert
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -56,7 +54,6 @@ $(document).on('click', '.deleteContact', function (e) {
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
         if (result.isConfirmed) {
-            // Proceed with AJAX request if confirmed
             $.ajax({
                 url: deleteUrl,
                 method: 'DELETE',

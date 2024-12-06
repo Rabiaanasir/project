@@ -34,7 +34,7 @@
 @section('script')
 <script type="text/javascript">
     $(document).ready(function () {
-        // Initialize DataTable
+
         var table = $('#packages').DataTable({
             processing: true,
             serverSide: true,
@@ -78,7 +78,6 @@
             ]
         });
 
-        // Handle Add Project Form Submission
         $(document).on('submit', '#packagesForm', function (e) {
             e.preventDefault();
             var formData = new FormData(this);
@@ -89,13 +88,13 @@
                 contentType: false,
                 processData: false,
                 headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF token
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function (response) {
-                    $('#packagesForm').trigger("reset"); // Reset form
-                    toastr.success('Package added successfully!'); // Success toast
-                    $('.view_modal').modal('hide'); // Close modal
-                    table.ajax.reload(); // Reload DataTable
+                    $('#packagesForm').trigger("reset");
+                    toastr.success('Package added successfully!');
+                    $('.view_modal').modal('hide');
+                    table.ajax.reload();
                 },
                 error: function (error) {
                     console.error('Error:', error);
@@ -104,28 +103,26 @@
             });
         });
 
-        // Handle Edit Form Submission
         $(document).on('submit', '#packagesFormEdit', function (e) {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
 
-    var formData = new FormData(this); // Handle file uploads
+    var formData = new FormData(this);
 
     $.ajax({
-        url: $(this).attr('action'), // Form action URL
-        method: $(this).attr('method'), // Form method (PUT)
+        url: $(this).attr('action'),
+        method: $(this).attr('method'),
         data: formData,
         contentType: false,
         processData: false,
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF token
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (response) {
             console.log(response)
-            // toastr.success(response.message);
             toastr.success('Package updated successfully!');
-            $('.edit_modal').modal('hide'); // Close the modal
+            $('.edit_modal').modal('hide');
 
-            $('#packages').DataTable().ajax.reload(); // Reload DataTable
+            $('#packages').DataTable().ajax.reload();
         },
         error: function (xhr, status, error) {
             console.error('Error:', error);
@@ -134,12 +131,10 @@
     });
 });
 
-        // Handle Delete Button Click
         $(document).on('click', '.deletepackages', function (e) {
-            e.preventDefault(); // Prevent default anchor behavior
-            let packageId = $(this).data('id'); // Get the listing ID from the button
+            e.preventDefault();
+            let packageId = $(this).data('id');
             let deleteUrl = `/admin/packages/delete/${packageId}`;
-            // Confirm with SweetAlert
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -150,7 +145,6 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Proceed with AJAX request if confirmed
                     $.ajax({
                         url: deleteUrl,
                         method: 'DELETE',
@@ -163,7 +157,7 @@
                                 response.success || 'The package was deleted successfully.',
                                 'success'
                             );
-                            table.ajax.reload(); // Reload DataTable
+                            table.ajax.reload();
                         },
                         error: function (xhr) {
                             let errorMessage = 'An error occurred. Please try again.';

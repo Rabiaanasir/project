@@ -23,7 +23,6 @@ header {
   font-family: 'playwrite netherland';
 }
 
-/* Showcase Section Styling */
 .container {
     max-width: 1700px;
     width: 90%;
@@ -36,10 +35,9 @@ header {
     font-family: 'Montserrat', sans-serif;
 }
 
-/* Row Styling */
 .row {
     display: flex;
-    flex-wrap: wrap;  /* Allows rows to wrap in smaller screens */
+    flex-wrap: wrap;
     height: auto;
     background-color: #fff;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.329);
@@ -49,7 +47,6 @@ header {
 .row .text-box p{
     font-size: 17px;
 }
-/* Image and Text Box Styling */
 .img-box, .text-box {
     width: 50%;
     padding: 3rem;
@@ -61,9 +58,8 @@ header {
     object-fit: cover;
 }
 
-/* Adjusting specific rows for different layouts */
 .row1 .img-box, .row3 .img-box {
-    order: 1;  /* Default order */
+    order: 1;
     height: 400px;
 }
 .row1 .text-box, .row3 .text-box {
@@ -71,14 +67,13 @@ header {
 }
 
 .row2 .img-box, .row4 .img-box {
-    order: 2;  /* Reversed order for this row */
+    order: 2;
 }
 
 .row2 .text-box, .row4 .text-box{
     order: 1;
 }
 
-/* Final Row with Bank Financing */
 .row5 {
     height: 100px;
     background-color: #263238;
@@ -112,19 +107,6 @@ header {
     margin-left: 1rem;
 }
 
-
-
-
-
-
-
-
-
-
-
-/* Responsive Styling */
-
-/* Adjust Header and Showcase for Smaller Screens */
 @media (max-width: 1200px) {
     header {
         height: 60vh;

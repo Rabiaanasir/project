@@ -1,11 +1,11 @@
 <style>
     body{
     background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0)),url('/images/bg.jpg');
-   
+
 }
 p{
     font-size: 1.3rem;
-    margin-bottom: 0.3rem;  
+    margin-bottom: 0.3rem;
     font-family: 'playwrite netherland';
 }
 .cal-container h2,p{
@@ -17,7 +17,6 @@ p{
 h2{
     animation: animate 5s linear infinite;
     font-size: 30px;
-    /* -webkit-box-reflect: below 1px linear-gradient(transparent,#0008) ; */
 }
 @keyframes animate{
     0%,18%,20%,50.1%,60%,65.1%,80%,90.1%,92%
@@ -34,21 +33,20 @@ h2{
         0 0 10px #03bcf4;
     }
 }
-section{ 
+section{
     margin:0px 190px 70px 190px;
-    /* background-color:rgb(236, 235, 235); */
     background-color: #f3f0f0;
     padding-bottom: 5px;
     display: flex;
     justify-content: center;
-} 
+}
 section p{
     color: #000;
 }
 .cal-container{
     max-width: 1200px;
     margin: 30px auto;
-} 
+}
 form {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -83,13 +81,9 @@ button:hover {
     background-color:#fff;
     color: #000;
   }
-/* .res{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
+
  #result {
-    border-radius:50px; 
+    border-radius:50px;
     position: relative;
     margin-top: 20px;
     padding: 10px auto;

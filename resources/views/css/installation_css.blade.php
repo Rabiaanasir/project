@@ -2,11 +2,9 @@
     .calculator-container {
       background-color: #fff;
       padding: 40px;
-      /* max-width: 850px; */
       width: 100%;
       border-radius: 15px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      /* font-family: 'Montserrat', sans-serif; */
     }
 
     h3 {
@@ -30,7 +28,6 @@
     }
 
     th {
-      /* background-color: goldenrod; */
       color: white;
       font-weight: 600;
       color: #333;
@@ -76,26 +73,24 @@
       font-weight: bold;
       font-size: 1.2rem;
       color: #28a745;
-      /* text-align: c; */
     }
 
-    /* Updated smaller submit button */
     .submit-container {
-  text-align: center; /* Centers the submit button horizontally */
-  margin-top: 20px;   /* Adds some space above the submit button */
+  text-align: center;
+  margin-top: 20px;
 }
 
 .submit-btn {
   display: inline-block;
-  background-color: goldenrod; /* Green background */
-  color: white;              /* White text color */
-  padding: 12px 24px;        /* Padding for the button */
-  font-size: 16px;           /* Font size */
-  font-weight: bold;         /* Bold text */
-  text-align: center;        /* Center text inside the button */
-  text-decoration: none;     /* Remove underline from the link */
-  border-radius: 5px;        /* Rounded corners */
-  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  background-color: goldenrod;
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
 .submit-btn:hover {
@@ -104,14 +99,14 @@
 }
 
 .submit-btn:active {
-  background-color: #1e7e34; /* Even darker green when clicked */
-  transform: scale(0.98);    /* Slightly shrink the button when clicked */
+  background-color: #1e7e34;
+  transform: scale(0.98);
 }
 
 button {
-  border: none;               /* Remove default button border */
-  background: none;           /* No background for the button */
-  padding: 0;                 /* Remove padding to fit the link */
+  border: none;
+  background: none;
+  padding: 0;
 }
 
 

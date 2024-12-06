@@ -21,7 +21,6 @@ class AdminMiddleware
             return $next($request);
         }
 
-        // Redirect non-admins to a different page (e.g., homepage)
         return redirect('/');
     }
 }

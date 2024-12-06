@@ -6,9 +6,6 @@
 
 @section('content')
 <header>
-    {{-- <div class="header-content">
-    <h2 class="lg-heading text-light ">INVEST</h2>
-    </div> --}}
 </header>
 <section class="font">
     <section id="hero">
@@ -31,17 +28,14 @@
             <h2>Why Invest in Sun Source Solutions?</h2>
             <div class="benefits">
                 <div class="benefit-card">
-                    {{-- <img src="https://via.placeholder.com/100" alt="Benefit 1"> --}}
                     <h3>High ROI</h3>
                     <p>Our solar projects deliver excellent returns on investment due to the growing demand for renewable energy.</p>
                 </div>
                 <div class="benefit-card">
-                    {{-- <img src="https://via.placeholder.com/100" alt="Benefit 2"> --}}
                     <h3>Sustainable Growth</h3>
                     <p>Investing in solar energy supports long-term environmental goals, reducing carbon footprints worldwide.</p>
                 </div>
                 <div class="benefit-card">
-                    {{-- <img src="https://via.placeholder.com/100" alt="Benefit 3"> --}}
                     <h3>Government Support</h3>
                     <p>Benefit from subsidies and incentives offered by governments around the globe for solar energy projects.</p>
                 </div>
