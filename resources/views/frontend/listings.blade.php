@@ -11,8 +11,8 @@
     }
 
     .card:hover {
-        transform: scale(1.05); /* Slight zoom on hover */
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Elevated shadow */
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
 
     .card-title {
@@ -24,7 +24,7 @@
     }
 
     .card:hover .card-title {
-        color: #007bff; /* Change title color on hover */
+        color: #007bff;
     }
 
     .card-img-top {
@@ -32,7 +32,7 @@
     }
 
     .card:hover .card-img-top {
-        opacity: 0.85; /* Slight fade effect on image hover */
+        opacity: 0.85;
     }
 
     .card-body {
@@ -50,9 +50,9 @@
        padding: 1rem 3rem;
    }
    hr {
-       border: 1px solid rgb(8, 255, 255); /* Change the color and thickness */
-       width: 50%; /* Change the width */
-       margin: 10px 2px; /* Center the line with margin */
+       border: 1px solid rgb(8, 255, 255);
+       width: 50%;
+       margin: 10px 2px;
    }
    h3{
        font-weight: 700;
@@ -84,7 +84,6 @@
 <div class="container">
     <h1 class="text-center my-5">Product Listings</h1>
     <div id="productGrid" class="row">
-        <!-- Products will be dynamically inserted here -->
     </div>
 </div>
 <div class="box">
@@ -105,8 +104,8 @@ $(document).ready(function() {
             url: "{{ route('frontend.listings.data') }}",
             method: "GET",
             success: function(response) {
-                console.log('Response:', response); // For debugging
-                renderProducts(response.data); // Pass the listings to the render function
+                console.log('Response:', response);
+                renderProducts(response.data);
             },
             error: function(xhr, status, error) {
                 console.error('Error:', xhr.responseText);
@@ -116,7 +115,7 @@ $(document).ready(function() {
     }
 
     function renderProducts(listings) {
-        $('#productGrid').empty(); // Clear existing products
+        $('#productGrid').empty();
         if (listings.length > 0) {
             $.each(listings, function(index, listing) {
                 $('#productGrid').append(`

@@ -5,7 +5,6 @@
 @section('content')
 
     <h3 class="i-name">Listing</h3>
-    {{-- <button class="btn btn-success mb-3" id="createNewListing">Create New Listing</button> --}}
     <button type="button" class=" btn btn-success btn-modal"
                             data-href="{{ route('listings.create') }}" data-container_modal=".view_modal">
                             <i class="fa fa-plus"></i>
@@ -51,7 +50,6 @@
                 }, ],
             columns: [
 
-                //   {data: 'id', name: 'id'},
 
                 {
                     data: 'title',
@@ -91,27 +89,23 @@
 
     });
 
-// Handle Add Listing Button Click
-
-
-        // Handle Form Submission via AJAX
         $(document).on('submit', '#listingForm', function (e) {
             e.preventDefault();
             var formData = new FormData(this);
             $.ajax({
-                url: "{{ route('listings.store') }}", // POST to store method
+                url: "{{ route('listings.store') }}",
                 type: "POST",
                 data: formData,
                 contentType: false,
                 processData: false,
                 headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF token
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function (response) {
-            $('#listingForm').trigger("reset"); // Reset form
-            toastr.success('Listing created successfully!'); // Success toast
-            $('.view_modal').modal('hide'); // Close modal
-            $('#listing').DataTable().ajax.reload(); // Reload DataTable
+            $('#listingForm').trigger("reset");
+            toastr.success('Listing created successfully!');
+            $('.view_modal').modal('hide');
+            $('#listing').DataTable().ajax.reload();
         },
                 error: function (error) {
                     console.error('Error:', error);
@@ -121,28 +115,26 @@
             });
         });
 
-
-// Handle Form Submission via AJAX
 $(document).on('submit', '#listingFormEdit', function (e) {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
 
-    var formData = new FormData(this); // Handle file uploads
+    var formData = new FormData(this);
 
     $.ajax({
-        url: $(this).attr('action'), // Form action URL
-        method: $(this).attr('method'), // Form method (PUT)
+        url: $(this).attr('action'),
+        method: $(this).attr('method'),
         data: formData,
         contentType: false,
         processData: false,
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF token
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (response) {
             console.log(response)
             toastr.success(response.message);
-            $('.edit_modal').modal('hide'); // Close the modal
+            $('.edit_modal').modal('hide');
 
-            $('#listing').DataTable().ajax.reload(); // Reload DataTable
+            $('#listing').DataTable().ajax.reload();
         },
         error: function (xhr, status, error) {
             console.error('Error:', error);
@@ -151,14 +143,10 @@ $(document).on('submit', '#listingFormEdit', function (e) {
     });
 });
 
-// Handle Delete Button Click
 $(document).on('click', '.deleteListing', function (e) {
-    e.preventDefault(); // Prevent default anchor behavior
-
-    // let deleteUrl = $(this).data('href'); // Get the delete URL
-    let listingId = $(this).data('id'); // Get the listing ID from the button
+    e.preventDefault();
+    let listingId = $(this).data('id');
     let deleteUrl = `/admin/listings/delete/${listingId}`;
-    // Confirm with SweetAlert
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -169,7 +157,6 @@ $(document).on('click', '.deleteListing', function (e) {
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
         if (result.isConfirmed) {
-            // Proceed with AJAX request if confirmed
             $.ajax({
                 url: deleteUrl,
                 method: 'DELETE',
@@ -182,10 +169,9 @@ $(document).on('click', '.deleteListing', function (e) {
                        response.success || 'The listing was deleted successfully.',
                         'success'
                     );
-                    $('#listing').DataTable().ajax.reload(); // Reload DataTable
+                    $('#listing').DataTable().ajax.reload();
                 },
                 error: function (xhr) {
-                    // Safely access error message
                     let errorMessage = 'An error occurred. Please try again.';
                     if (xhr.responseJSON && xhr.responseJSON.error) {
                         errorMessage = xhr.responseJSON.error;

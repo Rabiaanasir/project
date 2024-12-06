@@ -12,26 +12,13 @@ use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
 {
-//     public function index()
-// {
-//     // Retrieve only the latest booking for the authenticated user
-//     $latestBooking = Booking::where('user_id', auth()->id())
-//                     ->latest('created_at') // Order by latest updated record
-//                     ->first(); // Retrieve only the latest record
-
-//     return view('frontend.bookingsOverview', compact('latestBooking'));
-// }
-
-
-    // Method to show the booking form
     public function create()
     {
         return view('frontend.booking');
     }
-     // Admin booking DataTable view and form (includes booking date, status)
      public function adminIndex()
      {
-        return view('admin.Booking.index'); // Admin DataTable view
+        return view('admin.Booking.index');
      }
 
 
@@ -45,7 +32,7 @@ public function getData(Request $request)
                 return $booking->user ? $booking->user->email : 'N/A';
             })
             ->editColumn('status', function ($booking) {
-                $selectedStatus = ucfirst($booking->status); // Capitalize the first letter
+                $selectedStatus = ucfirst($booking->status);
                 return '
                     <select class="form-control status-dropdown" data-id="' . $booking->id . '">
                         <option value="pending" ' . ($booking->status === 'pending' ? 'selected' : '') . '>Pending</option>
@@ -54,7 +41,6 @@ public function getData(Request $request)
                     </select>';
             })
             ->editColumn('booking_date', function ($booking) {
-                // Display the booking date with an editable field for admins
                 return '<input type="date" class="form-control update-booking-date" value="' .
                         ($booking->booking_date ? $booking->booking_date->format('Y-m-d') : '') .
                         '" data-id="' . $booking->id . '">';
@@ -69,55 +55,47 @@ public function getData(Request $request)
 
 public function store(Request $request)
 {
-    // Define validation rules for the request
     $rules = [
         'username' => 'required|string|max:255',
         'address' => 'required|string|max:255',
         'phone_number' => 'required|string|max:20',
-        'backup_power' => 'nullable|boolean', // Make backup_power optional
-        'backup_hour' => 'nullable|integer|required_if:backup_power,true', // Required only if backup_power is true
+        'backup_power' => 'nullable|boolean',
+        'backup_hour' => 'nullable|integer|required_if:backup_power,true',
         'consumption_watts' => 'required|integer',
     ];
 
-    // Additional validation for admins
     if (Auth::user()->is_admin) {
         $rules['booking_date'] = 'required|date';
     } else {
         $rules['booking_date'] = 'nullable|date';
     }
 
-    // Validate the request data
     $request->validate($rules);
 
-    // Prepare the data for storing in the database
     $data = [
         'user_id' => Auth::id(),
         'username' => $request->username,
         'address' => $request->address,
         'phone_number' => $request->phone_number,
-        'backup_power' => $request->backup_power ?? false, // Default to false if not provided
-        'backup_hour' => $request->backup_power ? $request->backup_hour : null, // Only set if backup_power is true
+        'backup_power' => $request->backup_power ?? false,
+        'backup_hour' => $request->backup_power ? $request->backup_hour : null,
         'consumption_watts' => $request->consumption_watts,
         'booking_date' => Auth::user()->is_admin ? Carbon::parse($request->booking_date) : null,
-        'status' => 'pending',  // Set to a valid enum value
+        'status' => 'pending',
     ];
 
-    // Create the booking record in the database
     Booking::create($data);
 
-    // Redirect based on user role
     $redirectRoute = Auth::user()->is_admin ? 'admin.bookings.index' : 'bookings.create';
     return redirect()->route($redirectRoute)->with('success', 'Booking created successfully.');
 }
 
 public function updateBookingDate(Request $request, $id)
 {
-    // Validate the booking_date input
     $request->validate([
         'booking_date' => 'required|date',
     ]);
 
-    // Find the booking by ID and update the booking date
     $booking = Booking::findOrFail($id);
     $booking->booking_date = Carbon::parse($request->booking_date);
     $booking->save();
@@ -128,15 +106,12 @@ public function updateBookingDate(Request $request, $id)
 
 public function updateStatus(Request $request, $id)
 {
-    // Validate the incoming request
     $request->validate([
         'status' => 'required|in:pending,accepted,declined',
     ]);
 
-    // Find the booking by ID
     $booking = Booking::findOrFail($id);
 
-    // Update the status
     $booking->status = $request->status;
     $booking->save();
 
@@ -147,7 +122,7 @@ public function destroy($id)
 {
     $booking = Booking::findOrFail($id);
 
-    $booking->delete();  //Delete the project
+    $booking->delete();
 
     return response()->json(['success' => 'Booking deleted successfully.']);
 }

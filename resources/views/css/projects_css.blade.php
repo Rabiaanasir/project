@@ -21,22 +21,19 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
-    /* Styling the project card for better aesthetics */
     .project-card {
         font-family: 'Montserrat', sans-serif;
         position: relative;
         overflow: hidden;
         border-radius: 15px;
         transition: transform 0.3s ease-in-out;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    /* Zoom-in effect for the card on hover */
     .project-card:hover {
-        transform: scale(1.05); /* Slight zoom effect */
+        transform: scale(1.05);
     }
 
-    /* Styling the image */
     .project-card img {
         transition: opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease;
         object-fit: cover;
@@ -44,13 +41,11 @@
         width: 100%;
     }
 
-    /* Subtle blur and fade effect on hover */
     .project-card:hover img {
-        opacity: 0.6; /* Slight fade */
-        filter: blur(2px); /* Subtle blur */
+        opacity: 0.6;
+        filter: blur(2px);
     }
 
-    /* Overlay to display the title */
     .project-overlay {
         position: absolute;
         top: 0;
@@ -60,7 +55,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+        background-color: rgba(0, 0, 0, 0.5);
         color: white;
         font-size: 1.8rem;
         font-weight: bold;
@@ -69,19 +64,16 @@
         transition: opacity 0.3s ease;
     }
 
-    /* Show overlay smoothly on hover */
     .project-card:hover .project-overlay {
         opacity: 1;
     }
 
-    /* Custom button styling */
     .btn {
-        border-radius: 25px; /* Rounded buttons */
+        border-radius: 25px;
     }
 
-    /* Margin and padding adjustments for spacing */
     .container {
-        max-width: 1200px; /* Limit the width for better aesthetics */
+        max-width: 1200px;
     }
 
     .section-title {

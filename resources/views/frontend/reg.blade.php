@@ -203,7 +203,6 @@
         </div>
 
            <div class="form-box">
-               <!--Login Form -->
                <div class="form loginform">
                 <button class="cancel-btn" onclick="goHome()">
                     <i class="fas fa-arrow-left"></i>
@@ -211,20 +210,16 @@
                 <form action="{{ route('login.submit') }}" method="POST">
                     @csrf
                     <h3>Log In</h3>
-                       <!-- Single field for both username or email -->
             <input type="text" placeholder="Username or Email" name="login" required>
                     <input type="password" placeholder="Password" name="password">
-                     <!-- Show/Hide Password Checkbox -->
             <label for="showPassword">
                 <input type="checkbox" id="showPassword"> Show Password
             </label>
             <input type="submit" value="Log In">
-            <!-- Display server-side error message -->
             <div class="error-message" id="loginError"></div>
                 </form>
             </div>
 
-            <!-- Registration Form -->
             <div class="form registerform">
                 <button class="cancel-btn" onclick="goHome()">
                     <i class="fas fa-arrow-left"></i>
@@ -236,13 +231,11 @@
                     <input type="email" placeholder="Email Address" id="email" name="email">
                     <input type="password" placeholder="Password" id="password" name="password">
                     <input type="password" placeholder="Confirm Password" id="password_confirmation" name="password_confirmation">
-                      <!-- Show/Hide Password Checkbox -->
             <label for="showRegisterPassword">
                 <input type="checkbox" id="showRegisterPassword"> Show Password
             </label>
                     <input type="submit" value="Register">
                 </form>
-                <!-- Error Message (general, displayed at the end) -->
                 <div class="error-message" id="generalError"></div>
             </div>
         </div>
@@ -250,7 +243,6 @@
 
     <script>
 
- // If server-side error exists, display it in the error div
  const loginError = `{{ $errors->first('login') ?? '' }}`;
     if (loginError) {
         document.getElementById('loginError').textContent = loginError;
@@ -270,16 +262,13 @@
             body.classList.remove('active');
         };
 
-        // Navigation to home page
         function goHome() {
-            window.location.href = '/'; // Update with your home page URL
+            window.location.href = '/';
         }
-        // login password visibility
         document.getElementById('showPassword').addEventListener('change', function() {
     const passwordField = document.querySelector('[name="password"]');
     passwordField.type = this.checked ? 'text' : 'password';
 });
-     // Toggle password visibility
 document.getElementById('showRegisterPassword').addEventListener('change', function() {
     const passwordField = document.getElementById('password');
     const confirmPasswordField = document.getElementById('password_confirmation');
@@ -292,30 +281,25 @@ document.getElementById('showRegisterPassword').addEventListener('change', funct
         confirmPasswordField.type = 'password';
     }
 });
-        // Validation function for registration form
         function validateRegisterForm() {
-            // Clear any previous error messages
             document.getElementById('generalError').textContent = '';
 
-            // Get form field values
             const username = document.getElementById('username').value.trim();
             const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value.trim();
             const confirmPassword = document.getElementById('password_confirmation').value.trim();
 
-            // Validate all fields are filled
             if (!username || !email || !password || !confirmPassword) {
                 document.getElementById('generalError').textContent = 'All fields must be filled out.';
-                return false; // Prevent form submission
+                return false;
             }
 
-            // Validate password match
             if (password !== confirmPassword) {
                 document.getElementById('generalError').textContent = 'Passwords do not match.';
-                return false; // Prevent form submission
+                return false;
             }
 
-            return true; // Allow form submission if all checks pass
+            return true;
         }
     </script>
 </body>

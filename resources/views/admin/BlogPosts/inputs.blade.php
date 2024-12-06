@@ -8,15 +8,6 @@
     <input type="text" class="form-control" value="{{!empty($post->description) ? $post->description : ''}}" id="description" name="description" placeholder="Enter Description" required>
 </div>
 
-
-{{-- <div class="form-group">
-    <label for="image" class="control-label">Image</label>
-    <input type="file" class="form-control" id="image" name="image" {{ empty($post->image) ? 'required' : '' }}>
-
-    @if (!empty($post->image))
-        <small>Current Image: {{ $post->image }}</small>
-    @endif
-</div> --}}
 <div class="form-group">
     <label for="image" class="control-label">Image</label>
     <input type="file" class="form-control" id="image" name="image">

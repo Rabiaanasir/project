@@ -9,13 +9,8 @@ class Brand extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name']; // Allow mass assignment of 'name'
+    protected $fillable = ['name'];
 
-    // If you want to define relationships with listings, add this:
-    // public function listings()
-    // {
-    //     return $this->hasMany(Listing::class);
-    // }
     public function listing()
     {
         return $this->hasMany(Listing::class);

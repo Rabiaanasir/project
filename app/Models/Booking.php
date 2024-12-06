@@ -14,7 +14,6 @@ class Booking extends Model
         'backup_hour', 'consumption_watts', 'booking_code', 'status', 'booking_date'
     ];
 
-    // Automatically generate a booking code
     protected static function booted()
     {
         static::creating(function ($booking) {
@@ -22,10 +21,8 @@ class Booking extends Model
         });
     }
 
-    // Define the relationship
     public function user()
     {
-        // Assuming the foreign key in bookings table is user_id
         return $this->belongsTo(User::class);
     }
     protected $casts = [

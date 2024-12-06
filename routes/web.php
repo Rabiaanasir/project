@@ -32,20 +32,6 @@ use App\Http\Controllers\admin\PackageController;
 use App\Http\Controllers\admin\ContactsController;
 use App\Http\Controllers\admin\FeedbackController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 Route::get('/', [homeController::class, 'index'])->name('home');
 Route::get('/about', [aboutController::class, 'index'])->name('about');
@@ -56,16 +42,14 @@ Route::get('/heaters', [heatersController::class, 'index'])->name('heaters');
 Route::get('/agriculture', [agriController::class, 'index'])->name('agriculture');
 Route::get('/commercial', [commercialController::class, 'index'])->name('commercial');
 Route::get('/blog', [BlogPostController::class, 'frontendBlogPosts'])->name('blog');
-// Route::get('/projects', [projectsController::class, 'index'])->name('projects');
 Route::get('/financing', [financeController::class, 'index'])->name('financing');
 Route::get('/contact', [ContactsController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactsController::class, 'store'])->name('contact.store');
 Route::get('/calculator', [calculatorController::class, 'index'])->name('calculator');
-// Route::get('/packages', [packagesController::class, 'index'])->name('packages');
 Route::get('/net-metering', [nmController::class, 'index'])->name('net-metering');
 Route::get('/emi', [emiController::class, 'index'])->name('emi');
 Route::get('/invest', [investController::class, 'index'])->name('invest');
-Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store'); // Feedback submission
+Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 
 
 // Show the combined login/register page
@@ -87,7 +71,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/user', function () {
         return view('frontend.user');
     })->name('user');
-    // Route::get('/install-system', [InstallController::class, 'index'])->name('installSystem');
+
 });
 Route::get('/appliances', [ApplianceController::class, 'index'])->name('appliances.index');
 Route::post('/appliances', [ApplianceController::class, 'store'])->middleware('auth')->name('appliances.store');
@@ -111,7 +95,6 @@ Route::get('/brands/edit/{id}', [BrandController::class, 'edit'])->name('brands.
 Route::put('/brands/update/{id}/', [BrandController::class, 'update'])->name('brands.update');
 Route::delete('/brands/{id}', [BrandController::class, 'destroy'])->name('brands.destroy');
 
-    // Route::get('/listings/{id}', [ListingController::class, 'show'])->name('listings.show');
     Route::get('listings', [ListingController::class, 'index'])->name('listings.index');
     Route::get('listings/view/{id}', [ListingController::class, 'view'])->name('listings.view');
     Route::get('listings/create', [ListingController::class, 'create'])->name('listings.create');
@@ -170,20 +153,16 @@ Route::get('/feedback/view/{id}', [FeedbackController::class, 'show'])->name('fe
 Route::delete('feedback/delete/{id}', [FeedbackController::class, 'destroy'])->name('feedback.destroy');
 });
 
-// USER/PUBLIC ROUTES (for everyone to access)
 Route::get('/listings', [ListingController::class, 'showUserListings'])->name('frontend.listings');
 Route::get('/listings-data', [ListingController::class, 'getUserListings'])->name('frontend.listings.data');
 Route::get('/product/{id}', [ListingController::class, 'show'])->name('product.show');
 
-
-// Frontend route to display projects to users
 Route::get('/projects', [ProjectController::class, 'frontendProjects'])->name('frontend.projects');
 Route::get('/packages', [PackageController::class, 'frontendpackages'])->name('packages');
 
 
 Route::get('/bookings/create', [BookingController::class, 'create'])->name('bookings.create');
 Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
-// Routes/web.php
 Route::get('/bookings/index', [BookingController::class, 'index'])->name('bookings.index');
 
 Route::get('/send-test-email', [ContactsController::class, 'sendTestEmail']);

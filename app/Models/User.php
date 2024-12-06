@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -44,18 +43,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
-    // Method to check if the user is an admin
     public function isAdmin()
     {
         return $this->role === 'admin';
     }
 
-    // In App\Models\User.php
-
 public function bookings()
 {
-    return $this->hasMany(Booking::class, 'user_id'); // 'user_id' is the foreign key in the 'bookings' table
+    return $this->hasMany(Booking::class, 'user_id');
 }
 
 }

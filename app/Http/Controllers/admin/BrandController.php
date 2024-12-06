@@ -13,21 +13,17 @@ class BrandController extends Controller
 
     public function index()
     {
-        // Fetch all brands
         $brandWithListing = Brand::with('listing');
-        // dd( $brandWithListing);
         $brands = Brand::all();
         return view('admin.Brands.index', compact('brands'));
     }
 
     public function store(Request $request)
     {
-        // Validate the request
         $request->validate([
             'name' => 'required|string|max:255',
         ]);
 
-        // Create new brand
         Brand::create([
             'name' => $request->name
         ]);
@@ -45,23 +41,17 @@ class BrandController extends Controller
 
     public function update(Request $request, $id)
     {
-        // dd($id);
-        // Validate the request
         $request->validate([
             'name' => 'required|string|max:255',
         ]);
 
         $brand = Brand::findOrFail($id);
         $brand->update(['name' => $request->name]);
-    // $brand->name = $request->name;
-    // $brand->save();
-    // return redirect('')->with('success', 'Brand updated successfully.');
     return response()->json(['id' => $brand->id, 'name' => $brand->name, 200]);
     }
 
     public function destroy($id)
     {
-        // Find the brand and delete
         $brand = Brand::find($id);
         $brand->delete();
 

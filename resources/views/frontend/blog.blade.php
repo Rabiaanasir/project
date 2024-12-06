@@ -9,7 +9,6 @@
             font-weight: 600;
             font-size: 50px;
         }
-        /* Main Blog Layout Styling */
         .blog-post {
             display: flex;
             flex-direction: row;
@@ -23,7 +22,7 @@
         }
 
         .blog-post:hover {
-            transform: translateY(-5px); /* Slight lift on hover */
+            transform: translateY(-5px);
         }
 
         .blog-image {
@@ -61,7 +60,6 @@
             line-height: 1.6;
         }
 
-        /* Responsive Adjustments */
         @media (max-width: 768px) {
             .blog-post {
                 flex-direction: column;
@@ -100,7 +98,7 @@
                 </div>
                 <div class="blog-content">
                     <h2 class="blog-title">{{ $post->title }}</h2>
-                    <p class="blog-description">{{($post->description) }}</p> <!-- Limits text to 150 characters -->
+                    <p class="blog-description">{{($post->description) }}</p>
                 </div>
             </div>
         @endforeach

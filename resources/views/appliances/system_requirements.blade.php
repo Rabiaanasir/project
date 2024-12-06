@@ -4,7 +4,6 @@
 @section('css')
 @include('css.common_css')
 <style>
-    /* Container styling */
     .requirements-container {
         max-width: 900px;
         margin: auto;
@@ -20,7 +19,6 @@
         box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
     }
 
-    /* Header styling */
     .requirements-header {
         color: #009688;
         font-size: 2.6rem;
@@ -32,7 +30,6 @@
         transform: scale(1.05);
     }
 
-    /* Info box styling */
     .info-box {
         padding: 15px;
         margin: 15px 0;
@@ -53,7 +50,6 @@
         height: 50px;
     }
 
-    /* System types layout */
     .system-types {
         display: flex;
         gap: 20px;
@@ -62,7 +58,6 @@
         margin-top: 20px;
     }
 
-    /* System card styling */
     .system-card {
         flex: 1;
         max-width: 400px;
@@ -84,7 +79,6 @@
         margin-bottom: 10px;
     }
 
-    /* Button styling */
     .btn-back {
         font-size: 1.2rem;
         padding: 12px 28px;
@@ -105,24 +99,19 @@
 <div class="container requirements-container">
     <h1 class="requirements-header">Solar System Requirements</h1>
 
-    <!-- Total wattage info box -->
     <div class="info-box">
         <p>Total Wattage of Appliances: <strong>{{ $totalWattage }} W</strong></p>
     </div>
 
-    <!-- System requirement info box -->
     <div class="info-box">
         <p>System Required: <strong>{{ $requiredSystemSize['systemRequired'] }}</strong></p>
     </div>
 
-    <!-- Solar capacity recommendation info box -->
     <div class="info-box">
         <p>Solar Capacity Recommendation: <strong>{{ $recommendedSolarCapacity }}</strong></p>
     </div>
 
-    <!-- System Types -->
     <div class="system-types">
-        <!-- Hybrid System Card -->
         <div class="system-card">
             <h2>Hybrid System</h2>
             @if(isset($requiredSystemSize['hybridInverterSize']) && $requiredSystemSize['hybridInverterSize'] !== 'Not applicable')
@@ -133,8 +122,6 @@
                 <p>This hybrid system is not suitable based on the current requirements.</p>
             @endif
         </div>
-
-        <!-- On-Grid System Card -->
         <div class="system-card">
             <h2>On-Grid System</h2>
             <p><strong>Inverter Size:</strong> {{ $requiredSystemSize['onGridInverterSize'] }}</p>
@@ -142,8 +129,6 @@
             <p><strong>Estimated Annual Generation:</strong> {{ $requiredSystemSize['onGridAnnualGeneration'] }}</p>
         </div>
     </div>
-
-    <!-- Button inside container -->
     <a href="{{ route('appliances.index') }}" class="btn btn-primary btn-back">Back to Appliance Selection</a>
     <a href="{{ route('bookings.create') }}" class="btn btn-primary btn-back">Book Now</a>
 </div>

@@ -3,7 +3,6 @@
 @section('css')
 @include('css.common_css')
 
-<!-- Inline CSS for custom tweaks -->
 <style>
   body {
     font-family: 'Arial', sans-serif;
@@ -33,7 +32,6 @@
   <h1 class="text-center">Select Appliances for Solar Panel System</h1>
 
   <form id="appliance-form" action="/submit-appliances" method="POST">
-    <!-- Appliance List -->
     <div class="appliance-list mb-4">
       <h3>Select Appliances</h3>
 
@@ -54,7 +52,6 @@
       </div>
     </div>
 
-    <!-- Custom Appliance Section -->
     <div id="custom-appliance-container">
       <h3>Add Custom Appliance</h3>
 
@@ -77,7 +74,6 @@
 
 @section('js')
 <script>
-  // Attach event listeners for all appliances and watt inputs
   document.querySelectorAll('.appliance-checkbox').forEach(checkbox => {
     checkbox.addEventListener('change', toggleWattInput);
   });
@@ -86,15 +82,13 @@
     input.addEventListener('input', calculateTotalWattage);
   });
 
-  // Enable or disable watt input based on checkbox state
   function toggleWattInput(event) {
     const input = event.target.parentElement.querySelector('.appliance-watt-input');
-    input.disabled = !event.target.checked; // Enable if checked, disable otherwise
-    input.value = ''; // Clear value when unchecked
-    calculateTotalWattage(); // Recalculate wattage when toggled
+    input.disabled = !event.target.checked;
+    input.value = '';
+    calculateTotalWattage();
   }
 
-  // Add new custom appliance row
   document.getElementById('add-custom-appliance-btn').addEventListener('click', function () {
     const container = document.getElementById('custom-appliance-container');
     const newRow = document.createElement('div');
@@ -106,32 +100,27 @@
     `;
     container.appendChild(newRow);
 
-    // Add event listener to new wattage input
     newRow.querySelector('.custom-watt-input').addEventListener('input', calculateTotalWattage);
   });
 
-  // Remove custom appliance row
   function removeCustomRow(button) {
     button.parentElement.remove();
-    calculateTotalWattage(); // Recalculate total wattage after removal
+    calculateTotalWattage();
   }
 
-  // Calculate total wattage
+
   function calculateTotalWattage() {
     let totalWattage = 0;
 
-    // Sum wattages from enabled and checked appliance inputs
     document.querySelectorAll('.appliance-checkbox:checked').forEach(checkbox => {
       const input = checkbox.parentElement.querySelector('.appliance-watt-input');
       totalWattage += parseInt(input.value) || 0;
     });
 
-    // Sum wattages from custom appliance inputs
     document.querySelectorAll('.custom-watt-input').forEach(input => {
       totalWattage += parseInt(input.value) || 0;
     });
 
-    // Display the total wattage
     document.getElementById('total-wattage').textContent = `Total Wattage: ${totalWattage} W`;
   }
 </script>

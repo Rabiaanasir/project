@@ -17,11 +17,8 @@
     @endif
     <h1 class="text-center mb-4">Select Appliances for Solar Panel System</h1>
 
-    <!-- Check if the user is logged in -->
     <form action="{{ route('appliances.store') }}" method="POST">
         @csrf
-
-        <!-- Appliance List -->
         <div class="appliance-list mb-4">
             <h3>Select Appliances</h3>
             <div class="row gy-3">
@@ -44,7 +41,6 @@
             </div>
         </div>
 
-        <!-- Custom Appliance Section -->
         <div id="custom-appliance-container">
             <h3>Add Custom Appliance</h3>
             <div class="custom-appliance-row d-flex mb-3">
@@ -91,9 +87,8 @@
 
   function toggleWattInput(event) {
     const input = event.target.parentElement.querySelector('.appliance-watt-input');
-    // Enable or disable the watt input based on the checkbox state
     input.disabled = !event.target.checked;
-    if (!event.target.checked) input.value = ''; // Clear value when unchecked
+    if (!event.target.checked) input.value = '';
     calculateTotalWattage();
   }
 
@@ -117,23 +112,18 @@
 
   function calculateTotalWattage() {
     let totalWattage = 0;
-
-    // Calculate total wattage from checked appliances
     document.querySelectorAll('.appliance-checkbox:checked').forEach(checkbox => {
       const input = checkbox.parentElement.querySelector('.appliance-watt-input');
       totalWattage += parseInt(input.value) || 0;
     });
 
-    // Add wattage from custom appliances
     document.querySelectorAll('.custom-watt-input').forEach(input => {
       totalWattage += parseInt(input.value) || 0;
     });
 
-    // Display total wattage
     document.getElementById('total-wattage').textContent = `Total Wattage: ${totalWattage} W`;
   }
 
-  // Event listeners for watt input fields
   document.querySelectorAll('.appliance-watt-input').forEach(input => {
     input.addEventListener('input', calculateTotalWattage);
   });

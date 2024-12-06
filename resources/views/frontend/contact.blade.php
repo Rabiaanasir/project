@@ -63,13 +63,9 @@
                 </div>
                 <button type="submit" class="btn btn-primary submit">Submit</button>
             </form>
-            <!-- Success Message -->
 <div id="successMessage" style="display:none; color: green;">
     Contact request submitted successfully!
 </div>
-
-                {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
-            {{-- <a href="#Request-a-meeting"class="btn btn-secondary">REQUEST A MEETING</a> --}}
         </div>
     </section>
 @endsection

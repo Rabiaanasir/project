@@ -78,35 +78,31 @@ nav img{
   }
   .login {
     background: rgb(233, 199, 6);
-    /* padding: 1px 20px;          Retain original padding */
-    display: inline-block;      /* Button-like appearance */
-    border-radius: 30px;        /* Smooth, round corners */
-    color: #000;                /* Black text */
-    font-weight: bold;          /* Make the text bold */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    transition: all 0.3s ease;  /* Smooth transition for hover effects */
+    display: inline-block;
+    border-radius: 30px;
+    color: #000;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
     margin-left: 40px;
     margin-bottom: 5px;
 }
 
-/* Specific styles for the link inside the .login class */
 .nav-item.login a {
-    color: #000;                /* Ensure black text color */
-    text-decoration: none;      /* Remove underline */
-    font-size: 16px;            /* Make the text a bit larger */
-    transition: color 0.3s ease; /* Smooth text color transition */
+    color: #000;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
 }
 
-/* Hover effect for the button */
 .login:hover {
-    background: rgb(233, 199, 6);           /* Slightly darker green on hover */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
-    transform: scale(1.05);     /* Slightly enlarge the button */
+    background: rgb(233, 199, 6);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
 }
 
-/* Hover effect for the text color inside the link */
 .nav-item.login a:login {
-    color: #004d00;             /* Darker green text color on hover */
+    color: #004d00;
 }
 
 /* Footer Styles */
@@ -135,7 +131,7 @@ footer ul {
 
 footer ul li {
     display: inline;
-    margin-right: 25px; /* Adjust spacing between list items as needed */
+    margin-right: 25px;
     letter-spacing: normal;
 }
 
@@ -162,15 +158,15 @@ footer .fab {
 @media (max-width: 768px) {
     footer {
         padding: 20px 30px;
-        display: block; /* Stack the content vertically */
+        display: block;
         text-align: center;
     }
 
     .left-section, .right-section {
-        float: none; /* Reset float for stacking */
-        width: 100%; /* Ensure they take full width */
+        float: none;
+        width: 100%;
         text-align: center;
-        margin-bottom: 20px; /* Add space between sections */
+        margin-bottom: 20px;
     }
 
     footer ul li {
@@ -255,7 +251,6 @@ footer .fab {
       font-size: 20px;
     }
 
-    /* Open state */
     .faq-item.open .faq-answer {
       max-height: 300px;
     }

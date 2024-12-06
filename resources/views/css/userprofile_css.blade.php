@@ -4,17 +4,6 @@
             background: #141a46;
             padding: 50px;
         }
-        /*.edit-icon {
-        cursor: pointer;
-        color: #ffa500;
-        margin-left: 10px;
-    }
-
-    .edit-icon:hover {
-        color: #e69500;
-    }*/
-
-        /* Profile buttons */
         .btn {
         display: inline-block;
         padding: 10px 20px;

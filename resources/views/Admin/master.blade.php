@@ -21,28 +21,22 @@
             </div>
             <div class="modal fade edit_modal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
             </div>
-            {{-- @include('dashboard.includes.footer') --}}
         </div>
     </div>
     @include('admin.css.dashboard_js')
     <script>
         $(document).ready(function() {
-            // Function for handling click on '.btn-modal' elements
             $(document).on('click', '.btn-modal', function(e) {
-                // alert()
                 e.preventDefault();
                 var container_modal = $(this).data('container_modal');
-                // console.log(container_modal)
                 $.ajax({
                     url: $(this).data('href'),
                     dataType: 'html',
                     success: function(result) {
-                        // console.log(result)
                         $(container_modal).html(result).modal('show');
                     },
                     error: function(xhr, status, error) {
                         toastr.error('Failed to load modal content');
-                        // Optionally, display an error message to the user
                     }
                 });
             });
@@ -61,8 +55,6 @@ console.log(container_edit)
                 $(container_edit)
                     .html(result)
                     .modal('show');
-
-                // Initialize select2 inside the modal
                 $(container_edit).find('.select2').each(function() {
                     $(this).select2({
                         width: '100%'

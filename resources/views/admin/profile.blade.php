@@ -33,7 +33,6 @@
             color: #4CAF50;
         }
 
-        /* Edit Profile Button */
         .action-btn {
             padding: 12px 30px;
             background-color: #FF7043;
@@ -56,17 +55,12 @@
     @endsection
 
     @section('content')
-    <!-- Main Content -->
     <div class="main-content">
-        <!-- Profile Card -->
         <div class=" m-5 profile-card">
             <h3>Admin Profile</h3>
             <p><strong>Username:</strong> {{ $user->username }}</p>
             <p><strong>Email:</strong> {{ $user->email }}</p>
-            {{-- <button class="action-btn">Edit Profile</button> --}}
         </div>
-
-        <!-- Additional Content Here (optional) -->
     </div>
 
  @endsection

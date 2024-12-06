@@ -3,7 +3,6 @@ header{
     height: 80vh;
     background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('/images/comm 4.jpg');
     background-repeat: no-repeat;
-    /*background-size: cover;*/
     background-position: center;
 }
 .header-content h1{
@@ -139,9 +138,9 @@ p{
     padding: 1rem 3rem;
     }
     hr {
-        border: 1px solid rgb(7, 255, 255); /* Change the color and thickness */
-        width: 50%; /* Change the width */
-        margin: 10px 2px; /* Center the line with margin */
+        border: 1px solid rgb(7, 255, 255);
+        width: 50%;
+        margin: 10px 2px;
     }
     h3{
         font-weight: 700;
@@ -186,9 +185,8 @@ p{
      font-size: 16px;
 
 }
-/* Ensure the contact box has its own responsive styling */
 .contact-box {
-    width: 60%; /* Default width */
+    width: 60%;
     margin: 0 auto;
     padding: 20px;
 }

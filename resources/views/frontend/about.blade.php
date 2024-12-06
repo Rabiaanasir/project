@@ -52,62 +52,48 @@
     <div class="container my-5">
         <h1 class="text-center mb-4">Feedback</h1>
 
-        <!-- Check if the user is logged in -->
         @if (auth()->check())
-            <!-- Display the form when the user is logged in -->
             <form action="{{ route('feedback.store') }}" method="POST">
-            {{-- <form action="" method="POST"> --}}
                 @csrf
-
-                <!-- Name Input -->
                 <div class="mb-3">
                     <label for="username" class="form-label">Name</label>
                     <input type="text" id="username" name="username" class="form-control" placeholder="Your Name" required>
                 </div>
 
-                <!-- Email Input (Prefilled with logged-in user's email) -->
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" id="email" name="email" class="form-control" value="{{ auth()->user()->email }}" readonly required>
                 </div>
 
-                <!-- Message Input -->
                 <div class="mb-3">
                     <label for="message" class="form-label">Message</label>
                     <textarea id="message" name="message" class="form-control" placeholder="Your Feedback" required></textarea>
                 </div>
 
-                <!-- Submit Button -->
                 <button type="submit" class="btn btn-primary w-100">Submit Feedback</button>
             </form>
         @else
-            <!-- Display a login prompt if the user is not logged in -->
             <div class="alert alert-warning text-center" role="alert">
                 Please <a href="{{ route('login') }}" class="alert-link">log in</a> to submit feedback.
             </div>
 
-            <!-- Display the form with disabled fields -->
             <form action="#" method="POST" class="mt-3">
                 @csrf
-                <!-- Name Input (Disabled for non-logged-in users) -->
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" disabled>
                 </div>
 
-                <!-- Email Input (Disabled for non-logged-in users) -->
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" id="email" name="email" class="form-control" value="you@example.com" readonly disabled>
                 </div>
 
-                <!-- Message Input (Disabled for non-logged-in users) -->
                 <div class="mb-3">
                     <label for="message" class="form-label">Message</label>
                     <textarea id="message" name="message" class="form-control" placeholder="Your Feedback" disabled></textarea>
                 </div>
 
-                <!-- Disabled Submit Button -->
                 <button type="submit" class="btn btn-primary w-100" disabled>Submit Feedback</button>
             </form>
         @endif

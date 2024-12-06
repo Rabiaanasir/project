@@ -18,14 +18,13 @@ return new class extends Migration
             $table->string('address');
             $table->string('phone_number');
             $table->boolean('backup_power');
-            $table->integer('backup_hour')->nullable(); // Only if backup_power is true
+            $table->integer('backup_hour')->nullable();
             $table->integer('consumption_watts');
-            $table->string('booking_code')->unique(); // Auto-generated booking code
+            $table->string('booking_code')->unique();
             $table->enum('status', ['pending', 'accepted', 'declined'])->default('pending');
-            $table->date('booking_date')->nullable(); // Optional booking date
+            $table->date('booking_date')->nullable();
             $table->timestamps();
 
-            // Foreign key constraint
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

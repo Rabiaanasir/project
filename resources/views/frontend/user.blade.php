@@ -46,7 +46,6 @@
             background-color: #0056b3;
         }
 
-        /* Logout button styling */
         .logout-btn {
             margin-top: 20px;
         }
@@ -55,12 +54,11 @@
 <body>
 
     <div class="container">
-        <h1>Welcome, <!-- Use PHP code to print the authenticated user's username -->
+        <h1>Welcome,
             <?php echo htmlspecialchars(Auth::user()->username); ?>!
         </h1>
 
         <form action="/logout" method="POST">
-            <!-- Laravel's CSRF token for form security -->
             <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
             <button type="submit" class="logout-btn">Logout</button>
