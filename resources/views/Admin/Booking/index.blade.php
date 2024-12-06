@@ -1,10 +1,4 @@
-
-
- @extends('Admin.master')
-
- @section('css')
- <!-- Add any custom CSS specific to this page if needed -->
- @endsection
+@extends('Admin.master')
 
  @section('content')
  <h3 class="i-name">Booking Managment</h3>

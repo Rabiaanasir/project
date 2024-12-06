@@ -103,7 +103,7 @@ public function update(Request $request, $id)
     // Validate the incoming request data
     $validated = $request->validate([
         'title' => 'required|string|max:255',
-        'image' => 'nullable|image|max:2048', // Laravel will automatically verify valid image types
+        'image' => 'required|image|max:2048', // Laravel will automatically verify valid image types
     ]);
 
 

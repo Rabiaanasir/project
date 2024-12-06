@@ -13,14 +13,14 @@
                 <ul class="nav-items">
                     <!-- <li class="nav-item"><a href="{{ route('home') }}">Home</a></li> -->
                     <li class="nav-item"><a href="{{ route('about') }}">About</a></li>
-                    <li class="nav-item"><a href="">Solar Accessories
-                        <ul class="dropdown">
+                    <li class="nav-item"><a href="{{ route('frontend.listings') }}">Solar Accessories</a></li>
+                        {{-- <ul class="dropdown">
                           <li><a href="{{ route('panels') }}">Solar Panels</a></li>
                             <li><a href="{{ route('inverters') }}">Solar Inverters</a></li>
                             <li><a href="{{ route('batteries') }}">Solar Batteries</a></li>
                             <li><a href="{{ route('heaters') }}">Solar Water Heaters</a></li>
                         </ul>
-                       </li>
+                       </li> --}}
                        <li class="nav-item"><a href="{{ route('frontend.projects') }}">Projects</a></li>
                     <li class="nav-item"><a href="{{ route('blog') }}">Blog</a></li>
                       {{-- @if(Auth::check()) --}}

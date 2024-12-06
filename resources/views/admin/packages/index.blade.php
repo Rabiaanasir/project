@@ -39,11 +39,6 @@
             processing: true,
             serverSide: true,
             ajax: "{{ route('packages.index') }}",
-            columnDefs: [{
-                targets: [1],
-                orderable: false,
-                searchable: false,
-            }],
             columns: [
                 {
                     data: 'title',
