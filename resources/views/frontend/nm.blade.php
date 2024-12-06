@@ -23,7 +23,7 @@
                 <p>Contact: 1234-567890<br>
                     Email: sales@sunsourcesolutions.com.pk</p>
                     <a href="{{ route('contact') }}">
-                <button>Contact</button>
+                <button>Contact</button></a>;
                 </div>
                   <section class="row">
                     <!-- <div class="row">--->
