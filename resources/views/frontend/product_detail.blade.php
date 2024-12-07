@@ -65,9 +65,6 @@
                 <p class="text-muted">Brand: {{ $listing->brand->name }}</p>
                 <p class="product-description">{{ $listing->description }}</p>
                 <p><strong>Power:</strong> {{ $listing->watts }} watts</p>
-                <button class="btn btn-primary btn-lg book-now-btn">
-                    <a href="#" class="text-white text-decoration-none">Book Now</a>
-                </button>
 
             </div>
         </div>

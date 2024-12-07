@@ -15,8 +15,6 @@ class AuthController extends Controller
     // Show the login form
     public function showRegForm()
     {
-        // $showLogin = $request->route()->getName() === 'login';
-        // return view('frontend.reg', ['showLogin' => $showLogin]);
         return view('frontend.reg');
     }
 
@@ -25,9 +23,10 @@ public function login(Request $request)
 {
     // Validate the login (either username or email) and password
     $request->validate([
-        'login' => 'required|string',  // 'login' could be either email or username
-        'password' => 'required|string',
+        'login' => 'required|string|max:255', // No spaces allowed
+        'password' => 'required|string|min:6|regex:/^\S+$/', // No spaces allowed
     ]);
+
 
     // Get the login input (either email or username)
     $loginInput = $request->input('login');
@@ -65,10 +64,11 @@ public function login(Request $request)
     public function register(Request $request)
     {
         $request->validate([
-            'username' => 'required|unique:users,username',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|confirmed|min:6',
+            'username' => 'required|string|regex:/^[a-zA-Z0-9 ]+$/|max:255|unique:users,username',
+            'email' => 'required|email|max:255|unique:users,email',
+            'password' => 'required|string|min:8|regex:/^[a-zA-Z0-9]+$/|confirmed',
         ]);
+
 
         User::create([
             'username' => $request->username,
@@ -109,8 +109,8 @@ public function showProfile()
     public function updateProfile(Request $request)
     {
         $request->validate([
-            'username' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . Auth::id(),
+            'username' => 'required|string|regex:/^[a-zA-Z0-9 ]+$/|max:255', // Alphanumeric only, no spaces
+    'email' => 'required|string|email|max:255|unique:users,email,' . Auth::id()
         ]);
 
         $user = Auth::user();
@@ -120,7 +120,7 @@ public function showProfile()
         // Only update password if it's provided
         if ($request->input('password')) {
             $request->validate([
-                'password' => 'required|string|min:8|confirmed',
+                'password' => 'nullable|string|min:8|regex:/^[a-zA-Z0-9]+$/|confirmed',
             ]);
             $user->password = bcrypt($request->input('password'));
         }

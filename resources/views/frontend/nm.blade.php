@@ -16,7 +16,7 @@
                  <h1>Net Metering</h1>
                  <p>Who doesn’t want to make the most of their solar panels and enjoy all the benefits they offer? Well, one great way to do that is by adding net metering to your existing solar system. Sun Source Solutions is expert at it by providing high quality and yet affordable net metering rates in Pakistan. Here’s how it works: during the day, when your solar panels produce more electricity than you need, you can sell the extra power back to the national grid. In return, you earn credits. Later, when your solar panels aren’t producing energy at night, you can use those credits to cover your electricity needs. It’s a smart process that not only boosts your profits but also cuts down on your electricity bills.</p>
              </div>
-                <<div class="box">
+                <div class="box">
                     <hr>
                     <h3>Speak To An Expert</h3>
                 <p>Not sure what’s best for you? Get a free consultation from our experts.</p>

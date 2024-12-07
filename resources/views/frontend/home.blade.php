@@ -50,7 +50,7 @@
 
   <!-- Floating buttons -->
   <div class="floating-buttons">
-    <a href="{{ route('appliances.index') }}" class="floating-button">install A System</a>
+    <a href="{{ route('appliances.index') }}" class="floating-button">Calculator</a>
     <a href="{{ route('contact') }}"class="floating-button">Get A Quote</a>
 
 
@@ -153,7 +153,7 @@
       <img src=".{{ asset('images/fina.jpg') }}">
       <div class="card-content">
           <h1>Bank Financing</h1>
-          <p> This means that regardless of your bank affiliation for solar financing, Sun Source Solution will be at your doorstep for solar panel installation. We install solar panel systems in accordance with the policies and financing schemes of your chosen bank. The system could be installed from 5 KW for homes to 100 KW for businesses. The panels we use for installation under the Allied Bank financing scheme are durable and highly efficient and can last for more than 25 years.</p>
+          <p> This means that regardless of your bank affiliation for solar financing, Sun Source Solutions will be at your doorstep for solar panel installation. We install solar panel systems in accordance with the policies and financing schemes of your chosen bank. The system could be installed from 5 KW for homes to 100 KW for businesses. The panels we use for installation under the Allied Bank financing scheme are durable and highly efficient and can last for more than 25 years.</p>
        <a href="{{ route('financing') }}" class="card-button">More Details</a>
       </div>
   </div>
@@ -162,7 +162,7 @@
       <div class="card-content">
           <h1>EMI Plan</h1>
           <p>
-              We firmly believe that green energy is the future and we are committed to helping you make the switch with confidence Our installment program is designed to provide you with personalized, accessible, and cost-effective options to invest in green energy and reduce your electricity bills. We also offer net metering, which will further decrease your electricity bills. Furthermore, our plan is entirely self-financed, which means you do not need to partner with a bank.
+              We firmly believe that green energy is the future and we are committed to helping you make the switch with confidence. Our installment program is designed to provide you with personalized, accessible, and cost-effective options to invest in green energy and reduce your electricity bills. We also offer net metering, which will further decrease your electricity bills. Furthermore, our plan is entirely self-financed, which means you do not need to partner with a bank.
           </p>
           <a href="{{ route('emi') }}" class="card-button">Apply Here</a>
       </div>
@@ -190,12 +190,11 @@
         @foreach ($feedbacks->slice(0, 3) as $feedback)
             <div class="card">
                 <div class="card-header">
-                    {{ $feedback->name }}
+                    <p style="color:navy;"><strong> {{ $feedback->username }}</strong></p> <!-- Display full message -->
                     <!-- Display 'Verified' if the feedback is from a registered user -->
-                    <span class="badge">{{ $feedback->user ? 'Verified' : 'Guest' }}</span>
+                    {{-- <span class="badge">{{ $feedback->user ? 'Verified' : 'Guest' }}</span> --}}
                 </div>
                 <div class="card-body">
-                    <p><strong>Name: {{ $feedback->username }}</strong></p> <!-- Display full message -->
                     <p><strong>Message:</strong> {{ $feedback->message }}</p> <!-- Display full message -->
                 </div>
             </div>

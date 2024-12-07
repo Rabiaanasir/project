@@ -8,6 +8,7 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="text" placeholder="Search">
             </div> --}}
+            <a href="{{ route('home')}}" style=" color:#000; font-size:16px; cursor:pointer;">Home</a>
         </div>
         <div class="profile">
     {{-- <i class="far fa-bell"></i> --}}

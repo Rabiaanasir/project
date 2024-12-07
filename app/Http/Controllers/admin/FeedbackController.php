@@ -52,22 +52,7 @@ return view('admin.feedback.index', compact('feedback'));
         // Redirect back with a success message
         return redirect()->route('about')->with('success', 'Feedback submitted successfully!');
     }
-// Fetch data for DataTables
-// public function getData(Request $request)
-// {
-//     if ($request->ajax()) {
-//         // $feedback = Feedback::with('user')->select(['id', 'user_id', 'username', 'email', 'message']);
-//         $feedback = Feedback::with('user')->select('feedback.*');
-//         return DataTables::of($feedback)
 
-//             // ->addColumn('action', function ($row) {
-//             //     return '<a href="'.route('feedback.show', $row->id).'" class="btn btn-sm btn-primary">View</a>
-//             //             <button data-id="'.$row->id.'" class="btn btn-sm btn-danger delete-feedback">Delete</button>';
-//             // })
-//             // ->rawColumns(['action'])
-//             ->make(true);
-//     }
-// }
 
 public function getData(Request $request)
 {

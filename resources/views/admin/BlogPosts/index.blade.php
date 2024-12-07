@@ -1,7 +1,4 @@
 @extends('Admin.master')
-@section('css')
-    {{-- Include your CSS here if needed --}}
-@endsection
 
 @section('content')
 
