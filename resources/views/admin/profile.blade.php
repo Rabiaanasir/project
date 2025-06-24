@@ -129,15 +129,15 @@
 </div>
 <script>
 
-document.addEventListener('DOMContentLoaded', function() {
-    const errorAlert = document.querySelector('.alert-danger');
-    const successAlert = document.querySelector('.alert-success');
+// document.addEventListener('DOMContentLoaded', function() {
+//     const errorAlert = document.querySelector('.alert-danger');
+//     const successAlert = document.querySelector('.alert-success');
 
-    if (errorAlert || successAlert) {
-        document.getElementById('profile-edit').style.display = 'block';
-        document.getElementById('profile-view').style.display = 'none';
-    }
-});
+//     if (errorAlert || successAlert) {
+//         document.getElementById('profile-edit').style.display = 'block';
+//         document.getElementById('profile-view').style.display = 'none';
+//     }
+// });
 
 
     document.getElementById('showAdminPassword').addEventListener('change', function() {

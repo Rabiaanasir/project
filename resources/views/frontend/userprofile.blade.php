@@ -3,11 +3,35 @@
 <div class="profile-container">
     <h2>User Profile</h2>
 
-    @if(session('success'))
+    {{-- @if(session('success'))
         <div class="alert">
             {{ session('success') }}
         </div>
-    @endif
+    @endif --}}
+    <div class="alerts">
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
+
 
     <div class="profile-photo">
         @if($user->profile_photo)

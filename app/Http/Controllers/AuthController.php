@@ -53,7 +53,7 @@ public function login(Request $request)
         $request->validate([
             'username' => 'required|string|regex:/^[a-zA-Z0-9 ]+$/|max:255|unique:users,username',
             'email' => 'required|email|max:255|unique:users,email',
-            'password' => 'required|string|min:8|regex:/^[a-zA-Z0-9]+$/|confirmed',
+            'password' => 'required|string|min:8|regex:/^[a-zA-Z0-9 ]+$/|confirmed',
         ]);
 
 
@@ -85,9 +85,13 @@ public function showProfile()
     public function updateProfile(Request $request)
     {
         $request->validate([
-            'username' => 'required|string|regex:/^[a-zA-Z0-9 ]+$/|max:255',
-    'email' => 'required|string|email|max:255|unique:users,email,' . Auth::id()
-        ]);
+    'username' => 'required|string|regex:/^[a-zA-Z0-9 ]+$/|max:255',
+    'email' => 'required|string|email|max:255|unique:users,email,' . Auth::id(),
+], [
+    'username.regex' => 'Username should not contain special characters.',
+    'email.email' => 'Please enter a valid email address.',
+    'email.unique' => 'This email is already in use.',
+]);
 
         $user = Auth::user();
         $user->username = $request->input('username');
@@ -104,40 +108,22 @@ public function showProfile()
 return redirect()->route('home')->with('success', 'Profile updated successfully!');
     }
 
-// public function updateAdminProfile(Request $request)
-//     {
-//         $request->validate([
-//             'username' => 'required|string|regex:/^[a-zA-Z0-9 ]+$/|max:255',
-//     'email' => 'required|string|email|max:255|unique:users,email,' . Auth::id()
-//         ]);
 
-//         $user = Auth::user();
-//         $user->username = $request->input('username');
-//         $user->email = $request->input('email');
-//         if ($request->input('password')) {
-//             $request->validate([
-//                 'password' => 'nullable|string|min:8|regex:/^[a-zA-Z0-9]+$/|confirmed',
-//             ]);
-//             $user->password = bcrypt($request->input('password'));
-//         }
-
-//         $user->save();
-
-// return redirect()->route('admin.dashboard')->with('success', 'Profile updated successfully!');
-
-// }
 public function updateAdminProfile(Request $request)
 {
     $request->validate([
-        'username' => 'required|string|regex:/^[a-zA-Z0-9 ]+$/|max:255',
-        'email' => 'required|string|email|max:255|unique:users,email,' . Auth::id(),
-    ]);
+    'username' => 'required|string|regex:/^[a-zA-Z0-9 ]+$/|max:255',
+    'email' => 'required|string|email|max:255|unique:users,email,' . Auth::id(),
+], [
+    'username.regex' => 'Username should not contain special characters.',
+    'email.email' => 'Please enter a valid email address.',
+    'email.unique' => 'This email is already in use.',
+]);
 
-    try {
+
         $user = Auth::user();
         $user->username = $request->input('username');
         $user->email = $request->input('email');
-
         if ($request->input('password')) {
             $request->validate([
                 'password' => 'nullable|string|min:8|regex:/^[a-zA-Z0-9]+$/|confirmed',
@@ -146,11 +132,10 @@ public function updateAdminProfile(Request $request)
         }
 
         $user->save();
-        return redirect()->back()->with('success', 'Profile updated successfully!');
-    } catch (\Exception $e) {
-        return redirect()->back()->with('error', 'An error occurred. Please try again.');
+
+return redirect()->route('home')->with('success', 'Profile updated successfully!');
     }
-}
+
 
 
 public function index()
