@@ -224,14 +224,14 @@
                 <button class="cancel-btn" onclick="goHome()">
                     <i class="fas fa-arrow-left"></i>
                 </button>
-                <form id="registerForm" action="{{ route('registeration') }}" method="POST" onsubmit="return validateRegisterForm()">
+                <form id="registerForm" action="{{ route('registeration') }}" method="POST" >
                     @csrf
                     <h3>Register</h3>
                     <input type="text" name="username" value="{{ old('username') }}" placeholder="Username">
 <input type="email" name="email" value="{{ old('email') }}" placeholder="Email Address">
 
                     <input type="password" placeholder="Password" id="password" name="reg_password">
-                    <input type="password" placeholder="Confirm Password" id="password_confirmation" name="password_confirmation">
+                    <input type="password" placeholder="Confirm Password" id="password_confirmation" name="reg_password_confirmation">
             <label for="showRegisterPassword">
                 <input type="checkbox" id="showRegisterPassword"> Show Password
             </label>
@@ -282,24 +282,6 @@ document.getElementById('showRegisterPassword').addEventListener('change', funct
         confirmPasswordField.type = 'password';
     }
 });
-const usernameError = `{{ $errors->first('username') ?? '' }}`;
-if (usernameError) {
-    document.getElementById('generalError').textContent = usernameError;
-    document.querySelector('.form-box').classList.add('active');
-    document.body.classList.add('active');
-}
-const emailError = `{{ $errors->first('email') ?? '' }}`;
-if (emailError) {
-    document.getElementById('generalError').textContent = emailError;
-    document.querySelector('.form-box').classList.add('active');
-    document.body.classList.add('active');
-}
-// const passwordError = `{{ $errors->first('password') ?? '' }}`;
-// if (passwordError) {
-//     document.getElementById('generalError').textContent = passwordError;
-//     document.querySelector('.form-box').classList.add('active');
-//     document.body.classList.add('active');
-// }
 
 const loginPasswordError = `{{ $errors->first('password') ?? '' }}`;
 if (loginPasswordError) {
@@ -312,6 +294,19 @@ if (registerPasswordError) {
     document.querySelector('.form-box').classList.add('active');
     document.body.classList.add('active');
 }
+const emailError = `{{ $errors->first('email') ?? '' }}`;
+if (emailError) {
+    document.getElementById('generalError').textContent = emailError;
+    document.querySelector('.form-box').classList.add('active');
+    document.body.classList.add('active');
+}
+const usernameError = `{{ $errors->first('username') ?? '' }}`;
+if (usernameError) {
+    document.getElementById('generalError').textContent = usernameError;
+    document.querySelector('.form-box').classList.add('active');
+    document.body.classList.add('active');
+}
+
 
         // function validateRegisterForm() {
         //     document.getElementById('generalError').textContent = '';
