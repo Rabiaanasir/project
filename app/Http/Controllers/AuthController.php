@@ -52,18 +52,23 @@ public function login(Request $request)
     {
         $request->validate([
             'username' => 'required|string|regex:/^[a-zA-Z0-9 ]+$/|max:255|unique:users,username',
-            'email' => 'required|email|max:255|unique:users,email',
-            'password' => 'required|string|min:8|regex:/^[a-zA-Z0-9 ]+$/|confirmed',
+            'email' => 'required|email:rfc,dns|max:255|unique:users,email',
+            'reg_password' => 'required|string|min:8|regex:/^[a-zA-Z0-9 ]+$/|confirmed',
+        ],[
+            'reg_password.required' => 'Password is required.',
+            'reg_password.min' => 'Password must be at least 8 characters.',
+            'reg_password.regex' => 'Password can only contain letters, numbers, and spaces.',
+            'reg_password.confirmed' => 'Passwords do not match.',
         ]);
 
 
         User::create([
             'username' => $request->username,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($request->reg_password),
         ]);
 
-        Auth::attempt($request->only('username', 'password'));
+        Auth::attempt($request->only('username', 'reg_password'));
 
         return redirect()->intended('/');
     }

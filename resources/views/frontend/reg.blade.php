@@ -227,9 +227,10 @@
                 <form id="registerForm" action="{{ route('registeration') }}" method="POST" onsubmit="return validateRegisterForm()">
                     @csrf
                     <h3>Register</h3>
-                    <input type="text" placeholder="Username" id="username" name="username">
-                    <input type="email" placeholder="Email Address" id="email" name="email">
-                    <input type="password" placeholder="Password" id="password" name="password">
+                    <input type="text" name="username" value="{{ old('username') }}" placeholder="Username">
+<input type="email" name="email" value="{{ old('email') }}" placeholder="Email Address">
+
+                    <input type="password" placeholder="Password" id="password" name="reg_password">
                     <input type="password" placeholder="Confirm Password" id="password_confirmation" name="password_confirmation">
             <label for="showRegisterPassword">
                 <input type="checkbox" id="showRegisterPassword"> Show Password
@@ -281,57 +282,88 @@ document.getElementById('showRegisterPassword').addEventListener('change', funct
         confirmPasswordField.type = 'password';
     }
 });
-        function validateRegisterForm() {
-            document.getElementById('generalError').textContent = '';
+const usernameError = `{{ $errors->first('username') ?? '' }}`;
+if (usernameError) {
+    document.getElementById('generalError').textContent = usernameError;
+    document.querySelector('.form-box').classList.add('active');
+    document.body.classList.add('active');
+}
+const emailError = `{{ $errors->first('email') ?? '' }}`;
+if (emailError) {
+    document.getElementById('generalError').textContent = emailError;
+    document.querySelector('.form-box').classList.add('active');
+    document.body.classList.add('active');
+}
+// const passwordError = `{{ $errors->first('password') ?? '' }}`;
+// if (passwordError) {
+//     document.getElementById('generalError').textContent = passwordError;
+//     document.querySelector('.form-box').classList.add('active');
+//     document.body.classList.add('active');
+// }
 
-            const username = document.getElementById('username').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value.trim();
-            const confirmPassword = document.getElementById('password_confirmation').value.trim();
-
-            if (!username || !email || !password || !confirmPassword) {
-                document.getElementById('generalError').textContent = 'All fields must be filled out.';
-                return false;
-            }
-            let isValid = true;
-
-
-if (!username) {
-    document.getElementById('generalError').textContent = 'Username is required.';
-    isValid = false;
-} else if (!/^[a-zA-Z0-9 ]+$/.test(username)) {
-    document.getElementById('generalError').textContent = 'Username can only contain letters, numbers, and spaces.';
-    isValid = false;
+const loginPasswordError = `{{ $errors->first('password') ?? '' }}`;
+if (loginPasswordError) {
+    document.getElementById('loginError').textContent = loginPasswordError;
 }
 
-if (!email) {
-    document.getElementById('generalError').textContent = 'Email is required.';
-    isValid = false;
-} else if (!/\S+@\S+\.\S+/.test(email)) {
-    document.getElementById('generalError').textContent = 'Invalid email format.';
-    isValid = false;
+const registerPasswordError = `{{ $errors->first('reg_password') ?? '' }}`;
+if (registerPasswordError) {
+    document.getElementById('generalError').textContent = registerPasswordError;
+    document.querySelector('.form-box').classList.add('active');
+    document.body.classList.add('active');
 }
 
-if (!password) {
-    document.getElementById('generalError').textContent = 'Password is required.';
-    isValid = false;
-} else if (password.length < 8) {
-    document.getElementById('generalError').textContent = 'Password must be at least 8 characters long.';
-    isValid = false;
-}
-    if (password !== confirmPassword) {
-        document.getElementById('generalError').textContent = 'Passwords do not match.';
-        isValid = false;
-    }
+        // function validateRegisterForm() {
+        //     document.getElementById('generalError').textContent = '';
+
+        //     const username = document.getElementById('username').value.trim();
+        //     const email = document.getElementById('email').value.trim();
+        //     const password = document.getElementById('password').value.trim();
+        //     const confirmPassword = document.getElementById('password_confirmation').value.trim();
+
+        //     if (!username || !email || !password || !confirmPassword) {
+        //         document.getElementById('generalError').textContent = 'All fields must be filled out.';
+        //         return false;
+        //     }
+        //     let isValid = true;
 
 
-    if (!isValid) {
-        event.preventDefault();
-    }
+// if (!username) {
+//     document.getElementById('generalError').textContent = 'Username is required.';
+//     isValid = false;
+// } else if (!/^[a-zA-Z0-9 ]+$/.test(username)) {
+//     document.getElementById('generalError').textContent = 'Username can only contain letters, numbers, and spaces.';
+//     isValid = false;
+// }
 
-    return isValid;
+//if (!email) {
+    //document.getElementById('generalError').textContent = 'Email is required.';
+   // isValid = false;
+//} else if (!/\S+@\S+\.\S+/.test(email)) {
+    //document.getElementById('generalError').textContent = 'Invalid email format.';
+  //  isValid = false;
+//}
+
+// if (!password) {
+//     document.getElementById('generalError').textContent = 'Password is required.';
+//     isValid = false;
+// } else if (password.length < 8) {
+//     document.getElementById('generalError').textContent = 'Password must be at least 8 characters long.';
+//     isValid = false;
+// }
+//     if (password !== confirmPassword) {
+//         document.getElementById('generalError').textContent = 'Passwords do not match.';
+//         isValid = false;
+//     }
 
 
-        }
+    // if (!isValid) {
+    //     event.preventDefault();
+    // }
+
+    // return isValid;
+
+
+    //     }
     </script>
 </body>
