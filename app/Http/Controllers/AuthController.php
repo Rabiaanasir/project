@@ -68,7 +68,11 @@ public function login(Request $request)
             'password' => Hash::make($request->reg_password),
         ]);
 
-        Auth::attempt($request->only('username', 'reg_password'));
+        // Auth::attempt($request->only('username', 'reg_password'));
+Auth::attempt([
+    'username' => $request->username,
+    'password' => $request->reg_password,
+]);
 
         return redirect()->intended('/');
     }
