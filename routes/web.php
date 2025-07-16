@@ -155,7 +155,7 @@ Route::delete('feedback/delete/{id}', [FeedbackController::class, 'destroy'])->n
 });
 
 Route::get('/listings', [ListingController::class, 'showUserListings'])->name('frontend.listings');
-Route::get('/listings-data', [ListingController::class, 'getUserListings'])->name('frontend.listings.data');
+// Route::get('/listings-data', [ListingController::class, 'getUserListings'])->name('frontend.listings.data');
 Route::get('/product/{id}', [ListingController::class, 'show'])->name('product.show');
 
 Route::get('/projects', [ProjectController::class, 'frontendProjects'])->name('frontend.projects');

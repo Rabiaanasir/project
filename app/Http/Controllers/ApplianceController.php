@@ -24,8 +24,8 @@ class ApplianceController extends Controller
         'refrigerator_watt' => 'nullable|integer|min:1',
         'air_conditioner_watt' => 'nullable|integer|min:1',
         'washing_machine_watt' => 'nullable|integer|min:1',
-        'custom_wattage' => 'array',
-        'custom_wattage.*' => 'integer|min:1',
+        'custom_wattage' => 'nullable|array',
+        'custom_wattage.*' => 'nullable|integer|min:1',
     ]);
 
     $totalWattage = 0;
@@ -105,6 +105,21 @@ private function calculateSystemSize($totalWattage)
 
     $hybridInverter = $this->getInverterSize('hybrid', $totalKW);
     $onGridInverter = $this->getInverterSize('on-grid', $totalKW);
+
+    // Handle wattage beyond max supported inverter size
+    if (!$hybridInverter || !$onGridInverter) {
+        return [
+            'systemType' => 'Custom',
+            'systemRequired' => number_format($totalKW, 2) . ' kW',
+            'recommendedInverter' => 'Please contact support for a custom solar solution.',
+            'hybridInverterSize' => 'Not available',
+            'onGridInverterSize' => 'Not available',
+            'hybridPanels' => 'Not available',
+            'onGridPanels' => 'Not available',
+            'hybridAnnualGeneration' => 'Not available',
+            'onGridAnnualGeneration' => 'Not available',
+        ];
+    }
 
     return [
         'systemType' => $totalKW > 12 ? 'On-Grid' : 'Hybrid or Off-Grid',
@@ -194,7 +209,9 @@ private function getRecommendedSolarCapacity($totalWattage)
         return '10 kW+: Custom solution needed based on specific requirements. High-consumption homes or small commercial.';
     }
 
-    return 'No recommendation available.';
+    // return 'No recommendation available.';
+    return 'Your current usage is very low. A basic solar setup under 1 kW may be sufficient.';
+
 }
 
 public function destroy($id)

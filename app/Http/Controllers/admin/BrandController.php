@@ -13,7 +13,7 @@ class BrandController extends Controller
 
     public function index()
     {
-        $brandWithListing = Brand::with('listing');
+        // $brandWithListing = Brand::with('listing');
         $brands = Brand::all();
         return view('admin.Brands.index', compact('brands'));
     }
@@ -47,7 +47,7 @@ class BrandController extends Controller
 
         $brand = Brand::findOrFail($id);
         $brand->update(['name' => $request->name]);
-    return response()->json(['id' => $brand->id, 'name' => $brand->name, 200]);
+    return response()->json(['id' => $brand->id, 'name' => $brand->name], 200);
     }
 
     public function destroy($id)

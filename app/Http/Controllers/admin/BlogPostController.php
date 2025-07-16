@@ -22,8 +22,6 @@ class BlogPostController extends Controller
                 })
                 ->addColumn('action', function ($row) {
                     $viewBtn = '<a href="' . route('posts.view', $row->id) . '"
-                    data-href="' . route('posts.view', $row->id) . '"
-                    data-container_view=".view_modal"
                     class="btn btn-sm btn-success modal_view">View</a>';
                     $editBtn = '<a href="' . route('posts.edit', $row->id) . '"
                                     data-href="' . route('posts.edit', $row->id) . '"data-container_edit=".edit_modal" class="btn btn-sm btn-primary modal_edit">Edit</a>';
