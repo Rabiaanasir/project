@@ -21,6 +21,7 @@
                     <th>Status</th>
                     <th>Booking Date</th>
                     <th>Booking Code</th>
+                    <th>Created at</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -48,6 +49,7 @@ $(document).ready(function() {
             { data: 'status', name: 'status'},
             { data: 'booking_date', name: 'booking_date' },
             { data: 'booking_code', name: 'booking_code' },
+            { data: 'created_at', name: 'created_at' },
             {
                 data: 'actions',
                 name: 'actions',

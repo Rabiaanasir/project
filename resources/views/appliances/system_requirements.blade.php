@@ -111,6 +111,17 @@
         <p>Solar Capacity Recommendation: <strong>{{ $recommendedSolarCapacity }}</strong></p>
     </div>
 
+    {{-- 🚨 Insert Warning Here --}}
+    {{-- @if ($requiredSystemSize['recommendedInverter'] === 'Please contact support for a custom solar solution.')
+        <div class="alert alert-warning text-center">
+            Your wattage is too high for standard systems. Please <a href="{{ route('contact') }}">contact our team</a> for a custom solution.
+        </div>
+    @endif --}}
+    @if ($requiredSystemSize['recommendedInverter'] === 'Please contact support for a custom solar solution.')
+    <div class="alert alert-warning text-center">
+        Your wattage is too high for standard systems. Please <a href="{{ route('contact') }}">contact our team</a> for a custom solution.
+    </div>
+@else
     <div class="system-types">
         <div class="system-card">
             <h2>Hybrid System</h2>
@@ -129,6 +140,29 @@
             <p><strong>Estimated Annual Generation:</strong> {{ $requiredSystemSize['onGridAnnualGeneration'] }}</p>
         </div>
     </div>
+    <div class="alert alert-warning text-center">
+        For a quotation or pricing details, feel free to contact our team.
+    </div>
+@endif
+
+    {{-- <div class="system-types">
+        <div class="system-card">
+            <h2>Hybrid System</h2>
+            @if(isset($requiredSystemSize['hybridInverterSize']) && $requiredSystemSize['hybridInverterSize'] !== 'Not applicable')
+                <p><strong>Inverter Size:</strong> {{ $requiredSystemSize['hybridInverterSize'] }}</p>
+                <p><strong>Number of Panels:</strong> {{ $requiredSystemSize['hybridPanels'] ?? 'Not calculated' }}</p>
+                <p><strong>Estimated Annual Generation:</strong> {{ $requiredSystemSize['hybridAnnualGeneration'] ?? 'Not calculated' }}</p>
+            @else
+                <p>This hybrid system is not suitable based on the current requirements.</p>
+            @endif
+        </div>
+        <div class="system-card">
+            <h2>On-Grid System</h2>
+            <p><strong>Inverter Size:</strong> {{ $requiredSystemSize['onGridInverterSize'] }}</p>
+            <p><strong>Number of Panels:</strong> {{ $requiredSystemSize['onGridPanels'] }} </p>
+            <p><strong>Estimated Annual Generation:</strong> {{ $requiredSystemSize['onGridAnnualGeneration'] }}</p>
+        </div>
+    </div> --}}
     <a href="{{ route('appliances.index') }}" class="btn btn-primary btn-back">Back to Appliance Selection</a>
     <a href="{{ route('bookings.create') }}" class="btn btn-primary btn-back">Book Now</a>
 </div>

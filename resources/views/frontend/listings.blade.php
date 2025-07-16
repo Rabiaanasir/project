@@ -83,7 +83,30 @@
 
 <div class="container">
     <h1 class="text-center my-5">Product Listings</h1>
-    <div id="productGrid" class="row">
+    {{-- <div id="productGrid" class="row"> --}}
+        <div id="productGrid" class="row">
+    @forelse ($listings as $listing)
+        <div class="col-md-4 mb-4">
+            <a href="{{ url('product/' . $listing->id) }}" class="card-link" style="text-decoration: none; color: inherit;">
+                <div class="card h-100">
+                    <img src="{{ asset('storage/images/' . $listing->image) }}"
+                         class="card-img-top"
+                         alt="{{ $listing->title }}"
+                         style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $listing->title }}</h5>
+                        <p class="card-text">{{ \Illuminate\Support\Str::limit($listing->description, 80) }}</p>
+                        <p class="text-muted">Brand: {{ $listing->brand->name }}</p>
+                        <p class="fw-bold">Rs {{ number_format($listing->price) }}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    @empty
+        <p class="text-center">No products found.</p>
+    @endforelse
+</div>
+
     </div>
 </div>
 <div class="box">
@@ -94,8 +117,9 @@
     Email: sales@sunsourcesolutions.com.pk</p>
     <a href="{{ route('contact') }}">
         <button>REQUEST A CALL</button>
+    </a>
 </div>
-<script>
+{{-- <script>
 $(document).ready(function() {
     fetchListings();
 
@@ -143,5 +167,5 @@ $(document).ready(function() {
         }
     }
 });
-</script>
+</script> --}}
 @endsection

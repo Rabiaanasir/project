@@ -124,16 +124,21 @@ class ListingController extends Controller
     $listing = Listing::with('brand')->findOrFail($id);
     return view('frontend.product_detail', compact('listing'));
 }
-    public function showUserListings()
-    {
-        return view('frontend.listings');
-    }
+//     public function showUserListings()
+//     {
+//         return view('frontend.listings');
+//     }
 
-    public function getUserListings()
-   {
-    $listings = Listing::with('brand')->get();
-    return response()->json(['data' => $listings]);
-   }
+//     public function getUserListings()
+//    {
+//     $listings = Listing::with('brand')->get();
+//     return response()->json(['data' => $listings]);
+//    }
+ public function showUserListings()
+    {
+        $listings = Listing::all();
+        return view('frontend.listings', compact('listings'));
+    }
 }
 
 

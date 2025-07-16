@@ -32,7 +32,7 @@ public function getData(Request $request)
                 return $booking->user ? $booking->user->email : 'N/A';
             })
             ->editColumn('status', function ($booking) {
-                $selectedStatus = ucfirst($booking->status);
+                // $selectedStatus = ucfirst($booking->status);
                 return '
                     <select class="form-control status-dropdown" data-id="' . $booking->id . '">
                         <option value="pending" ' . ($booking->status === 'pending' ? 'selected' : '') . '>Pending</option>
@@ -45,7 +45,10 @@ public function getData(Request $request)
                         ($booking->booking_date ? $booking->booking_date->format('Y-m-d') : '') .
                         '" data-id="' . $booking->id . '">';
             })
-
+            ->editColumn('created_at', function ($booking) {
+             // Format as '26 Jun 2025, 02:30 PM'
+                 return $booking->created_at->format('d M Y, h:i A');
+            })
             ->rawColumns(['status','booking_date'])
             ->make(true);
     }
