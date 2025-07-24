@@ -16,7 +16,15 @@
          </button>
      </div>
  @endif
-
+ @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <form action="{{ route('bookings.store') }}" method="POST">
         @csrf
         <div class="card p-4">
@@ -45,6 +53,7 @@
                 <input type="number" name="backup_hour" id="backup_hour" class="form-control" min="1">
             </div>
 
+            
             <div class="form-group mt-3">
                 <label for="consumption_watts">Consumption (Watts):</label>
                 <input type="number" name="consumption_watts" id="consumption_watts" class="form-control" required>

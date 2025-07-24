@@ -31,11 +31,21 @@
         </div>
      </div>
     </section>
-    <section>
+    <section id="form-section">
         <div class="container">
             <h2>Request More Information</h2>
             <p>Complete the below form and our team will contact you shortly</p>
-            <form action="{{ route('contact.store') }}" method="post">
+            @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+            <form action="{{ route('contact.store') }}#form-section" method="post">
                 @csrf
                 <div>
                     <label for="first_name">First Name:</label>

@@ -121,7 +121,7 @@
     <div class="alert alert-warning text-center">
         Your wattage is too high for standard systems. Please <a href="{{ route('contact') }}">contact our team</a> for a custom solution.
     </div>
-@else
+{{-- @else
     <div class="system-types">
         <div class="system-card">
             <h2>Hybrid System</h2>
@@ -143,7 +143,31 @@
     <div class="alert alert-warning text-center">
         For a quotation or pricing details, feel free to contact our team.
     </div>
-@endif
+@endif --}}
+@elseif ($recommendedSolarCapacity !== 'Your current usage is very low. A basic solar setup under 1 kW may be sufficient. Consider a small backup or plug-and-play solar kit.')
+    <div class="system-types">
+        <div class="system-card">
+            <h2>Hybrid System</h2>
+            @if(isset($requiredSystemSize['hybridInverterSize']) && $requiredSystemSize['hybridInverterSize'] !== 'Not applicable')
+                <p><strong>Inverter Size:</strong> {{ $requiredSystemSize['hybridInverterSize'] }}</p>
+                <p><strong>Number of Panels:</strong> {{ $requiredSystemSize['hybridPanels'] ?? 'Not calculated' }}</p>
+                <p><strong>Estimated Annual Generation:</strong> {{ $requiredSystemSize['hybridAnnualGeneration'] ?? 'Not calculated' }}</p>
+            @else
+                <p>This hybrid system is not suitable based on the current requirements.</p>
+            @endif
+        </div>
+        <div class="system-card">
+            <h2>On-Grid System</h2>
+            <p><strong>Inverter Size:</strong> {{ $requiredSystemSize['onGridInverterSize'] }}</p>
+            <p><strong>Number of Panels:</strong> {{ $requiredSystemSize['onGridPanels'] }} </p>
+            <p><strong>Estimated Annual Generation:</strong> {{ $requiredSystemSize['onGridAnnualGeneration'] }}</p>
+        </div>
+    </div>
+    @endif
+    <div class="alert alert-warning text-center">
+        For a quotation or pricing details, feel free to <a href="{{ route('contact') }}">contact </a>our team.
+    </div>
+
 
     {{-- <div class="system-types">
         <div class="system-card">

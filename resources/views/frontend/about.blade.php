@@ -7,7 +7,7 @@
         <header>
     <div class="header-content">
         <h1>Green Innovation for Clean Energy</h1>
-
+    </div>
     </header>
     <section>
         <div class="About">
@@ -46,14 +46,21 @@
         </div>
     </section>
 
-
-</section>
-
+<section id="form-section">
     <div class="container my-5">
         <h1 class="text-center mb-4">Feedback</h1>
+         @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
         @if (auth()->check())
-            <form action="{{ route('feedback.store') }}" method="POST">
+            <form action="{{ route('feedback.store') }}#form-section" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label for="username" class="form-label">Name</label>
@@ -99,7 +106,7 @@
         @endif
     </div>
 
-
+</section>
 
 @endsection
 @section('js')
