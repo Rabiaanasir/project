@@ -16,7 +16,15 @@
     </div>
     @endif
     <h1 class="text-center mb-4">Select Appliances for Solar Panel System</h1>
-
+ @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <form action="{{ route('appliances.store') }}" method="POST">
         @csrf
         <div class="appliance-list mb-4">

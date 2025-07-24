@@ -24,8 +24,13 @@ class ApplianceController extends Controller
         'refrigerator_watt' => 'nullable|integer|min:1',
         'air_conditioner_watt' => 'nullable|integer|min:1',
         'washing_machine_watt' => 'nullable|integer|min:1',
+        'custom_appliance' => 'nullable|array',
+        'custom_appliance.*' => 'nullable|string|regex:/^[a-zA-Z\s]+$/',
+
         'custom_wattage' => 'nullable|array',
         'custom_wattage.*' => 'nullable|integer|min:1',
+       ] , [
+    'custom_appliance.*.regex' => 'Custom appliance names must contain only letters and spaces.',
     ]);
 
     $totalWattage = 0;
@@ -102,7 +107,20 @@ private function calculateSystemSize($totalWattage)
 {
     $totalKW = $totalWattage / 1000;
 
-
+ // 👉 ADD THIS BLOCK RIGHT AFTER THE $totalKW line
+    // if ($totalWattage < 500) {
+    //     return [
+    //         'systemType' => 'Below Recommended Range',
+    //         'systemRequired' => "{$totalWattage} W",
+    //         'recommendedInverter' => 'System load is too low for standard inverter sizing. Consider a basic backup system.',
+    //         'hybridInverterSize' => 'Not applicable',
+    //         'onGridInverterSize' => 'Not applicable',
+    //         'hybridPanels' => 'Not applicable',
+    //         'onGridPanels' => 'Not applicable',
+    //         'hybridAnnualGeneration' => 'Not applicable',
+    //         'onGridAnnualGeneration' => 'Not applicable',
+    //     ];
+    // }
     $hybridInverter = $this->getInverterSize('hybrid', $totalKW);
     $onGridInverter = $this->getInverterSize('on-grid', $totalKW);
 
@@ -210,7 +228,7 @@ private function getRecommendedSolarCapacity($totalWattage)
     }
 
     // return 'No recommendation available.';
-    return 'Your current usage is very low. A basic solar setup under 1 kW may be sufficient.';
+    return 'Your current usage is very low. A basic solar setup under 1 kW may be sufficient. Consider a small backup or plug-and-play solar kit.';
 
 }
 
