@@ -106,7 +106,7 @@
     newRow.className = 'custom-appliance-row d-flex mb-3';
     newRow.innerHTML = `
       <input type="text" class="form-control me-2" name="custom_appliance[]" placeholder="Custom Appliance Name" required>
-      <input type="number" class="form-control me-2 custom-watt-input" name="custom_wattage[]" placeholder="Enter Wattage (W)" min="1" required disabled>
+      <input type="number" class="form-control me-2 custom-watt-input" name="custom_wattage[]" placeholder="Enter Wattage (W)" min="1" required>
       <button type="button" class="btn btn-danger btn-remove" onclick="removeCustomRow(this)">Remove</button>
     `;
     container.appendChild(newRow);

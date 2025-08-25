@@ -47,12 +47,36 @@
             </div>
         </div>
     </section>
-<script>
+<!-- <script>
     function calculateEMI(loanAmount, tenure) {
         const fixedInterestRate = 22; // Fixed interest rate at 22%
         const monthlyInterestRate = fixedInterestRate / 12 / 100;
 
         let emi = loanAmount * monthlyInterestRate * tenure / 10;
+        return emi.toFixed(2);
+    }
+
+    document.getElementById('calculateEmi').addEventListener('click', function () {
+        let loanAmount = parseFloat(document.getElementById('loanAmount').value);
+        let tenure = parseInt(document.getElementById('tenure').value);
+
+        if (loanAmount > 0 && tenure > 0) {
+            let emiAmount = calculateEMI(loanAmount, tenure);
+            document.getElementById('emiAmount').innerText = `RS${emiAmount}`;
+        } else {
+            alert('Please enter valid values for loan amount and tenure.');
+        }
+    });
+</script> -->
+<script>
+    function calculateEMI(loanAmount, tenure) {
+        const fixedInterestRate = 22; // Fixed annual interest rate in %
+        const monthlyInterestRate = fixedInterestRate / 12 / 100;
+
+        // EMI formula
+        let emi = (loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, tenure)) /
+                  (Math.pow(1 + monthlyInterestRate, tenure) - 1);
+
         return emi.toFixed(2);
     }
 

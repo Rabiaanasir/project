@@ -6,6 +6,7 @@ use App\Models\BlogPost;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Storage;
 
 class BlogPostController extends Controller
 {

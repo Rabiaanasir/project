@@ -46,7 +46,7 @@
         </div>
     </section>
 
-<section id="form-section">
+<!-- <section id="form-section">
     <div class="container my-5">
         <h1 class="text-center mb-4">Feedback</h1>
          @if ($errors->any())
@@ -58,8 +58,12 @@
         </ul>
     </div>
 @endif
-
-        @if (auth()->check())
+@if (!Auth::check())
+    <div class="alert alert-warning text-center mt-3" role="alert">
+        Please <a href="{{ route('login') }}" class="alert-link">log in</a> to submit your Feedback.
+    </div>
+    @endif
+        <!-- @if (auth()->check()) --
             <form action="{{ route('feedback.store') }}#form-section" method="POST">
                 @csrf
                 <div class="mb-3">
@@ -79,12 +83,12 @@
 
                 <button type="submit" class="btn btn-primary w-100">Submit Feedback</button>
             </form>
-        @else
+        <!-- @else
             <div class="alert alert-warning text-center" role="alert">
                 Please <a href="{{ route('login') }}" class="alert-link">log in</a> to submit feedback.
-            </div>
+            </div> -->
 
-            <form action="#" method="POST" class="mt-3">
+            <!-- <form action="#" method="POST" class="mt-3">
                 @csrf
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
@@ -103,9 +107,62 @@
 
                 <button type="submit" class="btn btn-primary w-100" disabled>Submit Feedback</button>
             </form>
-        @endif
+        @endif --
     </div>
 
+</section> -->
+
+<section id="form-section">
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Feedback</h1>
+
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
+        <form action="{{ route('feedback.store') }}#form-section" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label for="username" class="form-label">Name</label>
+                <input type="text" id="username" name="username" class="form-control" 
+                       value="{{ Auth::check() ? auth()->user()->username : '' }}" 
+                       {{ Auth::check() ? 'readonly' : '' }} required>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" name="email" class="form-control" 
+                       value="{{ Auth::check() ? auth()->user()->email : '' }}" 
+                       {{ Auth::check() ? 'readonly' : '' }} required>
+            </div>
+
+            <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea id="message" name="message" class="form-control" placeholder="Your Feedback" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Submit Feedback</button>
+        </form>
+
+        @if (!Auth::check())
+            <div class="alert alert-warning text-center mt-3" role="alert">
+        Please <a href="{{ route('login') }}" class="alert-link">log in</a> to submit your feedback.
+    </div>
+        @endif
+    </div>
 </section>
 
 @endsection

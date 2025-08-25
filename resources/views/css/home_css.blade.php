@@ -489,6 +489,18 @@
     padding: 60px;
     font-family: 'Montserrat', sans-serif;
 }
+    /* .container2 {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+} */
+    /* .container2 {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+} */
 
 .container2 h2 {
     display: flex;
@@ -506,10 +518,28 @@ h3 {
     color: #333;
 }
 
-.feedback-grid {
+/* .feedback-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+} */
+    /* .feedback-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust columns dynamically *
+    gap: 20px;
+    width: 100%; 
+    box-sizing: border-box;
+    overflow: hidden; 
+    padding: 0 10px; 
+} */
+.feedback-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Auto adjust columns */
+    gap: 20px; /* Space between cards */
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 10px;
+    justify-items: center; /* Center cards inside each column */
 }
 
 .card {
@@ -519,6 +549,15 @@ h3 {
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+    .feedback-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Take full width of the grid cell */
+    box-sizing: border-box;
+} 
 
 .card-header {
     font-size: 18px;
@@ -605,5 +644,95 @@ h3 {
         font-size: 10px;
     }
 }
+
+
+
+/* Floating Chatbot Button */
+.chatbot-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: #f9a825;
+  color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+/* Chatbot Box */
+.chatbot {
+  position: fixed;
+  bottom: 90px; /* above button */
+  left: 20px;
+  width: 350px;
+  height: 450px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  display: none; /* hidden by default */
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.chat-header {
+  background: #f9a825;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.chat-box {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.message {
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 80%;
+}
+
+.bot {
+  background: #f1f1f1;
+  align-self: flex-start;
+}
+
+.user {
+  background: #f9a825;
+  color: white;
+  align-self: flex-end;
+}
+
+.chat-input {
+  display: flex;
+  border-top: 1px solid #ccc;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+}
+
+.chat-input button {
+  background: #f9a825;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
 </style>
+
 

@@ -13,7 +13,8 @@
     <input type="file" class="form-control" id="image" name="image">
 
     @if (!empty($post->image))
-        <small>Current Image: {{ $post->image }}</small>
+         <small>Current Image:</small><br>
+<img src="{{ asset('storage/images/' . $post->image) }}" alt="Current Image" width="150">
     @endif
 </div>
 

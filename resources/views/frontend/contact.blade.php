@@ -6,11 +6,11 @@
 
 @section('content')
 <!-- Display Success Message -->
-@if(session('success'))
+<!-- @if(session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
-@endif
+@endif -->
     <header>
         <div class="header-content">
          <h2 class="lg-heading text-light ">We are here to help</h2>
@@ -32,6 +32,11 @@
      </div>
     </section>
     <section id="form-section">
+        @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
         <div class="container">
             <h2>Request More Information</h2>
             <p>Complete the below form and our team will contact you shortly</p>
@@ -48,13 +53,13 @@
             <form action="{{ route('contact.store') }}#form-section" method="post">
                 @csrf
                 <div>
-                    <label for="first_name">First Name:</label>
-                    <input type="text" id="first_name" name="first_name" required>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
                 </div>
-                <div>
+                <!-- <div>
                     <label for="last_name">Last Name:</label>
                     <input type="text" id="last_name" name="last_name" required>
-                </div>
+                </div> -->
                 <div>
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required>
@@ -63,14 +68,21 @@
                     <label for="contact_number">Contact Number:</label>
                     <input type="text" id="contact_number" name="contact_number" required>
                 </div>
-                <div>
-                    <label for="city">City:</label>
-                    <input type="text" id="city" name="city" required>
-                </div>
+            
                 <div>
                     <label for="address">Address:</label>
                     <input type="text" id="address" name="address" required>
                 </div>
+                {{-- ✅ Auto-fill Product Name if passed in URL --}}
+   <div>
+    <label for="product">Product of Interest:</label>
+    <input type="text" id="product" name="product" 
+           value="{{ request('product') }}">
+</div>
+<div>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4"></textarea>
+    </div>
                 <button type="submit" class="btn btn-primary submit">Submit</button>
             </form>
 <div id="successMessage" style="display:none; color: green;">

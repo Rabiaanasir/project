@@ -34,7 +34,9 @@
     <input type="file" class="form-control" id="image" name="image" {{ empty($listing->image) ? 'required' : '' }}>
 
     @if (!empty($listing->image))
-        <small>Current Image: {{ $listing->image }}</small>
+        <!-- <small>Current Image: {{ $listing->image }}</small> -->
+         <small>Current Image:</small><br>
+<img src="{{ asset('storage/images/' . $listing->image) }}" alt="Current Image" width="150">
     @endif
 </div>
 
