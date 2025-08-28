@@ -28,6 +28,7 @@
             <a href="{{ route('contact') }}">
                 <button>Contact</button>
         </div>
+    </a>
         <div class="text-box">
             <h2>SUN SOURCE SOLUTION’S TRUSTED SOLAR BATTERIES BRAND</h2>
             <p>Sun Source Solutions installs a range of solar batteries, from tubular batteries to lithium-ion batteries.</p>

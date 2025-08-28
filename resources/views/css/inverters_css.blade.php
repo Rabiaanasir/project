@@ -151,6 +151,7 @@ button a{
         .text, .text2 {
           flex: 1;
           padding: 0 1rem;
+
         }
 
         .text h2, .text2 h2 {
@@ -160,6 +161,7 @@ button a{
 
         .text p, .text2 p {
           font-size: 1rem;
+          color: #000;
         }
 
         /* Responsive Design */
