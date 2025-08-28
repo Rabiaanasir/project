@@ -69,7 +69,6 @@
 
         <button type="button" id="add-custom-appliance-btn"
                 class="btn btn-primary mb-3"
-                {{ auth()->check() ? '' : 'disabled' }}
                 onclick="addCustomRow()">Add Another Custom Appliance</button>
 
         <div id="total-wattage" class="alert alert-info">Total Wattage: 0 W</div>

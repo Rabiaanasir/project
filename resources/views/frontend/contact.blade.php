@@ -5,12 +5,7 @@
 @endsection
 
 @section('content')
-<!-- Display Success Message -->
-<!-- @if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif -->
+
     <header>
         <div class="header-content">
          <h2 class="lg-heading text-light ">We are here to help</h2>
@@ -56,10 +51,7 @@
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" required>
                 </div>
-                <!-- <div>
-                    <label for="last_name">Last Name:</label>
-                    <input type="text" id="last_name" name="last_name" required>
-                </div> -->
+               
                 <div>
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required>
