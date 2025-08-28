@@ -125,33 +125,72 @@ class BlogPostController extends Controller
     /**
      * Update the specified blog post in storage.
      */
+    // public function update(Request $request, $id)
+    // {
+    //     $validated = $request->validate([
+    //         'title' => 'required|string|max:255',
+    //         'description' => 'required|string',
+    //         'image' => 'nullable|image|max:2048',
+    //     ]);
+
+    //     $post = BlogPost::findOrFail($id);
+
+    //     if ($request->hasFile('image')) {
+    //         if ($post->image) {
+    //             Storage::delete('public/images/' . $post->image);
+    //         }
+
+    //         $imageName = time() . '.' . $request->image->extension();
+    //         $request->image->storeAs('public/images', $imageName);
+
+    //         $validated['image'] = $imageName;
+    //     } else {
+    //         $validated['image'] = $post->image;
+    //     }
+
+    //     $post->update($validated);
+
+    //     return response()->json(['success' => 'Blog post updated successfully.']);
+    // }
     public function update(Request $request, $id)
-    {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'image' => 'nullable|image|max:2048',
+{
+    $post = BlogPost::findOrFail($id);
+
+    $validator = \Validator::make($request->all(), [
+        'title' => 'required|string|max:255',
+        'description' => 'required|string',
+        'image' => 'nullable|image|max:2048',
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'status' => 400,
+            'errors' => $validator->errors()
         ]);
-
-        $post = BlogPost::findOrFail($id);
-
-        if ($request->hasFile('image')) {
-            if ($post->image) {
-                Storage::delete('public/images/' . $post->image);
-            }
-
-            $imageName = time() . '.' . $request->image->extension();
-            $request->image->storeAs('public/images', $imageName);
-
-            $validated['image'] = $imageName;
-        } else {
-            $validated['image'] = $post->image;
-        }
-
-        $post->update($validated);
-
-        return response()->json(['success' => 'Blog post updated successfully.']);
     }
+
+    $data = $validator->validated();
+
+    // Handle image upload
+    if ($request->hasFile('image')) {
+        if ($post->image) {
+            \Storage::delete('public/images/' . $post->image);
+        }
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->storeAs('public/images', $imageName);
+        $data['image'] = $imageName;
+    } else {
+        $data['image'] = $post->image;
+    }
+
+    $post->update($data);
+
+    return response()->json([
+        'status' => 200,
+        'message' => 'Blog post updated successfully.'
+    ]);
+}
+
 
     public function destroy($id)
     {
