@@ -60,25 +60,58 @@ class BlogPostController extends Controller
     }
 
 
+    // public function store(Request $request)
+    // {
+    //     $validated = $request->validate([
+    //         'title' => 'required|string|max:255',
+    //         'description' => 'required|string',
+    //         'image' => 'nullable|image|max:2048',
+    //     ]);
+
+    //     $imageName = null;
+
+    //     if ($request->hasFile('image')) {
+    //         $imageName = time() . '.' . $request->image->extension();
+    //         $request->image->storeAs('public/images', $imageName);
+    //     }
+
+    //     BlogPost::create(array_merge($validated, ['image' => $imageName]));
+
+    //     return response()->json(['success' => 'Blog post created successfully.']);
+    // }
     public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'image' => 'nullable|image|max:2048',
+{
+    $validator = \Validator::make($request->all(), [
+        'title' => 'required|string|max:255',
+        'description' => 'required|string',
+        'image' => 'nullable|image|max:2048',
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'status' => 400,
+            'errors' => $validator->errors()
         ]);
-
-        $imageName = null;
-
-        if ($request->hasFile('image')) {
-            $imageName = time() . '.' . $request->image->extension();
-            $request->image->storeAs('public/images', $imageName);
-        }
-
-        BlogPost::create(array_merge($validated, ['image' => $imageName]));
-
-        return response()->json(['success' => 'Blog post created successfully.']);
     }
+
+    $imageName = null;
+    if ($request->hasFile('image')) {
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->storeAs('public/images', $imageName);
+    }
+
+    BlogPost::create([
+        'title' => $request->title,
+        'description' => $request->description,
+        'image' => $imageName,
+    ]);
+
+    return response()->json([
+        'status' => 200,
+        'message' => 'Blog post created successfully.'
+    ]);
+}
+
 
     /**
      * Show the form for editing the specified blog post.

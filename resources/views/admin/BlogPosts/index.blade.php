@@ -60,30 +60,62 @@
             ]
         });
 
-        $(document).on('submit', '#postsForm', function (e) {
-            e.preventDefault();
-            var formData = new FormData(this);
-            $.ajax({
-                url: "{{ route('posts.store') }}",
-                type: "POST",
-                data: formData,
-                contentType: false,
-                processData: false,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function (response) {
-                    $('#postsForm').trigger("reset");
-                    toastr.success('Post added successfully!');
-                    $('.view_modal').modal('hide');
-                    table.ajax.reload();
-                },
-                error: function (error) {
-                    console.error('Error:', error);
-                    toastr.error('Error occurred while storing project. Please try again.');
-                }
-            });
-        });
+        // //$(document).on('submit', '#postsForm', function (e) {
+        //     e.preventDefault();
+        //     var formData = new FormData(this);
+        //     $.ajax({
+        //         url: "{{ route('posts.store') }}",
+        //         type: "POST",
+        //         data: formData,
+        //         contentType: false,
+        //         processData: false,
+        //         headers: {
+        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //         },
+        //         success: function (response) {
+        //             $('#postsForm').trigger("reset");
+        //             toastr.success('Post added successfully!');
+        //             $('.view_modal').modal('hide');
+        //             table.ajax.reload();
+        //         },
+        //         error: function (error) {
+        //             console.error('Error:', error);
+        //             toastr.error('Error occurred while storing project. Please try again.');
+        //         }
+        //     });
+        // // });
+        $(document).on('submit', '#postsForm', function(e) {
+    e.preventDefault();
+    let form = this;
+
+    $.ajax({
+        url: "{{ route('posts.store') }}",
+        method: "POST",
+        data: new FormData(form),
+        processData: false,
+        contentType: false,
+        beforeSend: function() {
+            $(form).find('span.error-text').text('');
+        },
+        success: function(data) {
+            if (data.status == 400) {
+                // show errors under inputs
+                $.each(data.errors, function(prefix, val) {
+                    $(form).find('span.' + prefix + '_error').text(val[0]);
+                });
+            } else {
+                toastr.success(data.message);
+                $('#postsForm').trigger("reset");
+                $('.view_modal').modal('hide');
+                $('#posts').DataTable().ajax.reload();
+            }
+        },
+        error: function(xhr) {
+            toastr.error('Unexpected error. Please try again.');
+        }
+    });
+});
+
 
         $(document).on('submit', '#postsFormEdit', function (e) {
     e.preventDefault();
