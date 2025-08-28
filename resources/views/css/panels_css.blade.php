@@ -125,6 +125,9 @@
             text-align: start;
         }
 
+        .text p {
+            color: #000;
+        }
         .img2 {
             float: left;
             height: 400px;
@@ -135,6 +138,7 @@
         .text2 p {
             padding-left: 120px;
             font-size: 20px;
+            color: #000;
         }
 
         .text2 h2 {

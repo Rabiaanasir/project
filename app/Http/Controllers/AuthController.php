@@ -21,7 +21,9 @@ public function login(Request $request)
 {
     $request->validate([
         'login' => 'required|string|max:255',
-        'password' => 'required|string|min:6|regex:/^\S+$/', // No spaces allowed
+        'password' => 'required|string|min:6|regex:/^[a-zA-Z0-9 ]+$/'
+
+
     ]);
 
 
