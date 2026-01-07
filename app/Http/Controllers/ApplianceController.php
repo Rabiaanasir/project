@@ -46,6 +46,10 @@ class ApplianceController extends Controller
         }
     }
 
+    if ($totalWattage <= 0) {
+    return back()->withErrors(['You must enter at least one appliance wattage.'])->withInput();
+}
+
     Appliance::create([
         'user_id' => Auth::id(),
         'total_wattage' => $totalWattage,

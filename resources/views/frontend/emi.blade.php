@@ -53,9 +53,10 @@
         const fixedInterestRate = 22; // Fixed annual interest rate in %
         const monthlyInterestRate = fixedInterestRate / 12 / 100;
 
-        // EMI formula
-        let emi = (loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, tenure)) /
-                  (Math.pow(1 + monthlyInterestRate, tenure) - 1);
+
+        //let emi = loanAmount * monthlyInterestRate * tenure / 10;//
+        const emi = (loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, tenure)) /
+                (Math.pow(1 + monthlyInterestRate, tenure) - 1);
 
         return emi.toFixed(2);
     }
@@ -72,11 +73,5 @@
         }
     });
 </script>
-
-
-
-@endsection
-@section('js')
-  @include('js.install_js')
 
 @endsection
