@@ -188,7 +188,7 @@
     <div class="feedback-grid">
         <!-- Display only the first 3 feedback items -->
         @foreach ($feedbacks->slice(0, 3) as $feedback)
-            <div class="card">
+            <div class="feedback-card">
                 <div class="card-header">
                     <p style="color:navy;"><strong> {{ $feedback->username }}</strong></p> <!-- Display full message -->
                     <!-- Display 'Verified' if the feedback is from a registered user -->
@@ -200,6 +200,27 @@
             </div>
         @endforeach
     </div>
+</div>
+
+
+<!-- Floating Chatbot Button -->
+<div id="chatbot-toggle" class="chatbot-toggle">
+  💬
+</div>
+
+<!-- Chatbot Box (hidden by default) -->
+<div id="chatbot" class="chatbot">
+  <div class="chat-header">
+    Solar Assistant ☀️
+    <span id="close-chat" style="cursor:pointer; float:right;">✖</span>
+  </div>
+  <div class="chat-box" id="chat-box">
+    <div class="message bot">Hello! 👋 I’m your solar assistant. How can I help you today?</div>
+  </div>
+  <div class="chat-input">
+    <input type="text" id="user-input" placeholder="Type a message...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
 </div>
 
 

@@ -307,58 +307,5 @@ if (usernameError) {
     document.body.classList.add('active');
 }
 
-
-        // function validateRegisterForm() {
-        //     document.getElementById('generalError').textContent = '';
-
-        //     const username = document.getElementById('username').value.trim();
-        //     const email = document.getElementById('email').value.trim();
-        //     const password = document.getElementById('password').value.trim();
-        //     const confirmPassword = document.getElementById('password_confirmation').value.trim();
-
-        //     if (!username || !email || !password || !confirmPassword) {
-        //         document.getElementById('generalError').textContent = 'All fields must be filled out.';
-        //         return false;
-        //     }
-        //     let isValid = true;
-
-
-// if (!username) {
-//     document.getElementById('generalError').textContent = 'Username is required.';
-//     isValid = false;
-// } else if (!/^[a-zA-Z0-9 ]+$/.test(username)) {
-//     document.getElementById('generalError').textContent = 'Username can only contain letters, numbers, and spaces.';
-//     isValid = false;
-// }
-
-//if (!email) {
-    //document.getElementById('generalError').textContent = 'Email is required.';
-   // isValid = false;
-//} else if (!/\S+@\S+\.\S+/.test(email)) {
-    //document.getElementById('generalError').textContent = 'Invalid email format.';
-  //  isValid = false;
-//}
-
-// if (!password) {
-//     document.getElementById('generalError').textContent = 'Password is required.';
-//     isValid = false;
-// } else if (password.length < 8) {
-//     document.getElementById('generalError').textContent = 'Password must be at least 8 characters long.';
-//     isValid = false;
-// }
-//     if (password !== confirmPassword) {
-//         document.getElementById('generalError').textContent = 'Passwords do not match.';
-//         isValid = false;
-//     }
-
-
-    // if (!isValid) {
-    //     event.preventDefault();
-    // }
-
-    // return isValid;
-
-
-    //     }
     </script>
 </body>

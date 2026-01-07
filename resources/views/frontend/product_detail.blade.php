@@ -65,6 +65,8 @@
                 <p class="text-muted">Brand: {{ $listing->brand->name }}</p>
                 <p class="product-description">{{ $listing->description }}</p>
                 <p><strong>Power:</strong> {{ $listing->watts }} watts</p>
+            
+                <a href="{{ route('contact', ['product' => $listing->title]) }}" class="btn btn-secondary mt-3">Inquire Now</a>
 
             </div>
         </div>

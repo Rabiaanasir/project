@@ -3,11 +3,6 @@
 <div class="profile-container">
     <h2>User Profile</h2>
 
-    {{-- @if(session('success'))
-        <div class="alert">
-            {{ session('success') }}
-        </div>
-    @endif --}}
     <div class="alerts">
         @if (session('success'))
             <div class="alert alert-success">

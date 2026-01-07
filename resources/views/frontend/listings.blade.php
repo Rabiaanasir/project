@@ -119,53 +119,5 @@
         <button>REQUEST A CALL</button>
     </a>
 </div>
-{{-- <script>
-$(document).ready(function() {
-    fetchListings();
 
-    function fetchListings() {
-        $.ajax({
-            url: "{{ route('frontend.listings.data') }}",
-            method: "GET",
-            success: function(response) {
-                console.log('Response:', response);
-                renderProducts(response.data);
-            },
-            error: function(xhr, status, error) {
-                console.error('Error:', xhr.responseText);
-                $('#productGrid').html('<p class="text-center">Failed to load products.</p>');
-            }
-        });
-    }
-
-    function renderProducts(listings) {
-        $('#productGrid').empty();
-        if (listings.length > 0) {
-            $.each(listings, function(index, listing) {
-                $('#productGrid').append(`
-                    <div class="col-md-4 mb-4">
-    <a href="/product/${listing.id}" class="card-link" style="text-decoration: none; color: inherit;">
-        <div class="card h-100">
-            <img src="${listing.image ? '{{ asset('storage/images') }}/' + listing.image : ''}"
-                 class="card-img-top"
-                 alt="${listing.title}"
-                 style="height: 200px; object-fit: cover;">
-            <div class="card-body">
-                <h5 class="card-title">${listing.title}</h5>
-                <p class="card-text">${listing.description.substring(0, 80)}...</p>
-                <p class="text-muted">Brand: ${listing.brand.name}</p>
-                <p class="fw-bold">Rs ${listing.price}</p>
-            </div>
-        </div>
-    </a>
-</div>
-
-                `);
-            });
-        } else {
-            $('#productGrid').html('<p class="text-center">No products found.</p>');
-        }
-    }
-});
-</script> --}}
 @endsection

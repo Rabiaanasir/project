@@ -69,7 +69,6 @@
 
         <button type="button" id="add-custom-appliance-btn"
                 class="btn btn-primary mb-3"
-                {{ auth()->check() ? '' : 'disabled' }}
                 onclick="addCustomRow()">Add Another Custom Appliance</button>
 
         <div id="total-wattage" class="alert alert-info">Total Wattage: 0 W</div>
@@ -107,6 +106,7 @@
     newRow.innerHTML = `
       <input type="text" class="form-control me-2" name="custom_appliance[]" placeholder="Custom Appliance Name">
       <input type="number" class="form-control me-2 custom-watt-input" name="custom_wattage[]" placeholder="Enter Wattage (W)" min="1">
+
       <button type="button" class="btn btn-danger btn-remove" onclick="removeCustomRow(this)">Remove</button>
     `;
     container.appendChild(newRow);

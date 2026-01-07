@@ -31,6 +31,7 @@
                 <button>Contact</button>
         </div>
     </section>
+</a>
     <section class="row">
         <div class="imgwrapper">
             <img class="img" src="{{ asset('images/Chint-10-KTL-On-Grid-Inverter.jpg') }}">

@@ -49,7 +49,7 @@ Route::get('/calculator', [calculatorController::class, 'index'])->name('calcula
 Route::get('/net-metering', [nmController::class, 'index'])->name('net-metering');
 Route::get('/emi', [emiController::class, 'index'])->name('emi');
 Route::get('/invest', [investController::class, 'index'])->name('invest');
-Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
+Route::post('/feedback', [FeedbackController::class, 'store'])->middleware('auth')->name('feedback.store');
 
 
 // Show the combined login/register page
@@ -146,7 +146,10 @@ Route::delete('packages/delete/{id}', [PackageController::class, 'destroy'])->na
 Route::get('/contact/index', [ContactsController::class, 'AdminIndex'])->name('contact.index');
 Route::get('/admin/contact', [ContactsController::class, 'index'])->name('admin.contact');
 Route::delete('/contact/{id}', [ContactsController::class, 'destroy'])->name('admin.contact.destroy');
-Route::get('/admin/contact/{id}', [ContactsController::class, 'show'])->name('admin.contact.show');
+Route::get('/contact/{id}', [ContactsController::class, 'show'])->name('admin.contact.show');
+Route::get('contacts/{id}/edit-email', [ContactsController::class, 'editEmail'])->name('contact.edit_email');
+    Route::post('contacts/{id}/send-email', [ContactsController::class, 'sendAdminResponse'])->name('contact.send-email');
+   
 
 Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
 Route::get('/feedback/data', [FeedbackController::class, 'getData'])->name('feedback.data');

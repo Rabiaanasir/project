@@ -10,6 +10,7 @@
     <input type="file" class="form-control" id="image" name="image" {{ empty($project->image) ? 'required' : '' }}>
 
     @if (!empty($project->image))
-        <small>Current Image: {{ $project->image }}</small>
+         <small>Current Image:</small><br>
+<img src="{{ asset('storage/images/' . $project->image) }}" alt="Current Image" width="150">
     @endif
 </div>

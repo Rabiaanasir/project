@@ -60,55 +60,117 @@
             ]
         });
 
-        $(document).on('submit', '#postsForm', function (e) {
-            e.preventDefault();
-            var formData = new FormData(this);
-            $.ajax({
-                url: "{{ route('posts.store') }}",
-                type: "POST",
-                data: formData,
-                contentType: false,
-                processData: false,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function (response) {
-                    $('#postsForm').trigger("reset");
-                    toastr.success('Post added successfully!');
-                    $('.view_modal').modal('hide');
-                    table.ajax.reload();
-                },
-                error: function (error) {
-                    console.error('Error:', error);
-                    toastr.error('Error occurred while storing project. Please try again.');
-                }
-            });
-        });
-
-        $(document).on('submit', '#postsFormEdit', function (e) {
+        // //$(document).on('submit', '#postsForm', function (e) {
+        //     e.preventDefault();
+        //     var formData = new FormData(this);
+        //     $.ajax({
+        //         url: "{{ route('posts.store') }}",
+        //         type: "POST",
+        //         data: formData,
+        //         contentType: false,
+        //         processData: false,
+        //         headers: {
+        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //         },
+        //         success: function (response) {
+        //             $('#postsForm').trigger("reset");
+        //             toastr.success('Post added successfully!');
+        //             $('.view_modal').modal('hide');
+        //             table.ajax.reload();
+        //         },
+        //         error: function (error) {
+        //             console.error('Error:', error);
+        //             toastr.error('Error occurred while storing project. Please try again.');
+        //         }
+        //     });
+        // // });
+        $(document).on('submit', '#postsForm', function(e) {
     e.preventDefault();
-
-    var formData = new FormData(this);
+    let form = this;
 
     $.ajax({
-        url: $(this).attr('action'),
-        method: $(this).attr('method'),
-        data: formData,
-        contentType: false,
+        url: "{{ route('posts.store') }}",
+        method: "POST",
+        data: new FormData(form),
         processData: false,
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF token
+        contentType: false,
+        beforeSend: function() {
+            $(form).find('span.error-text').text('');
         },
-        success: function (response) {
-            console.log(response)
-            toastr.success('Post updated successfully!');
-            $('.edit_modal').modal('hide');
+        success: function(data) {
+            if (data.status == 400) {
+                // show errors under inputs
+                $.each(data.errors, function(prefix, val) {
+                    $(form).find('span.' + prefix + '_error').text(val[0]);
+                });
+            } else {
+                toastr.success(data.message);
+                $('#postsForm').trigger("reset");
+                $('.view_modal').modal('hide');
+                $('#posts').DataTable().ajax.reload();
+            }
+        },
+        error: function(xhr) {
+            toastr.error('Unexpected error. Please try again.');
+        }
+    });
+});
 
-            $('#posts').DataTable().ajax.reload();
+
+//         $(document).on('submit', '#postsFormEdit', function (e) {
+//     e.preventDefault();
+
+//     var formData = new FormData(this);
+
+//     $.ajax({
+//         url: $(this).attr('action'),
+//         method: $(this).attr('method'),
+//         data: formData,
+//         contentType: false,
+//         processData: false,
+//         headers: {
+//             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF token
+//         },
+//         success: function (response) {
+//             console.log(response)
+//             toastr.success('Post updated successfully!');
+//             $('.edit_modal').modal('hide');
+
+//             $('#posts').DataTable().ajax.reload();
+//         },
+//         error: function (xhr, status, error) {
+//             console.error('Error:', error);
+//             toastr.error('Failed to update the post.');
+//         }
+//     });
+// });
+$(document).on('submit', '#postsFormEdit', function(e) {
+    e.preventDefault();
+    let form = this;
+
+    $.ajax({
+        url: $(form).attr('action'),
+        method: $(form).attr('method'),
+        data: new FormData(form),
+        processData: false,
+        contentType: false,
+        beforeSend: function() {
+            $(form).find('span.error-text').text('');
         },
-        error: function (xhr, status, error) {
-            console.error('Error:', error);
-            toastr.error('Failed to update the post.');
+        success: function(data) {
+            if (data.status == 400) {
+                // Show validation errors
+                $.each(data.errors, function(prefix, val) {
+                    $(form).find('span.' + prefix + '_error').text(val[0]);
+                });
+            } else {
+                toastr.success(data.message);
+                $('.edit_modal').modal('hide');
+                $('#posts').DataTable().ajax.reload(null, false);
+            }
+        },
+        error: function(xhr) {
+            toastr.error('Unexpected error occurred.');
         }
     });
 });

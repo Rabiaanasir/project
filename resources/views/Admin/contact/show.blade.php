@@ -6,13 +6,14 @@
 
         <div class="card">
             <div class="card-body">
-                <p><strong>First Name:</strong> {{ $contact->first_name }}</p>
-                <p><strong>Last Name:</strong> {{ $contact->last_name }}</p>
-                <p><strong>Email:</strong> {{ $contact->email }}</p>
-                <p><strong>Contact Number:</strong> {{ $contact->contact_number }}</p>
-                <p><strong>City:</strong> {{ $contact->city }}</p>
-                <p><strong>Address:</strong> {{ $contact->address }}</p>
-            </div>
+            <p><strong>Name:</strong> {{ $contact->name ?? ($contact->first_name . ' ' . $contact->last_name) }}</p>
+            <p><strong>Email:</strong> {{ $contact->email }}</p>
+            <p><strong>Contact Number:</strong> {{ $contact->contact_number }}</p>
+            <p><strong>Address:</strong> {{ $contact->address }}</p>
+            <p><strong>Product of Interest:</strong> {{ $contact->product ?? 'N/A' }}</p>
+            <p><strong>Message:</strong> {{ $contact->message ?? 'No message provided' }}</p>
+            <p><strong>Submitted At:</strong> {{ $contact->created_at->format('d M Y, h:i A') }}</p>
+        </div>
         </div>
 
         <a href="{{ route('contact.index') }}" class="btn btn-primary mt-3">Back to Contacts</a>

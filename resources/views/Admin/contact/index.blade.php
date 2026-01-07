@@ -8,12 +8,12 @@
         <table id="contacts" class="table table-bordered">
             <thead>
                 <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
+                    <th>Name</th>
                     <th>Email</th>
                     <th>Contact Number</th>
-                    <th>City</th>
                     <th>Address</th>
+                    <th>Product</th>
+                    <th>Message</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -29,14 +29,14 @@
             serverSide: true,
             ajax: "{{ route('contact.index') }}",
             columns: [
-                { data: 'first_name', name: 'first_name' },
-                { data: 'last_name', name: 'last_name' },
-                { data: 'email', name: 'email' },
-                { data: 'contact_number', name: 'contact_number' },
-                { data: 'city', name: 'city' },
-                { data: 'address', name: 'address' },
-                { data: 'action', name: 'action', orderable: false }
-            ]
+            { data: 'name', name: 'name' },
+            { data: 'email', name: 'email' },
+            { data: 'contact_number', name: 'contact_number' },
+            { data: 'address', name: 'address' },
+            { data: 'product', name: 'product' },
+            { data: 'message', name: 'message' },
+            { data: 'action', name: 'action', orderable: false }
+        ]
         });
     });
 $(document).on('click', '.deleteContact', function (e) {
@@ -76,7 +76,5 @@ $(document).on('click', '.deleteContact', function (e) {
     });
 });
 
-
 </script>
 @endsection
-

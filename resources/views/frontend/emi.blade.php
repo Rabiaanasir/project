@@ -47,10 +47,12 @@
             </div>
         </div>
     </section>
+
 <script>
     function calculateEMI(loanAmount, tenure) {
-        const fixedInterestRate = 22; // Fixed interest rate at 22%
+        const fixedInterestRate = 22; // Fixed annual interest rate in %
         const monthlyInterestRate = fixedInterestRate / 12 / 100;
+
 
         //let emi = loanAmount * monthlyInterestRate * tenure / 10;//
         const emi = (loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, tenure)) /

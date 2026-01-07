@@ -105,18 +105,15 @@ return view('admin.appliances.index', compact('appliances'));
         return response()->json(['error' => 'Unauthorized'], 401);
     }
 
-
-
 private function calculateSystemSize($totalWattage)
 {
     $totalKW = $totalWattage / 1000;
 
-
     $hybridInverter = $this->getInverterSize('hybrid', $totalKW);
     $onGridInverter = $this->getInverterSize('on-grid', $totalKW);
 
-    // Handle wattage beyond max supported inverter size
-    if (!$hybridInverter || !$onGridInverter) {
+    // Total exceeds max on-grid inverter
+    if ($totalKW > 50) {
         return [
             'systemType' => 'Custom',
             'systemRequired' => number_format($totalKW, 2) . ' kW',
@@ -130,10 +127,26 @@ private function calculateSystemSize($totalWattage)
         ];
     }
 
+    // Hybrid exceeds limit
+    if (!$hybridInverter) {
+        return [
+            'systemType' => 'On-Grid Only',
+            'systemRequired' => number_format($totalKW, 2) . ' kW',
+            'recommendedInverter' => 'On-Grid Inverter Recommended',
+            'hybridInverterSize' => 'Not available',
+            'onGridInverterSize' => $onGridInverter['size'],
+            'hybridPanels' => 'Not applicable',
+            'onGridPanels' => $onGridInverter['numberOfPanels'] . ' panels (585W each)',
+            'hybridAnnualGeneration' => 'Not applicable',
+            'onGridAnnualGeneration' => number_format($onGridInverter['annualGeneration'], 2) . ' kWh',
+        ];
+    }
+
+    // Default: hybrid within limit
     return [
-        'systemType' => $totalKW > 12 ? 'On-Grid' : 'Hybrid or Off-Grid',
+        'systemType' => 'Hybrid or Off-Grid',
         'systemRequired' => number_format($totalKW, 2) . ' kW',
-        'recommendedInverter' => $totalKW > 12 ? 'On-Grid Inverter' : 'Hybrid or Off-Grid Inverter',
+        'recommendedInverter' => 'Hybrid or Off-Grid Inverter',
         'hybridInverterSize' => $hybridInverter['size'],
         'onGridInverterSize' => $onGridInverter['size'],
         'hybridPanels' => $hybridInverter['numberOfPanels'] . ' panels (585W each)',
@@ -142,6 +155,7 @@ private function calculateSystemSize($totalWattage)
         'onGridAnnualGeneration' => number_format($onGridInverter['annualGeneration'], 2) . ' kWh',
     ];
 }
+
 
 private function getInverterSize($type, $totalKW)
 {
