@@ -52,7 +52,10 @@
         const fixedInterestRate = 22; // Fixed interest rate at 22%
         const monthlyInterestRate = fixedInterestRate / 12 / 100;
 
-        let emi = loanAmount * monthlyInterestRate * tenure / 10;
+        //let emi = loanAmount * monthlyInterestRate * tenure / 10;//
+        const emi = (loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, tenure)) /
+                (Math.pow(1 + monthlyInterestRate, tenure) - 1);
+
         return emi.toFixed(2);
     }
 
@@ -68,11 +71,5 @@
         }
     });
 </script>
-
-
-
-@endsection
-@section('js')
-  @include('js.install_js')
 
 @endsection

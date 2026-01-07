@@ -46,6 +46,10 @@ class ApplianceController extends Controller
         }
     }
 
+    if ($totalWattage <= 0) {
+    return back()->withErrors(['You must enter at least one appliance wattage.'])->withInput();
+}
+
     Appliance::create([
         'user_id' => Auth::id(),
         'total_wattage' => $totalWattage,
@@ -107,20 +111,7 @@ private function calculateSystemSize($totalWattage)
 {
     $totalKW = $totalWattage / 1000;
 
- // 👉 ADD THIS BLOCK RIGHT AFTER THE $totalKW line
-    // if ($totalWattage < 500) {
-    //     return [
-    //         'systemType' => 'Below Recommended Range',
-    //         'systemRequired' => "{$totalWattage} W",
-    //         'recommendedInverter' => 'System load is too low for standard inverter sizing. Consider a basic backup system.',
-    //         'hybridInverterSize' => 'Not applicable',
-    //         'onGridInverterSize' => 'Not applicable',
-    //         'hybridPanels' => 'Not applicable',
-    //         'onGridPanels' => 'Not applicable',
-    //         'hybridAnnualGeneration' => 'Not applicable',
-    //         'onGridAnnualGeneration' => 'Not applicable',
-    //     ];
-    // }
+
     $hybridInverter = $this->getInverterSize('hybrid', $totalKW);
     $onGridInverter = $this->getInverterSize('on-grid', $totalKW);
 
